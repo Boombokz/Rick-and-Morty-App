@@ -7,4 +7,4 @@ const Color listTileTextColor = Color(0xFFa7a8ab);
 const Color greenCircleColor = Color(0xFF00C48C);
 
 // URLs
-const String baseURL = 'https://rickandmortyapi.com/api/character/';
+const String baseURL = 'https://rickandmortyapi.com/api/';

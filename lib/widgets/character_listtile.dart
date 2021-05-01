@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty_test/blocs/character_bloc/character_bloc.dart';
 import 'package:rick_and_morty_test/const.dart';
 import 'package:rick_and_morty_test/models/character_model.dart';
 import 'package:rick_and_morty_test/pages/character_details_page.dart';
@@ -13,12 +15,16 @@ class CharacterListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        BlocProvider.of<CharacterBloc>(context)
+            .add(CharacterLoadEvent(idCharacter: character.id));
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CharacterDetailsPage(
-                      character: character,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => CharacterDetailsPage(
+              name: character.name,
+            ),
+          ),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
