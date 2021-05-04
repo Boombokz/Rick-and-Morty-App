@@ -14,6 +14,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+
       leading: backButton
           ? InkWell(
               onTap: () {
@@ -28,10 +29,12 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: appBarStyle,
       ),
+
       backgroundColor: listTileColor,
       centerTitle: true,
+
       elevation: 0,
-      brightness: Brightness.light,
+      brightness: Brightness.dark,
     );
   }
 }
