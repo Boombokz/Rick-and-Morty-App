@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_test/blocs/character_bloc/character_bloc.dart';
-import 'package:rick_and_morty_test/blocs/characters_list_bloc/characters_list_bloc.dart';
-import 'package:rick_and_morty_test/pages/home_page.dart';
+import 'package:rick_and_morty_test/constants/router/route_generator.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/episodes_character/episodes_character_bloc.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
+import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_count_bloc/locations_count_bloc.dart';
+import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_list_bloc/locations_list_bloc.dart';
 
 void main() {
   runApp(MyApp());
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    statusBarColor: Color(0xFF3C3E44),
-  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,17 +18,26 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (context) => CharactersCountBloc()),
+        BlocProvider(create: (context) => CharactersListBloc()),
+        BlocProvider(create: (context) => EpisodesCharacterBloc()),
+        BlocProvider(create: (context) => CharacterSearchBloc()),
+        BlocProvider(create: (context) => LocationsCountBloc()..add(LocationsCountLoadEvent())),
         BlocProvider(
-          create: (context) =>
-              CharactersListBloc()..add(CharactersListLoadEvent()),
-        ),
-        BlocProvider(create: (context) => CharacterBloc()),
+            create: (context) =>
+                LocationsListBloc()..add(LocationsListLoadEvent())),
       ],
-      child: MaterialApp(
-        theme: ThemeData(fontFamily: 'Display'),
-        title: 'Rick and Morty',
-        debugShowCheckedModeBanner: false,
-        home: HomePage(),
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+        ),
+        child: MaterialApp(
+          theme: ThemeData(fontFamily: 'Roboto'),
+          title: 'Rick and Morty',
+          debugShowCheckedModeBanner: false,
+          initialRoute: RouteGenerator.splashScreenRoute,
+          onGenerateRoute: RouteGenerator.generateRoute,
+        ),
       ),
     );
   }
