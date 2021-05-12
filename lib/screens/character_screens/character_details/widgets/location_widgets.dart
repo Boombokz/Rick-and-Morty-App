@@ -9,14 +9,14 @@ class LocationWidget extends StatelessWidget {
 
   final String originName;
   final String title;
-  final Function function;
+  final VoidCallback function;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: GestureDetector(
-        onTap: function(),
+        onTap: function,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

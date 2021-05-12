@@ -86,4 +86,12 @@ class TextStyles {
     height: 1.50,
     color: ColorPalette.darkGreyColor,
   );
+
+  static const TextStyle episodeNameTextStyle = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+
+    height: 1.33,
+    color: ColorPalette.whiteColor,
+  );
 }

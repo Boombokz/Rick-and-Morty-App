@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/custom_checkbox.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/divider_widget.dart';
+import 'package:rick_and_morty_test/components/divider_widget.dart';
 
 class FilterCheckboxes extends StatelessWidget {
   final String mainTitle;
@@ -20,7 +20,7 @@ class FilterCheckboxes extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DividerWidget(),
+        DividerWidget(padding: 36),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(

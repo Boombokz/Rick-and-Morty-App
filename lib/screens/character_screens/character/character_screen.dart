@@ -6,10 +6,13 @@ import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
+import 'package:rick_and_morty_test/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/characters_gridview.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/characters_listview.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
+import 'package:rick_and_morty_test/utils/global_state/global_state.dart';
 
 class CharacterScreen extends StatefulWidget {
   @override
@@ -18,6 +21,21 @@ class CharacterScreen extends StatefulWidget {
 
 class _CharacterScreenState extends State<CharacterScreen> {
   bool isListViewChanged = false;
+
+  List<Character> _characters = [];
+
+  @override
+  void initState() {
+    if (store.get('isListViewChanged') != null) {
+      isListViewChanged = store.get('isListViewChanged');
+    }
+
+    BlocProvider.of<CharactersListBloc>(context)
+      ..page = 1
+      ..isFetching = true
+      ..add(CharactersListLoadEvent());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +53,13 @@ class _CharacterScreenState extends State<CharacterScreen> {
               ),
               child: SearchCard(
                 hintText: 'Find character',
-                onTap: () {
+                onTextTap: () {
+                  BlocProvider.of<CharacterSearchBloc>(context)
+                    ..add(CharacterSearchInitialEvent());
+                  Navigator.pushNamed(
+                      context, RouteGenerator.characterSearchScreenRoute);
+                },
+                onFilterTap: () {
                   Navigator.pushNamed(
                       context, RouteGenerator.characterFilterScreenRoute);
                 },
@@ -75,6 +99,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
                           onTap: () {
                             setState(() {
                               isListViewChanged = !isListViewChanged;
+                              store.set('isListViewChanged', isListViewChanged);
                             });
                           },
                           child: isListViewChanged
@@ -86,30 +111,40 @@ class _CharacterScreenState extends State<CharacterScreen> {
                   ),
                   BlocBuilder<CharactersListBloc, CharactersListState>(
                     builder: (context, state) {
-                      if (state is CharactersListLoadingState) {
+                      if (state is CharactersListLoadingState &&
+                          _characters.isEmpty) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state is CharactersListLoadedState) {
-                        return Expanded(
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: !isListViewChanged
-                                    ? CharactersListView(
-                                        characters: state.loadedCharacters,
-                                      )
-                                    : CharactersGridView(
-                                        characters: state.loadedCharacters),
-                              ),
-                            ],
-                          ),
-                        );
-                      } else if (state is CharactersListLoadErrorState) {
+                        if (BlocProvider.of<CharactersListBloc>(context).page ==
+                            1) {
+                          _characters.clear();
+                        } else {
+                          _characters.addAll(state.loadedCharacters);
+
+                          context.read<CharactersListBloc>()
+                            ..isFetching = false;
+                        }
+                      } else if (state is CharactersListLoadErrorState &&
+                          _characters.isEmpty) {
                         return Center(
                           child: Text('Error'),
                         );
-                      } else {
-                        return Offstage();
                       }
+                      return Expanded(
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: !isListViewChanged
+                                  ? CharactersListView(
+                                      characters: _characters,
+                                    )
+                                  : CharactersGridView(
+                                      characters: _characters,
+                                    ),
+                            ),
+                          ],
+                        ),
+                      );
                     },
                   ),
                 ],

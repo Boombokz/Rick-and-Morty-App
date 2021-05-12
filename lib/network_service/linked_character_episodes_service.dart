@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:rick_and_morty_test/models/episodes/episode_model.dart';
 
-class EpisodesLoadService {
+class LinkedCharacterEpisodesService {
   Dio dio = Dio();
 
   Future<List<Episode>> getCharacterEpisodes(List<String> episodesURLs) async {

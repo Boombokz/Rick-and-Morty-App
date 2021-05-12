@@ -13,6 +13,9 @@ part 'character_search_state.dart';
 class CharacterSearchBloc
     extends Bloc<CharacterSearchEvent, CharacterSearchState> {
   CharacterSearchBloc() : super(CharacterSearchInitial());
+  int page = 1;
+  bool isFetching = false;
+  bool isFirstTime = false;
 
   CharactersNetworkService networkService = CharactersNetworkService();
 
@@ -22,19 +25,29 @@ class CharacterSearchBloc
   ) async* {
     if (event is CharacterSearchStartEvent) {
       yield CharacterSearchLoadingState();
-      try {
-        List<Character> searchedCharacters =
-            await networkService.searchCharacters(event.text);
+      if (isFirstTime == true) {
+        page = 1;
+      }
 
+      try {
+        List<Character> searchedCharacters = [];
+        int pages =
+            await networkService.getCharacterSearchPagesCount(event.text);
+
+        if (page <= pages) {
+          searchedCharacters =
+              await networkService.searchCharacters(event.text, page);
+        }
         yield CharacterSearchedState(searchedCharacters: searchedCharacters);
+        page++;
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);
         yield CharacterSearchErrorState();
       }
     }
+
     if (event is CharacterSearchInitialEvent) {
       yield CharacterSearchInitial();
-
     }
   }
 }

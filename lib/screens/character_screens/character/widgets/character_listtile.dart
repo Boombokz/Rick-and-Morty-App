@@ -4,8 +4,9 @@ import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/episodes_character/episodes_character_bloc.dart';
-import 'package:rick_and_morty_test/utils/text_style/define_textstyle.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
+import 'package:rick_and_morty_test/utils/check_text_color/define_textstyle.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CharacterListTile extends StatelessWidget {
   final Character character;
@@ -17,7 +18,7 @@ class CharacterListTile extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        BlocProvider.of<EpisodesCharacterBloc>(context)
+        BlocProvider.of<CharactersEpisodeBloc>(context)
             .add(EpisodesCharacterLoadEvent(episodes: character.episode));
         Navigator.pushNamed(
           context,
@@ -31,11 +32,14 @@ class CharacterListTile extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            child: Image(
-              height: 74,
+            child: FadeInImage.memoryNetwork(
+              fadeInDuration: Duration(milliseconds: 150),
+              fadeOutDuration: Duration(milliseconds: 150),
               width: 74,
-              image: NetworkImage(character.image),
-              fit: BoxFit.fill,
+              height: 74,
+              image: character.image,
+              fit: BoxFit.cover,
+              placeholder: kTransparentImage,
             ),
           ),
           SizedBox(width: 13.5),

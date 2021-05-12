@@ -67,24 +67,25 @@ class ImagesStack extends StatelessWidget {
           ),
         ),
         Positioned(
-            top: 54,
-            left: 16,
-            child: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: ColorPalette.screenBackgroundColor),
-              child: InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 19, horizontal: 17),
-                  child: SvgPicture.asset(IconsRes.arrowBackIcon),
-                ),
+          top: 54,
+          left: 16,
+          child: Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: ColorPalette.screenBackgroundColor),
+            child: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 19, horizontal: 17),
+                child: SvgPicture.asset(IconsRes.arrowBackIcon),
               ),
-            ))
+            ),
+          ),
+        ),
       ],
     );
   }

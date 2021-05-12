@@ -4,9 +4,8 @@ import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/models/characters/character_model.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/episodes_character/episodes_character_bloc.dart';
-
-import 'package:rick_and_morty_test/utils/text_style/define_textstyle.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
+import 'package:rick_and_morty_test/utils/check_text_color/define_textstyle.dart';
 
 class CharacterGridTile extends StatelessWidget {
   final Character character;
@@ -18,7 +17,7 @@ class CharacterGridTile extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        BlocProvider.of<EpisodesCharacterBloc>(context)
+        BlocProvider.of<CharactersEpisodeBloc>(context)
             .add(EpisodesCharacterLoadEvent(episodes: character.episode));
         Navigator.pushNamed(
           context,

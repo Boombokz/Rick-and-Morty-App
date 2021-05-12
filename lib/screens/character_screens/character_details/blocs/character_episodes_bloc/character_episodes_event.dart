@@ -1,4 +1,4 @@
-part of 'episodes_character_bloc.dart';
+part of 'character_episodes_bloc.dart';
 
 @immutable
 abstract class EpisodesCharacterEvent {}

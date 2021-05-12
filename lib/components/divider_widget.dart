@@ -3,10 +3,14 @@ import 'package:rick_and_morty_test/constants/colors/colors.dart';
 
 class DividerWidget extends StatelessWidget {
 
+  final double padding;
+
+  DividerWidget({required this.padding});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 36),
+      padding: EdgeInsets.symmetric(vertical: padding),
       child: Divider(
         thickness: 2,
         indent: 16,

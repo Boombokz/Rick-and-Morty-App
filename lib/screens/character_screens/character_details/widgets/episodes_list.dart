@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
 import 'package:rick_and_morty_test/constants/resources/images.dart';
+import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/episodes_character/episodes_character_bloc.dart';
-
+import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
 
 class EpisodesList extends StatelessWidget {
   @override
@@ -23,7 +23,13 @@ class EpisodesList extends StatelessWidget {
                 style: TextStyles.headerTextStyle,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacementNamed(
+                    context,
+                    RouteGenerator.mainScreenRoute,
+                    arguments: 2,
+                  );
+                },
                 child: Text(
                   'All episodes',
                   style: TextStyles.greyTextStyle,
@@ -32,7 +38,7 @@ class EpisodesList extends StatelessWidget {
             ],
           ),
         ),
-        BlocBuilder<EpisodesCharacterBloc, EpisodesCharacterState>(
+        BlocBuilder<CharactersEpisodeBloc, EpisodesCharacterState>(
           builder: (context, state) {
             if (state is EpisodesCharacterLoadingState) {
               return Center(
@@ -54,19 +60,17 @@ class EpisodesList extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                width: 74,
-                                height: 74,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color:
-                                      ColorPalette.whiteColor.withOpacity(0.65),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(Images.episodeImage),
-                                  ],
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Container(
+                                  width: 74,
+                                  height: 74,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:
+                                        ColorPalette.whiteColor.withOpacity(0.65),
+                                  ),
+                                  child: Image.asset(Images.episodeDetailsImage, fit: BoxFit.cover,),
                                 ),
                               ),
                               SizedBox(width: 16),

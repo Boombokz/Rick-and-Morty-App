@@ -3,17 +3,17 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:rick_and_morty_test/models/episodes/episode_model.dart';
-import 'package:rick_and_morty_test/network_service/episodes_load_service.dart';
+import 'package:rick_and_morty_test/network_service/linked_character_episodes_service.dart';
 
-part 'episodes_character_event.dart';
+part 'character_episodes_event.dart';
 
-part 'episodes_character_state.dart';
+part 'character_episodes_state.dart';
 
-class EpisodesCharacterBloc
+class CharactersEpisodeBloc
     extends Bloc<EpisodesCharacterEvent, EpisodesCharacterState> {
-  EpisodesCharacterBloc() : super(EpisodesCharacterLoadingState());
+  CharactersEpisodeBloc() : super(EpisodesCharacterLoadingState());
 
-  EpisodesLoadService episodesLoadService = EpisodesLoadService();
+  LinkedCharacterEpisodesService episodesLoadService = LinkedCharacterEpisodesService();
 
   @override
   Stream<EpisodesCharacterState> mapEventToState(

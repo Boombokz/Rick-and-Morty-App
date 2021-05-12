@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/divider_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/filter_checkboxes.dart';
 
 class CharacterFilterScreen extends StatefulWidget {

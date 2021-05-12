@@ -3,12 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/images.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
+import 'package:rick_and_morty_test/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/characters_listview.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
 
-import 'package:rick_and_morty_test/screens/character_screens/character_search/widgets/search_widget.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_search/widgets/search_character_widget.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_search/widgets/search_characters_listview.dart';
 
 class CharacterSearchScreen extends StatelessWidget {
+  final List<Character> _searchedCharacters = [];
+
+  void clearSearchedCharacters() {
+    _searchedCharacters.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +28,9 @@ class CharacterSearchScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchWidget(),
+              SearchCharacterWidget(
+                clearSearchedCharacters: clearSearchedCharacters,
+              ),
               SizedBox(height: 23),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
@@ -31,7 +41,8 @@ class CharacterSearchScreen extends StatelessWidget {
               ),
               BlocBuilder<CharacterSearchBloc, CharacterSearchState>(
                 builder: (context, state) {
-                  if (state is CharacterSearchLoadingState) {
+                  if (state is CharacterSearchLoadingState &&
+                      _searchedCharacters.isEmpty) {
                     return Center(child: CircularProgressIndicator());
                   } else if (state is CharacterSearchInitial) {
                     return Padding(
@@ -45,18 +56,12 @@ class CharacterSearchScreen extends StatelessWidget {
                       ),
                     );
                   } else if (state is CharacterSearchedState) {
-                    return Expanded(
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: CharactersListView(
-                              characters: state.searchedCharacters,
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  } else if (state is CharacterSearchErrorState) {
+                    _searchedCharacters.addAll(state.searchedCharacters);
+
+                    BlocProvider.of<CharacterSearchBloc>(context).isFetching =
+                        false;
+                  } else if (state is CharacterSearchErrorState &&
+                      _searchedCharacters.isEmpty) {
                     return Center(
                       child: Column(
                         children: [
@@ -74,9 +79,18 @@ class CharacterSearchScreen extends StatelessWidget {
                         ],
                       ),
                     );
-                  } else {
-                    return Offstage();
                   }
+                  return Expanded(
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: SearchCharactersListView(
+                            characters: _searchedCharacters,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
             ],

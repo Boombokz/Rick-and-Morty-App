@@ -12,6 +12,8 @@ part 'characters_list_state.dart';
 class CharactersListBloc
     extends Bloc<CharactersListEvent, CharactersListState> {
   CharactersListBloc() : super(CharactersListLoadingState());
+  int page = 1;
+  bool isFetching = false;
 
   CharactersNetworkService networkService = CharactersNetworkService();
 
@@ -22,14 +24,20 @@ class CharactersListBloc
     if (event is CharactersListLoadEvent) {
       yield CharactersListLoadingState();
       try {
-        List<Character> loadedCharacters = await networkService.getCharacters();
+        List<Character> loadedCharacters = [];
+        int pages = await networkService.getCharacterTotalPagesCount();
 
+        if (page <= pages) {
+          loadedCharacters = await networkService.getCharacters(page);
+        } else {
+          loadedCharacters = [];
+        }
         yield CharactersListLoadedState(loadedCharacters: loadedCharacters);
+        page++;
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);
         yield CharactersListLoadErrorState();
       }
     }
-
   }
 }

@@ -8,8 +8,8 @@ class EpisodesCharacterInitial extends EpisodesCharacterState {}
 class EpisodesCharacterLoadingState extends EpisodesCharacterState {}
 
 class EpisodesCharacterLoadedState extends EpisodesCharacterState {
-  final List<Episode> episodes;
-  EpisodesCharacterLoadedState({required this.episodes});
+  final List<Character> linkedCharacters;
+  EpisodesCharacterLoadedState({required this.linkedCharacters});
 }
 
 class EpisodesCharacterErrorState extends EpisodesCharacterState {}

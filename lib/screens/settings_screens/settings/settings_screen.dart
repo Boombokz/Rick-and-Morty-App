@@ -4,7 +4,12 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: Column(
+        children: [
+          SizedBox(height: 300),
+
+        ],
+      ),
     );
   }
 }

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
-import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
+
 
 class SearchCard extends StatelessWidget {
-
   final String hintText;
-  final Function onTap;
+  final VoidCallback onFilterTap;
+  final VoidCallback onTextTap;
 
-  SearchCard({required this.hintText, required this.onTap});
+  SearchCard(
+      {required this.hintText,
+      required this.onTextTap,
+      required this.onFilterTap});
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +29,7 @@ class SearchCard extends StatelessWidget {
           SvgPicture.asset(IconsRes.searchIcon),
           SizedBox(width: 14),
           GestureDetector(
-            onTap: () {
-              BlocProvider.of<CharacterSearchBloc>(context)
-                  .add(CharacterSearchInitialEvent());
-              Navigator.pushNamed(
-                  context, RouteGenerator.characterSearchScreenRoute);
-            },
+            onTap: onTextTap,
             child: Container(
               height: 48,
               width: MediaQuery.of(context).size.width - 160,
@@ -52,9 +48,7 @@ class SearchCard extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: (){
-              onTap();
-            },
+            onTap: onFilterTap,
             child: SvgPicture.asset(IconsRes.filterIcon),
           ),
         ],

@@ -3,7 +3,9 @@ part of 'characters_list_bloc.dart';
 @immutable
 abstract class CharactersListState {}
 
-class CharactersListLoadingState extends CharactersListState {}
+class CharactersListLoadingState extends CharactersListState {
+
+}
 
 class CharactersListLoadedState extends CharactersListState {
   final List<Character> loadedCharacters;
@@ -12,5 +14,3 @@ class CharactersListLoadedState extends CharactersListState {
 }
 
 class CharactersListLoadErrorState extends CharactersListState {}
-
-

@@ -12,6 +12,8 @@ part 'locations_list_state.dart';
 
 class LocationsListBloc extends Bloc<LocationsListEvent, LocationsListState> {
   LocationsListBloc() : super(LocationsListLoadingState());
+  int page = 1;
+  bool isFetching = false;
 
   LocationsNetworkService locationsNetworkService = LocationsNetworkService();
 
@@ -22,10 +24,17 @@ class LocationsListBloc extends Bloc<LocationsListEvent, LocationsListState> {
     if (event is LocationsListLoadEvent) {
       yield LocationsListLoadingState();
       try {
-        List<Location> loadedLocations =
-            await locationsNetworkService.getLocations();
+        List<Location> loadedLocations = [];
+        int pages = await locationsNetworkService.getLocationTotalPagesCount();
+
+        if (page <= pages) {
+          loadedLocations = await locationsNetworkService.getLocations(page);
+        } else {
+          loadedLocations = [];
+        }
 
         yield LocationsListLoadedState(loadedLocations: loadedLocations);
+        page++;
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);
         yield LocationsListLoadErrorState();
