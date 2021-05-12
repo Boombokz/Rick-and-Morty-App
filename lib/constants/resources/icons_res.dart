@@ -50,4 +50,7 @@ class IconsRes {
 
   static String get arrowRightIcon =>
       'assets/icons/global_icons/arrow_right_icon.svg';
+
+  static String get themeRowIcon =>
+      'assets/icons/global_icons/theme_row_icon.svg';
 }

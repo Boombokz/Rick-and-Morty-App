@@ -1,10 +1,7 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/models/characters/character_model.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/character_properties.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/episodes_list.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/images_stack.dart';
@@ -22,16 +19,15 @@ class CharacterDetailsScreen extends StatefulWidget {
 
 class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
 
-
   @override
   void initState() {
-
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +45,8 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
             Center(
               child: Text(
                 '${widget.selectedCharacter.status}'.toUpperCase(),
-                style: DefineTextStyle.statusTextStyle(widget.selectedCharacter.status),
+                style: DefineTextStyle.statusTextStyle(
+                    widget.selectedCharacter.status),
               ),
             ),
             SizedBox(height: 36),
@@ -76,7 +73,19 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
             LocationWidget(
               originName: widget.selectedCharacter.origin.name,
               title: 'Origin location',
-              function: () {},
+              function: () {
+                // BlocProvider.of<LocationsCharacterBloc>(context)
+                //   ..add(LocationsCharacterLoadEvent(
+                //       linkedCharactersURLs:
+                //       ));
+                // Navigator.pushNamed(
+                //   context,
+                //   RouteGenerator.locationDetailsScreenRoute,
+                //   arguments: (LocationsNetworkService().getLocations(
+                //     parseLocation(widget.selectedCharacter.location.url),
+                //   ))
+                // );
+              },
             ),
             SizedBox(height: 24),
             LocationWidget(

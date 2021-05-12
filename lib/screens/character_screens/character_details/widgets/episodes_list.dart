@@ -7,6 +7,7 @@ import 'package:rick_and_morty_test/constants/resources/images.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
+import 'package:rick_and_morty_test/screens/episodes_screens/episode_details/blocs/episode_characters_bloc/episodes_character_bloc.dart';
 
 class EpisodesList extends StatelessWidget {
   @override
@@ -38,13 +39,13 @@ class EpisodesList extends StatelessWidget {
             ],
           ),
         ),
-        BlocBuilder<CharactersEpisodeBloc, EpisodesCharacterState>(
+        BlocBuilder<CharacterEpisodesBloc, CharacterEpisodesState>(
           builder: (context, state) {
-            if (state is EpisodesCharacterLoadingState) {
+            if (state is CharacterEpisodesLoadingState) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is EpisodesCharacterLoadedState) {
+            } else if (state is CharacterEpisodesLoadedState) {
               return Container(
                 height: 500,
                 child: ListView.builder(
@@ -55,7 +56,15 @@ class EpisodesList extends StatelessWidget {
                         padding: EdgeInsets.symmetric(vertical: 12),
                         child: GestureDetector(
                           behavior: HitTestBehavior.translucent,
-                          onTap: () {},
+                          onTap: () {
+                            BlocProvider.of<EpisodesCharacterBloc>(context)
+                              ..add(EpisodesCharacterLoadEvent(
+                                  linkedCharactersURLs:
+                                      state.episodes[index].characters));
+                            Navigator.pushNamed(context,
+                                RouteGenerator.episodesDetailsScreenRoute,
+                                arguments: state.episodes[index]);
+                          },
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,10 +76,13 @@ class EpisodesList extends StatelessWidget {
                                   height: 74,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color:
-                                        ColorPalette.whiteColor.withOpacity(0.65),
+                                    color: ColorPalette.whiteColor
+                                        .withOpacity(0.65),
                                   ),
-                                  child: Image.asset(Images.episodeDetailsImage, fit: BoxFit.cover,),
+                                  child: Image.asset(
+                                    Images.episodeDetailsImage,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               SizedBox(width: 16),
@@ -110,7 +122,7 @@ class EpisodesList extends StatelessWidget {
                       );
                     }),
               );
-            } else if (state is EpisodesCharacterErrorState) {
+            } else if (state is CharacterEpisodesErrorState) {
               return Center(
                 child: Text('ERROR'),
               );

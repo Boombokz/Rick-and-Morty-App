@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
 import 'package:rick_and_morty_test/utils/check_text_color/define_textstyle.dart';
 
 class LinkedLocationCharacterListTile extends StatelessWidget {
@@ -19,7 +21,8 @@ class LinkedLocationCharacterListTile extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: () {
-
+          BlocProvider.of<CharacterEpisodesBloc>(context)
+            ..add(CharacterEpisodesLoadEvent(episodes: character.episode));
           Navigator.pushNamed(
               context, RouteGenerator.characterDetailsScreenRoute,
               arguments: character);

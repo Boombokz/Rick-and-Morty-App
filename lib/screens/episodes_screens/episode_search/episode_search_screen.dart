@@ -19,7 +19,7 @@ class EpisodeSearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20),

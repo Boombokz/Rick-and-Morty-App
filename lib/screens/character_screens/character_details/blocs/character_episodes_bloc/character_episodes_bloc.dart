@@ -9,26 +9,26 @@ part 'character_episodes_event.dart';
 
 part 'character_episodes_state.dart';
 
-class CharactersEpisodeBloc
-    extends Bloc<EpisodesCharacterEvent, EpisodesCharacterState> {
-  CharactersEpisodeBloc() : super(EpisodesCharacterLoadingState());
+class CharacterEpisodesBloc
+    extends Bloc<CharacterEpisodesEvent, CharacterEpisodesState> {
+  CharacterEpisodesBloc() : super(CharacterEpisodesLoadingState());
 
   LinkedCharacterEpisodesService episodesLoadService = LinkedCharacterEpisodesService();
 
   @override
-  Stream<EpisodesCharacterState> mapEventToState(
-    EpisodesCharacterEvent event,
+  Stream<CharacterEpisodesState> mapEventToState(
+      CharacterEpisodesEvent event,
   ) async* {
-    if (event is EpisodesCharacterLoadEvent) {
-      yield EpisodesCharacterLoadingState();
+    if (event is CharacterEpisodesLoadEvent) {
+      yield CharacterEpisodesLoadingState();
       try {
         List<Episode> loadedEpisodes =
             await episodesLoadService.getCharacterEpisodes(event.episodes);
 
-        yield EpisodesCharacterLoadedState(episodes: loadedEpisodes);
+        yield CharacterEpisodesLoadedState(episodes: loadedEpisodes);
       } catch (e, s) {
         debugPrintStack(label: e.toString(), stackTrace: s);
-        yield EpisodesCharacterErrorState();
+        yield CharacterEpisodesErrorState();
       }
     }
   }

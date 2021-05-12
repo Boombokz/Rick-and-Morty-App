@@ -1,9 +1,9 @@
 part of 'character_episodes_bloc.dart';
 
 @immutable
-abstract class EpisodesCharacterEvent {}
+abstract class CharacterEpisodesEvent {}
 
-class EpisodesCharacterLoadEvent extends EpisodesCharacterEvent {
+class CharacterEpisodesLoadEvent extends CharacterEpisodesEvent {
   final List<String> episodes;
-  EpisodesCharacterLoadEvent({required this.episodes});
+  CharacterEpisodesLoadEvent({required this.episodes});
 }

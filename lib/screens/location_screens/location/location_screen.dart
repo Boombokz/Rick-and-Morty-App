@@ -10,27 +10,23 @@ import 'package:rick_and_morty_test/screens/location_screens/location/blocs/loca
 import 'package:rick_and_morty_test/screens/location_screens/location/widgets/locations_listview.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 
-class LocationScreen extends StatefulWidget {
-  @override
-  _LocationScreenState createState() => _LocationScreenState();
-}
+class LocationScreen extends StatelessWidget {
 
-class _LocationScreenState extends State<LocationScreen> {
-  List<Location> _locations = [];
+  final List<Location> _locations = [];
 
-  @override
-  void initState() {
-    BlocProvider.of<LocationsListBloc>(context)
-      ..page = 1
-      ..isFetching = true
-      ..add(LocationsListLoadEvent());
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   BlocProvider.of<LocationsListBloc>(context)
+  //     ..page = 1
+  //     ..isFetching = true
+  //     ..add(LocationsListLoadEvent());
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SafeArea(
           child: Column(
         children: [

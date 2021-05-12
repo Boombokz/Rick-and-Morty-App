@@ -18,8 +18,8 @@ class CharacterListTile extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        BlocProvider.of<CharactersEpisodeBloc>(context)
-            .add(EpisodesCharacterLoadEvent(episodes: character.episode));
+        BlocProvider.of<CharacterEpisodesBloc>(context)
+            .add(CharacterEpisodesLoadEvent(episodes: character.episode));
         Navigator.pushNamed(
           context,
           RouteGenerator.characterDetailsScreenRoute,

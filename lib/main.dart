@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (context) => CharactersCountBloc()),
           BlocProvider(create: (context) => CharactersListBloc()),
-          BlocProvider(create: (context) => CharactersEpisodeBloc()),
+          BlocProvider(create: (context) => CharacterEpisodesBloc()),
           BlocProvider(create: (context) => CharacterSearchBloc()),
           BlocProvider(create: (context) => LocationSearchBloc()),
           BlocProvider(create: (context) => LocationsCountBloc()),

@@ -1,15 +1,15 @@
 part of 'character_episodes_bloc.dart';
 
 @immutable
-abstract class EpisodesCharacterState {}
+abstract class CharacterEpisodesState {}
 
-class EpisodesCharacterInitial extends EpisodesCharacterState {}
+class CharacterEpisodesInitial extends CharacterEpisodesState {}
 
-class EpisodesCharacterLoadingState extends EpisodesCharacterState {}
+class CharacterEpisodesLoadingState extends CharacterEpisodesState {}
 
-class EpisodesCharacterLoadedState extends EpisodesCharacterState {
+class CharacterEpisodesLoadedState extends CharacterEpisodesState {
   final List<Episode> episodes;
-  EpisodesCharacterLoadedState({required this.episodes});
+  CharacterEpisodesLoadedState({required this.episodes});
 }
 
-class EpisodesCharacterErrorState extends EpisodesCharacterState {}
+class CharacterEpisodesErrorState extends CharacterEpisodesState {}

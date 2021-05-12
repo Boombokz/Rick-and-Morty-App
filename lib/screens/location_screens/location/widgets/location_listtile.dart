@@ -18,7 +18,7 @@ class LocationListTile extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        BlocProvider.of<LocationsCharacterBloc>(context).add(
+        BlocProvider.of<LocationsCharacterBloc>(context)..add(
             LocationsCharacterLoadEvent(
                 linkedCharactersURLs: location.residents));
         Navigator.pushNamed(

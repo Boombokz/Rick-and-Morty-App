@@ -18,7 +18,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +108,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                 ],
               ),
             ),
-            DividerWidget(padding: 36),
+            DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(

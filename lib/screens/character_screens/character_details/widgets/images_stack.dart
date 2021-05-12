@@ -16,21 +16,26 @@ class ImagesStack extends StatelessWidget {
       clipBehavior: Clip.none,
       fit: StackFit.loose,
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height * 0.30,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(imageURL), fit: BoxFit.cover)),
-          child: ClipRRect(
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 3.5, sigmaY: 3.5),
+        ClipRRect(
+          child: ImageFiltered(
+            imageFilter: ImageFilter.blur(sigmaX: 3.5, sigmaY: 3.5),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.30,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(imageURL),
+                  fit: BoxFit.cover,
+                ),
+              ),
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       colors: [
-                        Colors.black.withOpacity(0.65),
+                        Colors.black.withOpacity(0.88),
+                        ColorPalette.splashScreenColor.withOpacity(0.65),
+                        ColorPalette.splashScreenColor.withOpacity(0.65),
                         ColorPalette.splashScreenColor.withOpacity(0.65),
                       ]),
                 ),
@@ -41,8 +46,8 @@ class ImagesStack extends StatelessWidget {
         ),
         Positioned(
           bottom: -66,
-          left: 115,
-          right: 115,
+          left: 50,
+          right: 50,
           child: Align(
             alignment: Alignment.center,
             child: Container(
@@ -80,8 +85,10 @@ class ImagesStack extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 19, horizontal: 17),
-                child: SvgPicture.asset(IconsRes.arrowBackIcon),
+                padding: EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+                child: SvgPicture.asset(
+                  IconsRes.arrowBackIcon,
+                ),
               ),
             ),
           ),

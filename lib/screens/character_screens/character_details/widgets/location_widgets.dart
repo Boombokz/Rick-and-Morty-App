@@ -16,6 +16,7 @@ class LocationWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16),
       child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: function,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

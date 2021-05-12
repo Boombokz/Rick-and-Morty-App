@@ -20,7 +20,7 @@ class FilterCheckboxes extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DividerWidget(padding: 36),
+        DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(

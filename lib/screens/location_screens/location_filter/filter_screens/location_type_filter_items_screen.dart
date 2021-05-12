@@ -21,7 +21,7 @@ class _LocationTypeFilterItemsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +75,7 @@ class _LocationTypeFilterItemsScreenState
                 ),
               ),
             ),
-            DividerWidget(padding: 24),
+            DividerWidget(verticalPadding: 24, horizontalPadding: 0,),
             Expanded(
               child: ListView.builder(
                   padding: EdgeInsets.only(bottom: 12, right: 16, left: 16),

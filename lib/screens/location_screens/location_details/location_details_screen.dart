@@ -15,7 +15,7 @@ class LocationDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,7 +45,7 @@ class LocationDetailsScreen extends StatelessWidget {
                 text: selectedLocation.dimension,
               ),
             ),
-            DividerWidget(padding: 36),
+            DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
             LinkedLocationCharacters(),
           ],
         ),

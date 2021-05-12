@@ -17,7 +17,7 @@ class LinkedLocationCharacters extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Characters',
+                'Residents',
                 style: TextStyles.headerTextStyle,
               ),
               GestureDetector(
@@ -43,16 +43,27 @@ class LinkedLocationCharacters extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is LocationsCharacterLoadedState) {
-              return Container(
-                height: 500,
-                child: ListView.builder(
-                    itemCount: state.linkedCharacters.length,
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    itemBuilder: (context, index) {
-                      return LinkedLocationCharacterListTile(
-                          character: state.linkedCharacters[index]);
-                    }),
-              );
+              return state.linkedCharacters.length != 0
+                  ? Container(
+                      height: 500,
+                      child: ListView.builder(
+                          itemCount: state.linkedCharacters.length,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 12),
+                          itemBuilder: (context, index) {
+                            return LinkedLocationCharacterListTile(
+                                character: state.linkedCharacters[index]);
+                          }),
+                    )
+                  : Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Center(
+                        child: Text(
+                          'There is no residents',
+                          style: TextStyles.greyTextStyle,
+                        ),
+                      ),
+                    );
             } else if (state is LocationsCharacterErrorState) {
               return Center(
                 child: Text('ERROR'),

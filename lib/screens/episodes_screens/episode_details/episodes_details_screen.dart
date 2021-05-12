@@ -16,7 +16,7 @@ class EpisodesDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.screenBackgroundColor,
+      backgroundColor: ColorPalette.splashScreenColor,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +51,7 @@ class EpisodesDetailsScreen extends StatelessWidget {
                     text: selectedEpisode.air_date,
                   ),
                 ),
-                DividerWidget(padding: 36),
+                DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
                 LinkedEpisodeCharacters(),
               ],
             ),
