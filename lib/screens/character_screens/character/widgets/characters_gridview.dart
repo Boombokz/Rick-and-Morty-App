@@ -52,7 +52,6 @@ class CharactersGridView extends StatelessWidget {
                 Positioned(
                   right: -30,
                   bottom: 0,
-
                   child: CircularProgressIndicator(),
                 ),
               ],

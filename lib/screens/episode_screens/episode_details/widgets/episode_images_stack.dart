@@ -30,7 +30,7 @@ class EpisodeImagesStack extends StatelessWidget {
                   topLeft: Radius.circular(26),
                   topRight: Radius.circular(26),
                 ),
-                color: ColorPalette.screenBackgroundColor),
+                color: ColorPalette.darkBlueColor),
           ),
         ),
         Positioned(

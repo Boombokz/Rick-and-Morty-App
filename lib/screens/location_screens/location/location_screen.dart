@@ -17,7 +17,7 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.splashScreenColor,
+
       body: SafeArea(
           child: Column(
         children: [

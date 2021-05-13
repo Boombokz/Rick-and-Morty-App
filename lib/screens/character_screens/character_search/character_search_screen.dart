@@ -18,7 +18,7 @@ class CharacterSearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorPalette.splashScreenColor,
+
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 20),

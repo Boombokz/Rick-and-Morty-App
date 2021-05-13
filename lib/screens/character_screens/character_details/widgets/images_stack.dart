@@ -33,9 +33,9 @@ class ImagesStack extends StatelessWidget {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.black.withOpacity(0.88),
-                        ColorPalette.splashScreenColor.withOpacity(0.65),
-                        ColorPalette.splashScreenColor.withOpacity(0.65),
-                        ColorPalette.splashScreenColor.withOpacity(0.65),
+                        ColorPalette.darkBlueColor.withOpacity(0.65),
+                        ColorPalette.darkBlueColor.withOpacity(0.65),
+                        ColorPalette.darkBlueColor.withOpacity(0.65),
                       ]),
                 ),
                 alignment: Alignment.center,
@@ -54,7 +54,7 @@ class ImagesStack extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(100)),
                 border: Border.all(
                   width: 8,
-                  color: ColorPalette.screenBackgroundColor,
+                  color: ColorPalette.darkBlueColor,
                   style: BorderStyle.solid,
                 ),
               ),

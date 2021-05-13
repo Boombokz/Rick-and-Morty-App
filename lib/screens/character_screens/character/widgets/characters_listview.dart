@@ -7,16 +7,11 @@ import 'package:rick_and_morty_test/data/models/characters/character_model.dart'
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/character_listtile.dart';
 
-class CharactersListView extends StatefulWidget {
+class CharactersListView extends StatelessWidget {
   final List<Character> characters;
 
   CharactersListView({required this.characters});
 
-  @override
-  _CharactersListViewState createState() => _CharactersListViewState();
-}
-
-class _CharactersListViewState extends State<CharactersListView> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -37,14 +32,14 @@ class _CharactersListViewState extends State<CharactersListView> {
           vertical: 12,
         ),
         shrinkWrap: true,
-        itemCount: widget.characters.length +
+        itemCount: characters.length +
             (context.read<CharactersListBloc>().isFetching ? 1 : 0),
         itemBuilder: (context, index) {
-          if (index < widget.characters.length) {
+          if (index < characters.length) {
             return Padding(
               padding: EdgeInsets.symmetric(vertical: 12),
               child: CharacterListTile(
-                character: widget.characters[index],
+                character: characters[index],
               ),
             );
           } else {

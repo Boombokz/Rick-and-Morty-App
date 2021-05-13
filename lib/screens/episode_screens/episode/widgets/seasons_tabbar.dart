@@ -68,7 +68,7 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
           Container(
             constraints: BoxConstraints(maxHeight: 38),
             child: Material(
-              color: ColorPalette.screenBackgroundColor,
+              color: ColorPalette.darkBlueColor,
               child: TabBar(
                 unselectedLabelColor: ColorPalette.darkGreyColor,
                 indicatorColor: ColorPalette.whiteColor,

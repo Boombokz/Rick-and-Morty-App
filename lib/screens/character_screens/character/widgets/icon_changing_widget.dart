@@ -30,8 +30,8 @@ class _IconChangingState extends State<IconChangingWidget> {
         });
       },
       child: !changed
-          ? SvgPicture.asset(IconsRes.listChangeIcon)
-          : SvgPicture.asset(IconsRes.gridChangeIcon),
+          ? SvgPicture.asset(IconsRes.listChangeIcon, color: Theme.of(context).iconTheme.color,)
+          : SvgPicture.asset(IconsRes.gridChangeIcon, color: Theme.of(context).iconTheme.color,),
     );
   }
 }

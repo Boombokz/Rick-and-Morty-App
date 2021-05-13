@@ -16,7 +16,7 @@ class CharacterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.splashScreenColor,
+
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: ColorPalette.splashScreenColor,
+
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

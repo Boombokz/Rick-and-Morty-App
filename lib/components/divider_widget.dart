@@ -13,10 +13,8 @@ class DividerWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: verticalPadding),
       child: Divider(
-        thickness: 2,
         indent: horizontalPadding,
         endIndent: horizontalPadding,
-        color: ColorPalette.greyBackgroundColor,
       ),
     );
   }

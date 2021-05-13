@@ -47,7 +47,7 @@ class SearchCard extends StatelessWidget {
           ),
           InkWell(
             onTap: onFilterTap,
-            child: SvgPicture.asset(IconsRes.filterIcon),
+            child: SvgPicture.asset(IconsRes.filterIcon, color: Theme.of(context).iconTheme.color,),
           ),
         ],
       ),

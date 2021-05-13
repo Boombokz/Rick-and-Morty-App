@@ -182,7 +182,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorPalette.splashScreenColor,
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

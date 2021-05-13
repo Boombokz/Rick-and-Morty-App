@@ -10,12 +10,6 @@ class TextStyles {
     fontWeight: FontWeight.w400,
   );
 
-  static const TextStyle appBarStyle = TextStyle(
-    fontSize: 17,
-    fontWeight: FontWeight.w600,
-    height: 1.29,
-  );
-
   static const TextStyle greyTextStyle = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
@@ -29,7 +23,7 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     height: 1.60,
     letterSpacing: 1.5,
-    color: ColorPalette.greenTextColor,
+    color: ColorPalette.lightGreenColor,
   );
 
   static const TextStyle characterNameStyle = TextStyle(
@@ -37,7 +31,6 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     letterSpacing: 0.5,
     height: 1.50,
-    color: ColorPalette.whiteColor,
   );
 
   static const TextStyle searchTextStyle = TextStyle(
@@ -61,7 +54,6 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
     height: 1.18,
-    color: ColorPalette.whiteColor,
   );
 
   static const TextStyle whiteTextStyle = TextStyle(
@@ -69,7 +61,6 @@ class TextStyles {
     fontWeight: FontWeight.w400,
     letterSpacing: 0.25,
     height: 1.43,
-    color: ColorPalette.whiteColor,
   );
 
   static const TextStyle headerTextStyle = TextStyle(
@@ -77,7 +68,6 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     letterSpacing: 0.15,
     height: 1.40,
-    color: ColorPalette.whiteColor,
   );
 
   static const TextStyle searchScreenTextStyle = TextStyle(
@@ -92,7 +82,6 @@ class TextStyles {
     fontSize: 24,
     fontWeight: FontWeight.w700,
     height: 1.33,
-    color: ColorPalette.whiteColor,
   );
 
   static const TextStyle textButtonTextStyle = TextStyle(
@@ -100,6 +89,5 @@ class TextStyles {
     fontWeight: FontWeight.w500,
     letterSpacing: 1.5,
     height: 1.71,
-    color: ColorPalette.whiteColor,
   );
 }

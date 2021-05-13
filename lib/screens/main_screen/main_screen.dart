@@ -4,11 +4,9 @@ import 'package:rick_and_morty_test/screens/episode_screens/episode/episode_scre
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
     as globals;
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/character_screen.dart';
-
 import 'package:rick_and_morty_test/screens/location_screens/location/location_screen.dart';
 import 'package:rick_and_morty_test/screens/settings_screens/settings/settings_screen.dart';
 
@@ -47,39 +45,70 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       bottomNavigationBar: BottomNavigationBar(
         unselectedLabelStyle: TextStyles.greyTextStyle,
         selectedLabelStyle: TextStyles.greyTextStyle,
-        unselectedItemColor: ColorPalette.darkGreyColor,
-        selectedItemColor: ColorPalette.greenTextColor,
         currentIndex: globals.tabController.index,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: ColorPalette.greyBackgroundColor,
-        items: bottomNavBarItems,
+        items: [
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              IconsRes.characterIconOff,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: SvgPicture.asset(
+              IconsRes.characterIconOff,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: 'Characters',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              IconsRes.locationIconOff,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: SvgPicture.asset(
+              IconsRes.locationIconOff,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: 'Locations',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              IconsRes.episodesIconOff,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: SvgPicture.asset(
+              IconsRes.episodesIconOff,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: 'Episodes',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              IconsRes.settingsIconOff,
+              color: Theme.of(context)
+                  .bottomNavigationBarTheme
+                  .unselectedItemColor,
+            ),
+            activeIcon: SvgPicture.asset(
+              IconsRes.settingsIconOff,
+              color:
+                  Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+            ),
+            label: 'Settings',
+          ),
+        ],
         onTap: onSelectTab,
       ),
     );
   }
-
-  List<BottomNavigationBarItem> bottomNavBarItems = [
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset(IconsRes.characterIconOff),
-      activeIcon: SvgPicture.asset(IconsRes.characterIconOn),
-      label: 'Characters',
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset(IconsRes.locationIconOff),
-      activeIcon: SvgPicture.asset(IconsRes.locationIconOn),
-      label: 'Locations',
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset(IconsRes.episodesIconOff),
-      activeIcon: SvgPicture.asset(IconsRes.episodesIconOn),
-      label: 'Episodes',
-    ),
-    BottomNavigationBarItem(
-      icon: SvgPicture.asset(IconsRes.settingsIconOff),
-      activeIcon: SvgPicture.asset(IconsRes.settingsIconOn),
-      label: 'Settings',
-    ),
-  ];
 
   final tabs = [
     CharacterScreen(),
