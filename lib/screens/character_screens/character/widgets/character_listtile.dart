@@ -53,7 +53,7 @@ class CharacterListTile extends StatelessWidget {
                 ),
                 Text(
                   '${character.name}',
-                  style: TextStyles.characterNameStyle,
+                  style: TextStyles.nameTextStyle,
                 ),
                 Text(
                   '${character.species}, ${character.gender}',

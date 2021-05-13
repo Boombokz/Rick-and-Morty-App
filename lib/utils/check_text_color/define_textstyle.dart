@@ -6,15 +6,15 @@ class DefineTextStyle {
   static TextStyle statusTextStyle(String status) {
     switch (status) {
       case 'Alive':
-        return TextStyles.characterStatusStyle;
+        return TextStyles.statusTextStyle;
       case 'Dead':
-        return TextStyles.characterStatusStyle
+        return TextStyles.statusTextStyle
             .copyWith(color: ColorPalette.redColor);
       case 'unknown':
-        return TextStyles.characterStatusStyle
+        return TextStyles.statusTextStyle
             .copyWith(color: ColorPalette.greyColor);
       default:
-        return TextStyles.characterStatusStyle;
+        return TextStyles.statusTextStyle;
     }
   }
 }

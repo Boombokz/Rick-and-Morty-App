@@ -18,9 +18,7 @@ class MainThemes {
       color: ColorPalette.greyBackgroundColor,
       thickness: 2,
     ),
-    dialogTheme: DialogTheme(
-
-    ),
+    dialogTheme: DialogTheme(),
   );
   static final ThemeData lightTheme = ThemeData(
     fontFamily: 'Roboto',

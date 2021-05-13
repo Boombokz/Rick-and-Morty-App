@@ -95,7 +95,7 @@ class EpisodesList extends StatelessWidget {
                                     Text(
                                       'Episode ${state.episodes[index].id}'
                                           .toUpperCase(),
-                                      style: TextStyles.characterStatusStyle
+                                      style: TextStyles.statusTextStyle
                                           .copyWith(
                                         color: ColorPalette.lightBlueColor
                                             .withOpacity(0.87),
@@ -103,7 +103,7 @@ class EpisodesList extends StatelessWidget {
                                     ),
                                     Text(
                                       '${state.episodes[index].name}',
-                                      style: TextStyles.characterNameStyle
+                                      style: TextStyles.nameTextStyle
                                           .copyWith(
                                         color: ColorPalette.whiteColor
                                             .withOpacity(0.87),

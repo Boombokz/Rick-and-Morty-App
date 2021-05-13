@@ -60,7 +60,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Sort'.toUpperCase(),
-                style: TextStyles.charactersTextStyle,
+                style: TextStyles.genderTextStyle,
               ),
             ),
             SizedBox(height: 29),
@@ -113,7 +113,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Filter by:'.toUpperCase(),
-                style: TextStyles.charactersTextStyle,
+                style: TextStyles.genderTextStyle,
               ),
             ),
             SizedBox(height: 36),

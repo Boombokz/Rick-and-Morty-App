@@ -35,7 +35,7 @@ class LocationSearchScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   'Search results'.toUpperCase(),
-                  style: TextStyles.charactersTextStyle,
+                  style: TextStyles.genderTextStyle,
                 ),
               ),
               BlocBuilder<LocationSearchBloc, LocationSearchState>(

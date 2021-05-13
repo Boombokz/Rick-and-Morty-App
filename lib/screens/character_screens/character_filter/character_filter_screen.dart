@@ -58,7 +58,7 @@ class _CharacterFilterScreenState extends State<CharacterFilterScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Sort'.toUpperCase(),
-                style: TextStyles.charactersTextStyle,
+                style: TextStyles.genderTextStyle,
               ),
             ),
             SizedBox(height: 29),

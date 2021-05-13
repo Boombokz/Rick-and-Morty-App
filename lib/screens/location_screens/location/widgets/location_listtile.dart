@@ -58,7 +58,7 @@ class LocationListTile extends StatelessWidget {
                 children: [
                   Text(
                     '${location.name}',
-                    style: TextStyles.characterNameStyle,
+                    style: TextStyles.nameTextStyle,
                   ),
                   SizedBox(height: 4),
                   Text(

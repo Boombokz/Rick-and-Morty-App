@@ -18,7 +18,7 @@ class TextStyles {
     color: ColorPalette.darkGreyColor,
   );
 
-  static const TextStyle characterStatusStyle = TextStyle(
+  static const TextStyle statusTextStyle = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w500,
     height: 1.60,
@@ -26,7 +26,7 @@ class TextStyles {
     color: ColorPalette.lightGreenColor,
   );
 
-  static const TextStyle characterNameStyle = TextStyle(
+  static const TextStyle nameTextStyle = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     letterSpacing: 0.5,
@@ -41,7 +41,7 @@ class TextStyles {
     color: ColorPalette.darkGreyColor,
   );
 
-  static const TextStyle charactersTextStyle = TextStyle(
+  static const TextStyle genderTextStyle = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w500,
     letterSpacing: 1.5,

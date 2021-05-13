@@ -49,7 +49,7 @@ class CharacterGridTile extends StatelessWidget {
                   '${character.name}',
                   textAlign: TextAlign.center,
                   maxLines: 1,
-                  style: TextStyles.characterNameStyle,
+                  style: TextStyles.nameTextStyle,
                 ),
                 Text(
                   '${character.species}, ${character.gender}',

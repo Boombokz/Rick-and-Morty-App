@@ -51,13 +51,13 @@ class EpisodeListTile extends StatelessWidget {
               children: [
                 Text(
                   'Episode ${episode.id}'.toUpperCase(),
-                  style: TextStyles.characterStatusStyle.copyWith(
+                  style: TextStyles.statusTextStyle.copyWith(
                     color: ColorPalette.lightBlueColor.withOpacity(0.87),
                   ),
                 ),
                 Text(
                   '${episode.name}',
-                  style: TextStyles.characterNameStyle.copyWith(
+                  style: TextStyles.nameTextStyle.copyWith(
                     color: ColorPalette.whiteColor.withOpacity(0.87),
                   ),
                 ),

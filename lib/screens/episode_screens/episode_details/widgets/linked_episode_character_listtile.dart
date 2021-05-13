@@ -48,7 +48,7 @@ class LinkedEpisodeCharacterListTile extends StatelessWidget {
                   ),
                   Text(
                     '${character.name}',
-                    style: TextStyles.characterNameStyle.copyWith(
+                    style: TextStyles.nameTextStyle.copyWith(
                       color: ColorPalette.whiteColor.withOpacity(0.87),
                     ),
                   ),

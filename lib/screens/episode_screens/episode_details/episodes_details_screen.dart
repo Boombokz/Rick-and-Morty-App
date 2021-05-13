@@ -37,7 +37,7 @@ class EpisodesDetailsScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     'Episode ${selectedEpisode.id}'.toUpperCase(),
-                    style: TextStyles.charactersTextStyle.copyWith(
+                    style: TextStyles.genderTextStyle.copyWith(
                       color: ColorPalette.lightBlueColor.withOpacity(0.87),
                     ),
                     textAlign: TextAlign.center,

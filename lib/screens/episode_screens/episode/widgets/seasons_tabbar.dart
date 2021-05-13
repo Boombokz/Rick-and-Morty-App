@@ -113,7 +113,7 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
                   return Center(
                     child: Text(
                       'Error'.toUpperCase(),
-                      style: TextStyles.charactersTextStyle,
+                      style: TextStyles.genderTextStyle,
                     ),
                   );
                 } else {

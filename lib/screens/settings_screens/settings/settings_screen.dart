@@ -221,7 +221,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SizedBox(height: 36),
                 Text(
                   'Appearance'.toUpperCase(),
-                  style: TextStyles.charactersTextStyle,
+                  style: TextStyles.genderTextStyle,
                 ),
                 SizedBox(height: 24),
                 GestureDetector(
@@ -263,7 +263,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Text(
                   'About the app'.toUpperCase(),
-                  style: TextStyles.charactersTextStyle,
+                  style: TextStyles.genderTextStyle,
                 ),
                 SizedBox(height: 24),
                 Text(
@@ -281,7 +281,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Text(
                   'Copyright'.toUpperCase(),
-                  style: TextStyles.charactersTextStyle,
+                  style: TextStyles.genderTextStyle,
                 ),
                 SizedBox(height: 24),
                 Text(
@@ -299,7 +299,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Text(
                   'App version'.toUpperCase(),
-                  style: TextStyles.charactersTextStyle,
+                  style: TextStyles.genderTextStyle,
                 ),
                 SizedBox(height: 24),
                 Row(
