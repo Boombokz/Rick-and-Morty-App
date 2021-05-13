@@ -4,8 +4,7 @@ import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/screens/episodes_screens/episode_details/blocs/episode_characters_bloc/episodes_character_bloc.dart';
 import 'package:rick_and_morty_test/screens/episodes_screens/episode_details/widgets/linked_episode_character_listtile.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
-as globals;
-
+    as globals;
 
 class LinkedEpisodeCharacters extends StatelessWidget {
   @override

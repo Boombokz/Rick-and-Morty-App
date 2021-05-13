@@ -16,7 +16,6 @@ class CharacterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorPalette.splashScreenColor,
       body: SafeArea(
@@ -83,10 +82,10 @@ class CharacterScreen extends StatelessWidget {
                           _characters.isEmpty) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state is CharactersListLoadedState) {
-                        //check to prevent duplicate elements from entering when redrawing the screen
+                        //check to prevent add duplicate elements when redrawing the screen
                         _characters.addAll((state.loadedCharacters)
                             .where((e) => !_characters.contains(e)));
-                        print('blocked characters: ${_characters.length}');
+
                         context.read<CharactersListBloc>()..isFetching = false;
                       } else if (state is CharactersListLoadErrorState &&
                           _characters.isEmpty) {

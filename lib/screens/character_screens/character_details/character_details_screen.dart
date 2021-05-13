@@ -8,21 +8,10 @@ import 'package:rick_and_morty_test/screens/character_screens/character_details/
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/location_widgets.dart';
 import 'package:rick_and_morty_test/utils/check_text_color/define_textstyle.dart';
 
-class CharacterDetailsScreen extends StatefulWidget {
+class CharacterDetailsScreen extends StatelessWidget {
   final Character selectedCharacter;
 
   CharacterDetailsScreen({required this.selectedCharacter});
-
-  @override
-  _CharacterDetailsScreenState createState() => _CharacterDetailsScreenState();
-}
-
-class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +22,20 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ImagesStack(
-              imageURL: widget.selectedCharacter.image,
+              imageURL: selectedCharacter.image,
             ),
             SizedBox(height: 90),
             Center(
               child: Text(
-                '${widget.selectedCharacter.name}',
+                '${selectedCharacter.name}',
                 style: TextStyles.bigTextStyle,
               ),
             ),
             Center(
               child: Text(
-                '${widget.selectedCharacter.status}'.toUpperCase(),
+                '${selectedCharacter.status}'.toUpperCase(),
                 style: DefineTextStyle.statusTextStyle(
-                    widget.selectedCharacter.status),
+                    selectedCharacter.status),
               ),
             ),
             SizedBox(height: 36),
@@ -57,13 +46,13 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
                   Expanded(
                     child: CharacterProperties(
                       title: 'Gender',
-                      text: widget.selectedCharacter.gender,
+                      text: selectedCharacter.gender,
                     ),
                   ),
                   Expanded(
                     child: CharacterProperties(
                       title: 'Race',
-                      text: widget.selectedCharacter.species,
+                      text: selectedCharacter.species,
                     ),
                   ),
                 ],
@@ -71,7 +60,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
             ),
             SizedBox(height: 20),
             LocationWidget(
-              originName: widget.selectedCharacter.origin.name,
+              originName: selectedCharacter.origin.name,
               title: 'Origin location',
               function: () {
                 // BlocProvider.of<LocationsCharacterBloc>(context)
@@ -89,7 +78,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
             ),
             SizedBox(height: 24),
             LocationWidget(
-              originName: widget.selectedCharacter.location.name,
+              originName: selectedCharacter.location.name,
               title: 'Location',
               function: () {},
             ),
