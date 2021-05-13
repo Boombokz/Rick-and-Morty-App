@@ -18,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void loadingDelay() {
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, RouteGenerator.mainScreenRoute,
           arguments: 0, );
     });
@@ -40,13 +40,6 @@ class _SplashScreenState extends State<SplashScreen> {
     BlocProvider.of<EpisodesListBloc>(context)..add(EpisodesListLoadEvent());
     loadingDelay();
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIOverlays(
-        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    super.dispose();
   }
 
   @override

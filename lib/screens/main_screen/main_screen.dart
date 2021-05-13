@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
     as globals;
 import 'package:flutter_svg/flutter_svg.dart';
@@ -20,6 +21,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIOverlays(
+        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     _tabController = TabController(length: 4, vsync: this);
     globals.tabController = _tabController;
 

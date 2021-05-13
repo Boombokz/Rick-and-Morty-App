@@ -4,7 +4,8 @@ import 'package:package_info/package_info.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
-import 'package:rick_and_morty_test/constants/router/route_generator.dart';
+import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
+as globals;
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 
 enum ThemeChoice { disabled, enabled, system, powersafe }
@@ -197,13 +198,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: ColorPalette.greyBackgroundColor),
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            RouteGenerator.mainScreenRoute,
-                            arguments: 0,
-                          );
+
+                          globals.tabController.animateTo(2);
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(
