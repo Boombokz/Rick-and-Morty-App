@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
-import 'package:rick_and_morty_test/constants/resources/images.dart';
-import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/models/locations/location_model.dart';
+import 'package:rick_and_morty_test/resources/resources.dart';
+import 'package:rick_and_morty_test/theme/color_theme.dart';
+
+import 'package:rick_and_morty_test/theme/text_theme.dart';
+import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/widgets/search_location_widget.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/widgets/search_locations_listview.dart';

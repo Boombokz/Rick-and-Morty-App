@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
-import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
-import 'package:rick_and_morty_test/constants/resources/images.dart';
+import 'package:rick_and_morty_test/screens/episode_screens/episode_details/blocs/episode_characters_bloc/episodes_character_bloc.dart';
+import 'package:rick_and_morty_test/theme/color_theme.dart';
+import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
-import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
+import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
-import 'package:rick_and_morty_test/screens/episodes_screens/episode_details/blocs/episode_characters_bloc/episodes_character_bloc.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
 as globals;
 

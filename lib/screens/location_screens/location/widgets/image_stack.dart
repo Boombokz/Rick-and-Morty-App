@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/components/back_arrow_button.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
-import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
-import 'package:rick_and_morty_test/constants/resources/images.dart';
+import 'package:rick_and_morty_test/resources/resources.dart';
+
 
 class ImageStack extends StatelessWidget {
   @override

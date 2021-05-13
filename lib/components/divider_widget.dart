@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
+import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class DividerWidget extends StatelessWidget {
   final double verticalPadding;

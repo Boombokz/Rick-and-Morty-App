@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
+import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/character_properties.dart';
 
 class LocationWidget extends StatelessWidget {

@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:rick_and_morty_test/models/characters/character_model.dart';
-import 'package:rick_and_morty_test/network_service/characters_network_service.dart';
+import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/data/network/characters_api.dart';
 
 part 'character_search_event.dart';
 
@@ -17,7 +17,7 @@ class CharacterSearchBloc
   bool isFetching = false;
   bool isFirstTime = false;
 
-  CharactersNetworkService networkService = CharactersNetworkService();
+  CharactersApi networkService = CharactersApi();
 
   @override
   Stream<CharacterSearchState> mapEventToState(

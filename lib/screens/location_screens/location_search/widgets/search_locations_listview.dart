@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_test/models/locations/location_model.dart';
+import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/widgets/location_listtile.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_state.dart';

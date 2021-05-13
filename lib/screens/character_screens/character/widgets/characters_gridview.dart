@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_test/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/character_gridtile.dart';
 

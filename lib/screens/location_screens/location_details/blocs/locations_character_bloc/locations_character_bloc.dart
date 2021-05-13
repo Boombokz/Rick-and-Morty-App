@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:rick_and_morty_test/models/characters/character_model.dart';
-import 'package:rick_and_morty_test/network_service/linked_location_characters_service.dart';
+import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/data/network/linked_location_characters_api.dart';
 
 part 'locations_character_event.dart';
 
@@ -14,8 +14,8 @@ class LocationsCharacterBloc
     extends Bloc<LocationsCharacterEvent, LocationsCharacterState> {
   LocationsCharacterBloc() : super(LocationsCharacterInitial());
 
-  LinkedLocationCharactersService linkedLocationCharactersService =
-      LinkedLocationCharactersService();
+  LinkedLocationCharactersAPI linkedLocationCharactersAPI =
+      LinkedLocationCharactersAPI();
 
   @override
   Stream<LocationsCharacterState> mapEventToState(
@@ -24,7 +24,7 @@ class LocationsCharacterBloc
     if (event is LocationsCharacterLoadEvent) {
       yield LocationsCharacterLoadingState();
       try {
-        List<Character> loadedCharacters = await linkedLocationCharactersService
+        List<Character> loadedCharacters = await linkedLocationCharactersAPI
             .getLocationCharacters(event.linkedCharactersURLs);
 
         yield LocationsCharacterLoadedState(linkedCharacters: loadedCharacters);

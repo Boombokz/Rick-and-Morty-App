@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:rick_and_morty_test/models/locations/location_model.dart';
-import 'package:rick_and_morty_test/network_service/locations_network_service.dart';
+import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
+import 'package:rick_and_morty_test/data/network/locations_api.dart';
 
 part 'locations_list_event.dart';
 
@@ -15,7 +15,7 @@ class LocationsListBloc extends Bloc<LocationsListEvent, LocationsListState> {
   int page = 1;
   bool isFetching = false;
 
-  LocationsNetworkService locationsNetworkService = LocationsNetworkService();
+  LocationsAPI locationsAPI = LocationsAPI();
 
   @override
   Stream<LocationsListState> mapEventToState(
@@ -25,10 +25,10 @@ class LocationsListBloc extends Bloc<LocationsListEvent, LocationsListState> {
       yield LocationsListLoadingState();
       try {
         List<Location> loadedLocations = [];
-        int pages = await locationsNetworkService.getLocationTotalPagesCount();
+        int pages = await locationsAPI.getLocationTotalPagesCount();
 
         if (page <= pages) {
-          loadedLocations = await locationsNetworkService.getLocations(page);
+          loadedLocations = await locationsAPI.getLocations(page);
         } else {
           loadedLocations = [];
         }

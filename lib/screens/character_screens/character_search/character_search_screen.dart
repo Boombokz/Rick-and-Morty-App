@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
-import 'package:rick_and_morty_test/constants/resources/images.dart';
-import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/resources/resources.dart';
+import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
-
 import 'package:rick_and_morty_test/screens/character_screens/character_search/widgets/search_character_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_search/widgets/search_characters_listview.dart';
+import 'package:rick_and_morty_test/theme/themes.dart';
 
 class CharacterSearchScreen extends StatelessWidget {
   final List<Character> _searchedCharacters = [];

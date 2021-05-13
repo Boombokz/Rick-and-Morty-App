@@ -67,10 +67,10 @@ flutter:
     - assets/images/splash_images/
     - assets/images/global/
     - assets/images/search_images/
-    - assets/icons/bottom_bar_icons/
-    - assets/icons/search_icons/
-    - assets/icons/global_icons/
-    - assets/icons/filter_icons/
+    - assets/svg_icons/bottom_bar_icons/
+    - assets/svg_icons/search_icons/
+    - assets/svg_icons/global_icons/
+    - assets/svg_icons/filter_icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

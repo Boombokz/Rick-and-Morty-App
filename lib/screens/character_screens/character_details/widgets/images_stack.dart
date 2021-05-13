@@ -1,10 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/components/back_arrow_button.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
-import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
+import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class ImagesStack extends StatelessWidget {
   final String imageURL;

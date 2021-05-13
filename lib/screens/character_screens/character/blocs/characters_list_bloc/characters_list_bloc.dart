@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:rick_and_morty_test/models/characters/character_model.dart';
-import 'package:rick_and_morty_test/network_service/characters_network_service.dart';
+import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/data/network/characters_api.dart';
 
 part 'characters_list_event.dart';
 
@@ -15,7 +15,7 @@ class CharactersListBloc
   int page = 1;
   bool isFetching = false;
 
-  CharactersNetworkService networkService = CharactersNetworkService();
+  CharactersApi characterAPI = CharactersApi();
 
   @override
   Stream<CharactersListState> mapEventToState(
@@ -25,10 +25,10 @@ class CharactersListBloc
       yield CharactersListLoadingState();
       try {
         List<Character> loadedCharacters = [];
-        int pages = await networkService.getCharacterTotalPagesCount();
+        int pages = await characterAPI.getCharacterTotalPagesCount();
 
         if (page <= pages) {
-          loadedCharacters = await networkService.getCharacters(page);
+          loadedCharacters = await characterAPI.getCharacters(page);
         } else {
           loadedCharacters = [];
         }

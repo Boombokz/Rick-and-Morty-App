@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/components/search_card.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
-import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
-import 'package:rick_and_morty_test/constants/colors/colors.dart';
-import 'package:rick_and_morty_test/models/characters/character_model.dart';
+import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/icon_changing_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/listview_changing_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
+import 'package:rick_and_morty_test/theme/themes.dart';
 
 class CharacterScreen extends StatelessWidget {
   final List<Character> _characters = [];

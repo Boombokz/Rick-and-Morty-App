@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
+import 'package:rick_and_morty_test/theme/text_theme.dart';
 
 class CharacterProperties extends StatelessWidget {
   final String title;

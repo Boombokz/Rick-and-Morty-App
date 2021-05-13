@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:rick_and_morty_test/models/episodes/episode_model.dart';
-import 'package:rick_and_morty_test/network_service/linked_character_episodes_service.dart';
+import 'package:rick_and_morty_test/data/models/episodes/episode_model.dart';
+import 'package:rick_and_morty_test/data/network/linked_character_episodes_api.dart';
 
 part 'character_episodes_event.dart';
 
@@ -13,7 +13,7 @@ class CharacterEpisodesBloc
     extends Bloc<CharacterEpisodesEvent, CharacterEpisodesState> {
   CharacterEpisodesBloc() : super(CharacterEpisodesLoadingState());
 
-  LinkedCharacterEpisodesService episodesLoadService = LinkedCharacterEpisodesService();
+  LinkedCharacterEpisodesAPI linkedCharactersEpisodesAPI = LinkedCharacterEpisodesAPI();
 
   @override
   Stream<CharacterEpisodesState> mapEventToState(
@@ -23,7 +23,7 @@ class CharacterEpisodesBloc
       yield CharacterEpisodesLoadingState();
       try {
         List<Episode> loadedEpisodes =
-            await episodesLoadService.getCharacterEpisodes(event.episodes);
+            await linkedCharactersEpisodesAPI.getCharacterEpisodes(event.episodes);
 
         yield CharacterEpisodesLoadedState(episodes: loadedEpisodes);
       } catch (e, s) {
