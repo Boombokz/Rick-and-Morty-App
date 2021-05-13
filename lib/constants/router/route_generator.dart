@@ -40,9 +40,9 @@ class RouteGenerator {
     switch (settings.name) {
       case mainScreenRoute:
         return MaterialPageRoute(
-            settings: settings,
+            settings: RouteSettings(name: 'MainScreen'),
             builder: (_) => MainScreen(
-                  currentIndex: settings.arguments as int,
+
                 ));
       case splashScreenRoute:
         return MaterialPageRoute(builder: (_) => SplashScreen());

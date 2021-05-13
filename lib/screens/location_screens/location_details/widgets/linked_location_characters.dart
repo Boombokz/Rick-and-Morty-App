@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/locations_character_bloc/locations_character_bloc.dart';
-
 import 'package:rick_and_morty_test/screens/location_screens/location_details/widgets/linked_location_character_listtile.dart';
+import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
+    as globals;
 
 class LinkedLocationCharacters extends StatelessWidget {
   @override
@@ -22,11 +22,10 @@ class LinkedLocationCharacters extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    RouteGenerator.mainScreenRoute,
-                    arguments: 0,
-                  );
+                  Navigator.popUntil(
+                      context, ModalRoute.withName('MainScreen'));
+                  //this needs to prevent rebuild state on mainScreen
+                  globals.tabController.animateTo(0);
                 },
                 child: Text(
                   'All characters',

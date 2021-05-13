@@ -6,6 +6,7 @@ import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/images.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/episodes_screens/episode/blocs/episodes_list_bloc/episode_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_count_bloc/locations_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_list_bloc/locations_list_bloc.dart';
@@ -16,25 +17,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  void loadingDelay(context) {
-    Future.delayed(Duration(seconds: 3), () {
+  void loadingDelay() {
+    Timer(Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(context, RouteGenerator.mainScreenRoute,
-          arguments: 0);
+          arguments: 0, );
     });
   }
 
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    BlocProvider.of<CharactersListBloc>(context)
+      ..isFetching = true
+      ..add(CharactersListLoadEvent());
     BlocProvider.of<CharactersCountBloc>(context)
       ..add(CharactersCountLoadEvent());
     BlocProvider.of<LocationsListBloc>(context)
-      ..page = 1
       ..isFetching = true
       ..add(LocationsListLoadEvent());
     BlocProvider.of<LocationsCountBloc>(context)
       ..add(LocationsCountLoadEvent());
     BlocProvider.of<EpisodesListBloc>(context)..add(EpisodesListLoadEvent());
+    loadingDelay();
     super.initState();
   }
 
@@ -47,9 +51,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
-    loadingDelay(context);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

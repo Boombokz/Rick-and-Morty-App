@@ -8,6 +8,8 @@ import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
 import 'package:rick_and_morty_test/screens/episodes_screens/episode_details/blocs/episode_characters_bloc/episodes_character_bloc.dart';
+import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
+as globals;
 
 class EpisodesList extends StatelessWidget {
   @override
@@ -25,11 +27,9 @@ class EpisodesList extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    RouteGenerator.mainScreenRoute,
-                    arguments: 2,
-                  );
+                  Navigator.popUntil(
+                      context, ModalRoute.withName('MainScreen'));
+                  globals.tabController.animateTo(2);
                 },
                 child: Text(
                   'All episodes',
@@ -47,7 +47,10 @@ class EpisodesList extends StatelessWidget {
               );
             } else if (state is CharacterEpisodesLoadedState) {
               return Container(
-                height: 500,
+                //Height dependent on element's count
+                height: (state.episodes.length >= 5)
+                    ? 500
+                    : state.episodes.length * 100,
                 child: ListView.builder(
                     itemCount: state.episodes.length,
                     padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),

@@ -11,17 +11,7 @@ import 'package:rick_and_morty_test/screens/location_screens/location/widgets/lo
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 
 class LocationScreen extends StatelessWidget {
-
   final List<Location> _locations = [];
-
-  // @override
-  // void initState() {
-  //   BlocProvider.of<LocationsListBloc>(context)
-  //     ..page = 1
-  //     ..isFetching = true
-  //     ..add(LocationsListLoadEvent());
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +74,9 @@ class LocationScreen extends StatelessWidget {
               if (state is LocationsListLoadingState && _locations.isEmpty) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is LocationsListLoadedState) {
-                if (BlocProvider.of<LocationsListBloc>(context).page == 1) {
-                  _locations.clear();
-                } else {
-                  _locations.addAll(state.loadedLocations);
-
-                  context.read<LocationsListBloc>()..isFetching = false;
-                }
+                _locations.addAll((state.loadedLocations)
+                    .where((e) => !_locations.contains(e)));
+                context.read<LocationsListBloc>()..isFetching = false;
               } else if (state is LocationsListLoadErrorState &&
                   _locations.isEmpty) {
                 return Center(

@@ -1,44 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/components/search_card.dart';
-import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character/widgets/characters_gridview.dart';
-import 'package:rick_and_morty_test/screens/character_screens/character/widgets/characters_listview.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character/widgets/icon_changing_widget.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character/widgets/listview_changing_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
-import 'package:rick_and_morty_test/utils/global_state/global_state.dart';
 
-class CharacterScreen extends StatefulWidget {
-  @override
-  _CharacterScreenState createState() => _CharacterScreenState();
-}
-
-class _CharacterScreenState extends State<CharacterScreen> {
-  bool isListViewChanged = false;
-
-  List<Character> _characters = [];
-
-  @override
-  void initState() {
-    if (store.get('isListViewChanged') != null) {
-      isListViewChanged = store.get('isListViewChanged');
-    }
-
-    BlocProvider.of<CharactersListBloc>(context)
-      ..page = 1
-      ..isFetching = true
-      ..add(CharactersListLoadEvent());
-    super.initState();
-  }
+class CharacterScreen extends StatelessWidget {
+  final List<Character> _characters = [];
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: ColorPalette.splashScreenColor,
       body: SafeArea(
@@ -95,17 +73,7 @@ class _CharacterScreenState extends State<CharacterScreen> {
                             }
                           },
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isListViewChanged = !isListViewChanged;
-                              store.set('isListViewChanged', isListViewChanged);
-                            });
-                          },
-                          child: isListViewChanged
-                              ? SvgPicture.asset(IconsRes.listChangeIcon)
-                              : SvgPicture.asset(IconsRes.gridChangeIcon),
-                        ),
+                        IconChangingWidget(),
                       ],
                     ),
                   ),
@@ -115,15 +83,11 @@ class _CharacterScreenState extends State<CharacterScreen> {
                           _characters.isEmpty) {
                         return Center(child: CircularProgressIndicator());
                       } else if (state is CharactersListLoadedState) {
-                        if (BlocProvider.of<CharactersListBloc>(context).page ==
-                            1) {
-                          _characters.clear();
-                        } else {
-                          _characters.addAll(state.loadedCharacters);
-
-                          context.read<CharactersListBloc>()
-                            ..isFetching = false;
-                        }
+                        //check to prevent duplicate elements from entering when redrawing the screen
+                        _characters.addAll((state.loadedCharacters)
+                            .where((e) => !_characters.contains(e)));
+                        print('blocked characters: ${_characters.length}');
+                        context.read<CharactersListBloc>()..isFetching = false;
                       } else if (state is CharactersListLoadErrorState &&
                           _characters.isEmpty) {
                         return Center(
@@ -134,14 +98,9 @@ class _CharacterScreenState extends State<CharacterScreen> {
                         child: Column(
                           children: [
                             Expanded(
-                              child: !isListViewChanged
-                                  ? CharactersListView(
-                                      characters: _characters,
-                                    )
-                                  : CharactersGridView(
-                                      characters: _characters,
-                                    ),
-                            ),
+                                child: ListViewChangingWidget(
+                              characters: _characters,
+                            )),
                           ],
                         ),
                       );

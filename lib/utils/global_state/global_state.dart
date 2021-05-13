@@ -1,3 +1,4 @@
+
 class GlobalState {
   final Map<dynamic, dynamic> _data = <dynamic, dynamic>{};
 
@@ -11,3 +12,4 @@ class GlobalState {
 }
 
 final GlobalState store = GlobalState.instance;
+

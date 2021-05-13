@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
+import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_change_view_bloc/character_change_view_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => EpisodesListBloc()),
           BlocProvider(create: (context) => EpisodesCharacterBloc()),
           BlocProvider(create: (context) => EpisodeSearchBloc()),
+          BlocProvider(create: (context) => CharacterChangeViewBloc()),
         ],
         child: MaterialApp(
           theme: ThemeData(fontFamily: 'Roboto'),

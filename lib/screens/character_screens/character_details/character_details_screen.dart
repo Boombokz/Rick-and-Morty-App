@@ -101,6 +101,7 @@ class _CharacterDetailsScreenState extends State<CharacterDetailsScreen> {
               ),
             ),
             EpisodesList(),
+            SizedBox(height: 24),
           ],
         ),
       ),

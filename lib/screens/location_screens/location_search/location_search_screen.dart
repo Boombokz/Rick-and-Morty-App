@@ -4,7 +4,6 @@ import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/images.dart';
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
 import 'package:rick_and_morty_test/models/locations/location_model.dart';
-import 'package:rick_and_morty_test/screens/location_screens/location/widgets/locations_listview.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/widgets/search_location_widget.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/widgets/search_locations_listview.dart';
