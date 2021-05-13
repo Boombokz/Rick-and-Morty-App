@@ -12,7 +12,6 @@ import 'package:rick_and_morty_test/screens/location_screens/location/location_s
 import 'package:rick_and_morty_test/screens/settings_screens/settings/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
-
   @override
   _MainScreenState createState() => _MainScreenState();
 }
@@ -20,29 +19,28 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   late TabController tabController;
 
-
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays(
         [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-    tabController = TabController(length: tabs.length, vsync: this, initialIndex: 0);
+    tabController =
+        TabController(length: tabs.length, vsync: this, initialIndex: 0);
     globals.tabController = tabController;
-    super.initState();
 
+    super.initState();
   }
 
   void onSelectTab(int index) {
     setState(() {
-      tabController.animateTo(index);
+      globals.tabController.index = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: IndexedStack(
-        index: tabController.index,
+        index: globals.tabController.index,
         children: tabs,
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -50,7 +48,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         selectedLabelStyle: TextStyles.greyTextStyle,
         unselectedItemColor: ColorPalette.darkGreyColor,
         selectedItemColor: ColorPalette.greenTextColor,
-        currentIndex: tabController.index,
+        currentIndex: globals.tabController.index,
         type: BottomNavigationBarType.fixed,
         backgroundColor: ColorPalette.greyBackgroundColor,
         items: bottomNavBarItems,

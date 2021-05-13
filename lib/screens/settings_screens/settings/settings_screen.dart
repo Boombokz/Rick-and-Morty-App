@@ -4,6 +4,7 @@ import 'package:package_info/package_info.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/constants/colors/colors.dart';
 import 'package:rick_and_morty_test/constants/resources/icons_res.dart';
+import 'package:rick_and_morty_test/screens/main_screen/main_screen.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
     as globals;
 import 'package:rick_and_morty_test/constants/text_styles/text_styles.dart';
@@ -201,15 +202,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: GestureDetector(
                         onTap: () {
                           setState(() {
-                            Navigator.popUntil(
-                                context, ModalRoute.withName('MainScreen'));
                             globals.tabController.animateTo(0);
                           });
-
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                              vertical: 19, horizontal: 17),
+                              vertical: 18, horizontal: 16),
                           child: SvgPicture.asset(IconsRes.arrowBackIcon),
                         ),
                       ),
