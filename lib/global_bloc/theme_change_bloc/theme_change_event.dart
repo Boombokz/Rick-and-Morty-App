@@ -1,5 +1,10 @@
 part of 'theme_change_bloc.dart';
 
-abstract class ThemeChangeEvent extends Equatable {
-  const ThemeChangeEvent();
+@immutable
+abstract class ThemeChangeEvent {}
+
+class ThemeChangeStartEvent extends ThemeChangeEvent {
+  final ThemeData theme;
+
+  ThemeChangeStartEvent({required this.theme});
 }

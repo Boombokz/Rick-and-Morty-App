@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
+import 'package:rick_and_morty_test/global_bloc/theme_change_bloc/theme_change_bloc.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
+import 'package:rick_and_morty_test/theme/main_theme.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
     as globals;
 import 'package:rick_and_morty_test/theme/text_theme.dart';
@@ -100,6 +103,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             setState(() {
                               _choice = value;
                             });
+                            BlocProvider.of<ThemeChangeBloc>(context)
+                              ..add(ThemeChangeStartEvent(
+                                  theme: MainThemes.lightTheme));
                           },
                         ),
                         RadioListTile<ThemeChoice>(
@@ -117,6 +123,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             setState(() {
                               _choice = value;
                             });
+                            BlocProvider.of<ThemeChangeBloc>(context)
+                              ..add(ThemeChangeStartEvent(
+                                  theme: MainThemes.darkTheme));
                           },
                         ),
                         RadioListTile<ThemeChoice>(
@@ -182,7 +191,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(

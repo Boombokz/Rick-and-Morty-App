@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
+import 'package:rick_and_morty_test/global_bloc/theme_change_bloc/theme_change_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_change_view_bloc/character_change_view_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
@@ -41,13 +42,18 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => EpisodesCharacterBloc()),
           BlocProvider(create: (context) => EpisodeSearchBloc()),
           BlocProvider(create: (context) => CharacterChangeViewBloc()),
+          BlocProvider(create: (context) => ThemeChangeBloc()),
         ],
-        child: MaterialApp(
-          theme: MainThemes.darkTheme,
-          title: 'Rick and Morty',
-          debugShowCheckedModeBanner: false,
-          initialRoute: RouteGenerator.splashScreenRoute,
-          onGenerateRoute: RouteGenerator.generateRoute,
+        child: BlocBuilder<ThemeChangeBloc, ThemeChangeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              theme: state.theme,
+              title: 'Rick and Morty',
+              debugShowCheckedModeBanner: false,
+              initialRoute: RouteGenerator.splashScreenRoute,
+              onGenerateRoute: RouteGenerator.generateRoute,
+            );
+          },
         ),
       ),
     );

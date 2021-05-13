@@ -20,9 +20,11 @@ class MainThemes {
     ),
     dialogTheme: DialogTheme(),
   );
+
   static final ThemeData lightTheme = ThemeData(
     fontFamily: 'Roboto',
     scaffoldBackgroundColor: ColorPalette.whiteColor,
     brightness: Brightness.light,
   );
+
 }
