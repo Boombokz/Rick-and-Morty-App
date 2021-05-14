@@ -48,19 +48,16 @@ class LinkedEpisodeCharacterListTile extends StatelessWidget {
                   ),
                   Text(
                     '${character.name}',
-                    style: TextStyles.nameTextStyle.copyWith(
-                      color: ColorPalette.whiteColor.withOpacity(0.87),
-                    ),
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   Text(
                     '${character.species}, ${character.gender}',
-                    style: TextStyles.greyTextStyle
-                        .copyWith(color: ColorPalette.greyColor),
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ],
               ),
             ),
-            SvgPicture.asset(IconsRes.arrowRightIcon),
+            SvgPicture.asset(IconsRes.arrowRightIcon, color: Theme.of(context).colorScheme.onSecondary),
           ],
         ),
       ),

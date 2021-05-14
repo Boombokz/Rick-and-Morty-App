@@ -58,13 +58,13 @@ class LocationListTile extends StatelessWidget {
                 children: [
                   Text(
                     '${location.name}',
-                    style: TextStyles.nameTextStyle,
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   SizedBox(height: 4),
                   Text(
                     '${location.type} - ${location.dimension}',
-                    style: TextStyles.greyTextStyle
-                        .copyWith(color: ColorPalette.greyColor),
+                    style:
+                      Theme.of(context).textTheme.subtitle1,
                   ),
                 ],
               ),

@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/screens/episode_screens/episode/blocs/episodes_list_bloc/episode_list_bloc.dart';
-import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_count_bloc/characters_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
@@ -18,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void loadingDelay() {
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 1), () {
       Navigator.pushReplacementNamed(
         context,
         RouteGenerator.mainScreenRoute,

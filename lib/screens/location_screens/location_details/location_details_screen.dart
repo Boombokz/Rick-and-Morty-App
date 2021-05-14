@@ -4,7 +4,7 @@ import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/character_properties.dart';
-import 'package:rick_and_morty_test/screens/location_screens/location/widgets/image_stack.dart';
+import 'package:rick_and_morty_test/screens/location_screens/location_details/widgets/image_stack.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/widgets/linked_location_characters.dart';
 
 class LocationDetailsScreen extends StatelessWidget {
@@ -21,11 +21,11 @@ class LocationDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ImageStack(),
-            SizedBox(height: 34),
+
             Center(
               child: Text(
                 '${selectedLocation.name}',
-                style: TextStyles.bigTextStyle,
+                style: Theme.of(context).textTheme.subtitle2,
                 textAlign: TextAlign.center,
               ),
             ),

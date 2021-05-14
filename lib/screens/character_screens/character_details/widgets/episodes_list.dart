@@ -8,7 +8,7 @@ import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/blocs/character_episodes_bloc/character_episodes_bloc.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
-as globals;
+    as globals;
 
 class EpisodesList extends StatelessWidget {
   @override
@@ -22,7 +22,7 @@ class EpisodesList extends StatelessWidget {
             children: [
               Text(
                 'Episodes',
-                style: TextStyles.headerTextStyle,
+                style: Theme.of(context).textTheme.headline3,
               ),
               GestureDetector(
                 onTap: () {
@@ -32,7 +32,7 @@ class EpisodesList extends StatelessWidget {
                 },
                 child: Text(
                   'All episodes',
-                  style: TextStyles.greyTextStyle,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
             ],
@@ -95,24 +95,26 @@ class EpisodesList extends StatelessWidget {
                                     Text(
                                       'Episode ${state.episodes[index].id}'
                                           .toUpperCase(),
-                                      style: TextStyles.statusTextStyle
-                                          .copyWith(
+                                      style:
+                                          TextStyles.statusTextStyle.copyWith(
                                         color: ColorPalette.lightBlueColor
                                             .withOpacity(0.87),
                                       ),
                                     ),
                                     Text(
                                       '${state.episodes[index].name}',
-                                      style: TextStyles.nameTextStyle
-                                          .copyWith(
-                                        color: ColorPalette.whiteColor
-                                            .withOpacity(0.87),
-                                      ),
+                                      style:
+                                          Theme.of(context).textTheme.headline1,
                                     ),
                                     Text(
                                       '${state.episodes[index].air_date}',
-                                      style: TextStyles.greyTextStyle.copyWith(
-                                          color: ColorPalette.greyColor),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline5!
+                                          .copyWith(
+                                            color: ColorPalette.greyColor
+                                                .withOpacity(0.6),
+                                          ),
                                     ),
                                   ],
                                 ),

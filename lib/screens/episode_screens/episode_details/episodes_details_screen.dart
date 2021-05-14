@@ -29,7 +29,7 @@ class EpisodesDetailsScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     '${selectedEpisode.name}',
-                    style: TextStyles.episodeNameTextStyle,
+                    style: Theme.of(context).textTheme.button,
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -37,7 +37,7 @@ class EpisodesDetailsScreen extends StatelessWidget {
                 Center(
                   child: Text(
                     'Episode ${selectedEpisode.id}'.toUpperCase(),
-                    style: TextStyles.genderTextStyle.copyWith(
+                    style: TextStyles.bodyText2.copyWith(
                       color: ColorPalette.lightBlueColor.withOpacity(0.87),
                     ),
                     textAlign: TextAlign.center,

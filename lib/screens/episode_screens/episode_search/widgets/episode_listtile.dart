@@ -48,6 +48,7 @@ class EpisodeListTile extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   'Episode ${episode.id}'.toUpperCase(),
@@ -57,14 +58,12 @@ class EpisodeListTile extends StatelessWidget {
                 ),
                 Text(
                   '${episode.name}',
-                  style: TextStyles.nameTextStyle.copyWith(
-                    color: ColorPalette.whiteColor.withOpacity(0.87),
-                  ),
+                  style: Theme.of(context).textTheme.headline1,
+
                 ),
                 Text(
                   '${episode.air_date}',
-                  style: TextStyles.greyTextStyle
-                      .copyWith(color: ColorPalette.greyColor),
+                  style: Theme.of(context).textTheme.headline5,
                 ),
               ],
             ),

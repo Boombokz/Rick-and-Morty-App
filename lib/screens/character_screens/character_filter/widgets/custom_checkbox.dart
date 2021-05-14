@@ -28,14 +28,17 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
           },
           child: isChecked
               ? SvgPicture.asset(IconsRes.checkedIcon)
-              : SvgPicture.asset(IconsRes.uncheckedIcon),
+              : SvgPicture.asset(IconsRes.uncheckedIcon,color: Theme.of(context).colorScheme.primaryVariant,),
         ),
         SizedBox(width: 16),
         Text(
           '${widget.title}',
-          style: TextStyles.searchScreenTextStyle
-              .copyWith(color: ColorPalette.whiteColor, height: 1.25),
+          style: Theme.of(context).textTheme.caption,
           textAlign: TextAlign.center,
+          textHeightBehavior: TextHeightBehavior(
+            applyHeightToFirstAscent: false,
+            applyHeightToLastDescent: false,
+          ),
         )
       ],
     );

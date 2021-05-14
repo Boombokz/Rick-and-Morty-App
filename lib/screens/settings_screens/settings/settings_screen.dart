@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
@@ -20,6 +21,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   ThemeChoice? _choice = ThemeChoice.enabled;
+  String themeStatus = 'Enabled';
 
   PackageInfo _packageInfo = PackageInfo(
     appName: 'Unknown',
@@ -47,11 +49,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
         children: [
           Text(
             'Rick & Morty  $title',
-            style: TextStyles.listTileStyle,
+            style: Theme.of(context).textTheme.headline6,
           ),
           Text(
             '$subtitle',
-            style: TextStyles.listTileStyle,
+            style: Theme.of(context).textTheme.headline6,
           ),
         ],
       ),
@@ -72,10 +74,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 titlePadding:
                     EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 16),
                 buttonPadding: EdgeInsets.zero,
-                backgroundColor: ColorPalette.greyBackgroundColor,
+                backgroundColor: ColorPalette.greyBlueColor,
                 title: Text(
                   'Dark theme',
-                  style: TextStyles.headerTextStyle,
+                  style: TextStyles.headline3,
                 ),
                 content: Container(
                   width: MediaQuery.of(context).size.width - 32,
@@ -90,7 +92,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         RadioListTile<ThemeChoice>(
                           title: Text(
                             'Disabled',
-                            style: TextStyles.searchTextStyle
+                            style: TextStyles.bodyText1
                                 .copyWith(color: ColorPalette.whiteColor),
                           ),
                           activeColor: ColorPalette.lightBlueColor,
@@ -102,16 +104,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           onChanged: (ThemeChoice? value) {
                             setState(() {
                               _choice = value;
+                              themeStatus = 'Disabled';
                             });
                             BlocProvider.of<ThemeChangeBloc>(context)
                               ..add(ThemeChangeStartEvent(
                                   theme: MainThemes.lightTheme));
+                            SystemChrome.setSystemUIOverlayStyle(
+                                SystemUiOverlayStyle(
+                              statusBarIconBrightness: Brightness.dark,
+                              statusBarBrightness: Brightness.dark,
+                            ));
                           },
                         ),
                         RadioListTile<ThemeChoice>(
                           title: Text(
                             'Enabled',
-                            style: TextStyles.searchTextStyle
+                            style: TextStyles.bodyText1
                                 .copyWith(color: ColorPalette.whiteColor),
                           ),
                           activeColor: ColorPalette.lightBlueColor,
@@ -122,46 +130,70 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           onChanged: (ThemeChoice? value) {
                             setState(() {
                               _choice = value;
+                              themeStatus = 'Enabled';
                             });
                             BlocProvider.of<ThemeChangeBloc>(context)
                               ..add(ThemeChangeStartEvent(
                                   theme: MainThemes.darkTheme));
+                            SystemChrome.setSystemUIOverlayStyle(
+                                SystemUiOverlayStyle(
+                              statusBarIconBrightness: Brightness.light,
+                              statusBarBrightness: Brightness.light,
+                            ));
                           },
                         ),
-                        RadioListTile<ThemeChoice>(
-                          title: Text(
-                            'Follow the system settings',
-                            style: TextStyles.searchTextStyle
-                                .copyWith(color: ColorPalette.whiteColor),
-                          ),
-                          activeColor: ColorPalette.lightBlueColor,
-                          value: ThemeChoice.system,
-                          dense: true,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                          groupValue: _choice,
-                          onChanged: (ThemeChoice? value) {
-                            setState(() {
-                              _choice = value;
-                            });
-                          },
-                        ),
-                        RadioListTile<ThemeChoice>(
-                          title: Text(
-                            'Power-saving mode',
-                            style: TextStyles.searchTextStyle
-                                .copyWith(color: ColorPalette.whiteColor),
-                          ),
-                          activeColor: ColorPalette.lightBlueColor,
-                          value: ThemeChoice.powersafe,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                          groupValue: _choice,
-                          dense: true,
-                          onChanged: (ThemeChoice? value) {
-                            setState(() {
-                              _choice = value;
-                            });
-                          },
-                        ),
+                        // RadioListTile<ThemeChoice>(
+                        //   title: Text(
+                        //     'Follow the system settings',
+                        //     style: TextStyles.bodyText1
+                        //         .copyWith(color: ColorPalette.whiteColor),
+                        //   ),
+                        //   activeColor: ColorPalette.lightBlueColor,
+                        //   value: ThemeChoice.system,
+                        //   dense: true,
+                        //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        //   groupValue: _choice,
+                        //   onChanged: (ThemeChoice? value) {
+                        //     setState(() {
+                        //       _choice = value;
+                        //       themeStatus = 'Enabled';
+                        //     });
+                        //     BlocProvider.of<ThemeChangeBloc>(context)
+                        //       ..add(ThemeChangeStartEvent(
+                        //           theme: MainThemes.darkTheme));
+                        //     SystemChrome.setSystemUIOverlayStyle(
+                        //         SystemUiOverlayStyle(
+                        //       statusBarIconBrightness: Brightness.light,
+                        //       statusBarBrightness: Brightness.light,
+                        //     ));
+                        //   },
+                        // ),
+                        // RadioListTile<ThemeChoice>(
+                        //   title: Text(
+                        //     'Power-saving mode',
+                        //     style: TextStyles.bodyText1
+                        //         .copyWith(color: ColorPalette.whiteColor),
+                        //   ),
+                        //   activeColor: ColorPalette.lightBlueColor,
+                        //   value: ThemeChoice.powersafe,
+                        //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        //   groupValue: _choice,
+                        //   dense: true,
+                        //   onChanged: (ThemeChoice? value) {
+                        //     setState(() {
+                        //       _choice = value;
+                        //       themeStatus = 'Enabled';
+                        //     });
+                        //     BlocProvider.of<ThemeChangeBloc>(context)
+                        //       ..add(ThemeChangeStartEvent(
+                        //           theme: MainThemes.darkTheme));
+                        //     SystemChrome.setSystemUIOverlayStyle(
+                        //         SystemUiOverlayStyle(
+                        //       statusBarIconBrightness: Brightness.light,
+                        //       statusBarBrightness: Brightness.light,
+                        //     ));
+                        //   },
+                        // ),
                         Align(
                           alignment: Alignment.bottomRight,
                           child: TextButton(
@@ -200,36 +232,38 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 Row(
                   children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: ColorPalette.greyBackgroundColor),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            globals.tabController.animateTo(0);
-                          });
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 18, horizontal: 16),
-                          child: SvgPicture.asset(IconsRes.arrowBackIcon),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 30),
+                    // Container(
+                    //   width: 48,
+                    //   height: 48,
+                    //   decoration: BoxDecoration(
+                    //       shape: BoxShape.circle,
+                    //       color: ColorPalette.greyBlueColor),
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       setState(() {
+                    //         globals.tabController.animateTo(0);
+                    //       });
+                    //     },
+                    //     child: Padding(
+                    //       padding: EdgeInsets.symmetric(
+                    //           vertical: 18, horizontal: 16),
+                    //       child: SvgPicture.asset(IconsRes.arrowBackIcon),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(width: 30),
+                    Spacer(),
                     Text(
                       'Settings',
-                      style: TextStyles.headerTextStyle,
+                      style: Theme.of(context).textTheme.headline3,
                     ),
+                    Spacer(),
                   ],
                 ),
                 SizedBox(height: 36),
                 Text(
                   'Appearance'.toUpperCase(),
-                  style: TextStyles.genderTextStyle,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(height: 24),
                 GestureDetector(
@@ -241,7 +275,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   },
                   child: Row(
                     children: [
-                      SvgPicture.asset(IconsRes.themeRowIcon),
+                      SvgPicture.asset(
+                        IconsRes.themeRowIcon,
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
                       SizedBox(width: 16),
                       Expanded(
                         child: Column(
@@ -250,18 +287,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           children: [
                             Text(
                               'Dark theme',
-                              style: TextStyles.searchTextStyle
-                                  .copyWith(color: ColorPalette.whiteColor),
+                              style: Theme.of(context).textTheme.headline4,
                             ),
                             Text(
-                              'Enabled',
-                              style: TextStyles.whiteTextStyle
-                                  .copyWith(color: ColorPalette.greyColor),
+                              '$themeStatus',
+                              style: Theme.of(context).textTheme.headline5,
                             ),
                           ],
                         ),
                       ),
-                      SvgPicture.asset(IconsRes.arrowRightIcon),
+                      SvgPicture.asset(
+                        IconsRes.arrowRightIcon,
+                        color: Theme.of(context).colorScheme.onSecondary,
+                      ),
                     ],
                   ),
                 ),
@@ -271,17 +309,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Text(
                   'About the app'.toUpperCase(),
-                  style: TextStyles.genderTextStyle,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(height: 24),
                 Text(
-                  'An app based on the television show RIck and Morty, where you can access information on their characters and in which episodes they have participated.',
-                  style: TextStyles.listTileStyle,
+                  'An app based on the television show Rick and Morty, where you can access information on their characters and in which episodes they have participated.',
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(height: 24),
                 Text(
                   'Illustrating Flutter development only.',
-                  style: TextStyles.listTileStyle,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 DividerWidget(
                   verticalPadding: 36,
@@ -289,17 +327,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Text(
                   'Copyright'.toUpperCase(),
-                  style: TextStyles.genderTextStyle,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(height: 24),
                 Text(
                   'Rick and Morty is created by Justin Roiland and Dan Harmon for Adult Swim. The data and images are used without claim of ownership and belong to their respective owners.',
-                  style: TextStyles.listTileStyle,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 SizedBox(height: 24),
                 Text(
                   'The Rick and Morty API is a RESTful development by Axel Fuhrmann',
-                  style: TextStyles.listTileStyle,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 DividerWidget(
                   verticalPadding: 36,
@@ -307,7 +345,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 Text(
                   'App version'.toUpperCase(),
-                  style: TextStyles.genderTextStyle,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(height: 24),
                 Row(

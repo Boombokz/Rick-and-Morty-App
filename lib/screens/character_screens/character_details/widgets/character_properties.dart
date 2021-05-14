@@ -15,12 +15,12 @@ class CharacterProperties extends StatelessWidget {
         children: [
           Text(
             '$title',
-            style: TextStyles.greyTextStyle,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(height: 2.3),
           Text(
             '$text',
-            style: TextStyles.whiteTextStyle,
+            style: Theme.of(context).textTheme.overline,
           ),
         ],
       ),

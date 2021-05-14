@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rick_and_morty_test/components/back_icon_button.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
@@ -27,23 +28,18 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
             Container(
               height: 60,
               padding:
-                  EdgeInsets.only(top: 12, bottom: 12, left: 21, right: 15),
-              color: ColorPalette.greyBackgroundColor,
+                  EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
+              color: Theme.of(context).colorScheme.background,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: SvgPicture.asset(IconsRes.arrowBackIcon),
-                      ),
-                      SizedBox(width: 25),
+                      BackIconButton(),
+                      SizedBox(width: 12),
                       Text(
                         'Filters',
-                        style: TextStyles.headerTextStyle,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ],
                   ),
@@ -60,7 +56,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Sort'.toUpperCase(),
-                style: TextStyles.genderTextStyle,
+                style: TextStyles.bodyText2,
               ),
             ),
             SizedBox(height: 29),
@@ -71,8 +67,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                 children: [
                   Text(
                     'By alphabet',
-                    style: TextStyles.searchScreenTextStyle
-                        .copyWith(color: ColorPalette.whiteColor),
+                    style: Theme.of(context).textTheme.caption,
                   ),
                   Row(
                     children: [
@@ -80,7 +75,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                         child: SvgPicture.asset(
                           IconsRes.upSortIcon,
                           color: sortSelected
-                              ? ColorPalette.darkGreyColor
+                              ? Theme.of(context).colorScheme.primaryVariant
                               : ColorPalette.lightBlueColor,
                         ),
                         onTap: () {
@@ -95,7 +90,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                           IconsRes.downSortIcon,
                           color: sortSelected
                               ? ColorPalette.lightBlueColor
-                              : ColorPalette.darkGreyColor,
+                              : Theme.of(context).colorScheme.primaryVariant,
                         ),
                         onTap: () {
                           setState(() {
@@ -113,7 +108,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Filter by:'.toUpperCase(),
-                style: TextStyles.genderTextStyle,
+                style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
             SizedBox(height: 36),

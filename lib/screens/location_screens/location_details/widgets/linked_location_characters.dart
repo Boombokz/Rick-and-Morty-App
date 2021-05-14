@@ -18,7 +18,7 @@ class LinkedLocationCharacters extends StatelessWidget {
             children: [
               Text(
                 'Residents',
-                style: TextStyles.headerTextStyle,
+                style: Theme.of(context).textTheme.headline3,
               ),
               GestureDetector(
                 onTap: () {
@@ -29,7 +29,7 @@ class LinkedLocationCharacters extends StatelessWidget {
                 },
                 child: Text(
                   'All characters',
-                  style: TextStyles.greyTextStyle,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
             ],
@@ -44,7 +44,7 @@ class LinkedLocationCharacters extends StatelessWidget {
             } else if (state is LocationsCharacterLoadedState) {
               return state.linkedCharacters.length != 0
                   ? Container(
-                      height: 500,
+                      height: state.linkedCharacters.length >= 5 ? 500 : state.linkedCharacters.length * 100,
                       child: ListView.builder(
                           itemCount: state.linkedCharacters.length,
                           padding: EdgeInsets.symmetric(
@@ -59,7 +59,7 @@ class LinkedLocationCharacters extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'There is no residents',
-                          style: TextStyles.greyTextStyle,
+                          style: Theme.of(context).textTheme.subtitle1,
                         ),
                       ),
                     );

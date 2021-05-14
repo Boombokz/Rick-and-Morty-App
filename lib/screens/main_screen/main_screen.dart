@@ -20,8 +20,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIOverlays(
-        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([
+      SystemUiOverlay.top,
+      SystemUiOverlay.bottom,
+    ]);
     tabController =
         TabController(length: tabs.length, vsync: this, initialIndex: 0);
     globals.tabController = tabController;
@@ -43,8 +45,8 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
         children: tabs,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedLabelStyle: TextStyles.greyTextStyle,
-        selectedLabelStyle: TextStyles.greyTextStyle,
+        unselectedLabelStyle: TextStyles.subtitle1,
+        selectedLabelStyle: TextStyles.subtitle1,
         currentIndex: globals.tabController.index,
         type: BottomNavigationBarType.fixed,
         items: [

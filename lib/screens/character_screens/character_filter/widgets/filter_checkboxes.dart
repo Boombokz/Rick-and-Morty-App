@@ -25,7 +25,7 @@ class FilterCheckboxes extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             '$mainTitle'.toUpperCase(),
-            style: TextStyles.genderTextStyle,
+            style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
         SizedBox(height: 24),

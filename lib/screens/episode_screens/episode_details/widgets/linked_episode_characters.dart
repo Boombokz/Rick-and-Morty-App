@@ -18,7 +18,7 @@ class LinkedEpisodeCharacters extends StatelessWidget {
             children: [
               Text(
                 'Characters',
-                style: TextStyles.headerTextStyle,
+                style: Theme.of(context).textTheme.headline3,
               ),
               GestureDetector(
                 onTap: () {
@@ -28,7 +28,7 @@ class LinkedEpisodeCharacters extends StatelessWidget {
                 },
                 child: Text(
                   'All characters',
-                  style: TextStyles.greyTextStyle,
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ),
             ],

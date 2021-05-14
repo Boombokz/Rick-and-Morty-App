@@ -27,17 +27,15 @@ class FilterTypeItem extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: TextStyles.searchScreenTextStyle.copyWith(
-                      color: ColorPalette.whiteColor.withOpacity(0.87)),
-                ),
+                  style: Theme.of(context).textTheme.caption),
+
                 Text(
                   subtitle,
-                  style: TextStyles.whiteTextStyle.copyWith(
-                      color: ColorPalette.greyColor.withOpacity(0.60)),
-                ),
+                  style: Theme.of(context).textTheme.headline5),
+
               ],
             ),
-            SvgPicture.asset(IconsRes.arrowRightIcon),
+            SvgPicture.asset(IconsRes.arrowRightIcon,color: Theme.of(context).colorScheme.onSecondary,),
           ],
         ),
       ),

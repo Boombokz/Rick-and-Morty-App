@@ -53,14 +53,14 @@ class LocationScreen extends StatelessWidget {
                     if (state is LocationsCountLoadedState) {
                       return Text(
                         'Total locations: ${state.totalCount}'.toUpperCase(),
-                        style: TextStyles.genderTextStyle,
+                        style: Theme.of(context).textTheme.bodyText2,
                       );
                     } else if (state is LocationsCountLoadingState) {
                       return Offstage();
                     } else if (state is LocationsCountErrorState) {
                       return Text(
                         'Error'.toUpperCase(),
-                        style: TextStyles.genderTextStyle,
+                        style: TextStyles.bodyText2,
                       );
                     } else {
                       return Offstage();

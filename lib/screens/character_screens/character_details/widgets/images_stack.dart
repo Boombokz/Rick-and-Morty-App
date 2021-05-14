@@ -54,7 +54,7 @@ class ImagesStack extends StatelessWidget {
                 borderRadius: BorderRadius.all(Radius.circular(100)),
                 border: Border.all(
                   width: 8,
-                  color: ColorPalette.darkBlueColor,
+                  color: Theme.of(context).scaffoldBackgroundColor,
                   style: BorderStyle.solid,
                 ),
               ),

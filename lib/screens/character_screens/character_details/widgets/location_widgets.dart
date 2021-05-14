@@ -25,7 +25,7 @@ class LocationWidget extends StatelessWidget {
               title: title,
               text: originName,
             ),
-            SvgPicture.asset(IconsRes.arrowRightIcon),
+            SvgPicture.asset(IconsRes.arrowRightIcon, color:  Theme.of(context).colorScheme.onSecondary,),
           ],
         ),
       ),

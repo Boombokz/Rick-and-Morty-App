@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rick_and_morty_test/components/back_icon_button.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/theme/text_theme.dart';
@@ -54,27 +55,26 @@ class _SearchEpisodeWidgetState extends State<SearchEpisodeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorPalette.greyBackgroundColor,
-      padding: EdgeInsets.only(left: 21, right: 12),
+      padding: EdgeInsets.only(left: 8, right: 12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        border: Border(
+          bottom: BorderSide(width: 2, color: Theme.of(context).primaryColor),
+        ),
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: SvgPicture.asset(IconsRes.arrowBackIcon),
-          ),
+          BackIconButton(),
           Container(
             width: MediaQuery.of(context).size.width - 175,
             child: TextField(
-              style: TextStyles.searchTextStyle
-                  .copyWith(color: ColorPalette.whiteColor),
+              style: Theme.of(context).textTheme.headline4,
               autofocus: true,
               controller: textController,
               decoration: InputDecoration(
-                hintText: 'Find character',
-                hintStyle: TextStyles.searchTextStyle,
+                hintText: 'Find episode',
+                hintStyle: Theme.of(context).textTheme.bodyText1,
                 border: InputBorder.none,
               ),
             ),
@@ -86,7 +86,8 @@ class _SearchEpisodeWidgetState extends State<SearchEpisodeWidget> {
               BlocProvider.of<EpisodeSearchBloc>(context)
                   .add(EpisodeSearchInitialEvent());
             },
-            child: SvgPicture.asset(IconsRes.cancelIcon),
+            child: SvgPicture.asset(IconsRes.cancelIcon,
+              color: Theme.of(context).colorScheme.onSecondary, width: 30,),
           ),
         ],
       ),

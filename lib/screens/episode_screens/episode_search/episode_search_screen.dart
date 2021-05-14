@@ -31,7 +31,7 @@ class EpisodeSearchScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   'Search results'.toUpperCase(),
-                  style: TextStyles.genderTextStyle,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               BlocBuilder<EpisodeSearchBloc, EpisodeSearchState>(
@@ -46,7 +46,7 @@ class EpisodeSearchScreen extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'Enter episode\'s name',
-                          style: TextStyles.searchScreenTextStyle,
+                          style: Theme.of(context).textTheme.headline2,
                         ),
                       ),
                     );
@@ -65,11 +65,11 @@ class EpisodeSearchScreen extends StatelessWidget {
                           SizedBox(height: 28),
                           Text(
                             'Character with this name',
-                            style: TextStyles.searchScreenTextStyle,
+                            style: TextStyles.headline2,
                           ),
                           Text(
                             'was not found',
-                            style: TextStyles.searchScreenTextStyle,
+                            style: TextStyles.headline2,
                           ),
                         ],
                       ),

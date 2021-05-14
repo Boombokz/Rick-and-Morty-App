@@ -57,14 +57,14 @@ class CharacterScreen extends StatelessWidget {
                               return Text(
                                 'Total characters: ${state.totalCount}'
                                     .toUpperCase(),
-                                style: TextStyles.genderTextStyle,
+                                style: Theme.of(context).textTheme.bodyText2,
                               );
                             } else if (state is CharactersCountLoadingState) {
                               return Offstage();
                             } else if (state is CharacterCountErrorState) {
                               return Text(
                                 'Error'.toUpperCase(),
-                                style: TextStyles.genderTextStyle,
+                                style: Theme.of(context).textTheme.bodyText2,
                               );
                             } else {
                               return Offstage();

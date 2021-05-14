@@ -14,7 +14,7 @@ class SeasonsTabBar extends StatefulWidget {
 class _SeasonsTabBarState extends State<SeasonsTabBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  //Split episodes list to tabs
   Map<K, List<V>> groupBy<K, V>(List<V> values, K mappedBy(V item)) {
     final result = <K, List<V>>{};
     values.forEach((v) {
@@ -68,10 +68,9 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
           Container(
             constraints: BoxConstraints(maxHeight: 38),
             child: Material(
-              color: ColorPalette.darkBlueColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: TabBar(
-                unselectedLabelColor: ColorPalette.darkGreyColor,
-                indicatorColor: ColorPalette.whiteColor,
+                indicatorColor: Theme.of(context).colorScheme.onSecondary,
                 labelPadding: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                 indicatorSize: TabBarIndicatorSize.label,
                 controller: _tabController,
@@ -113,7 +112,7 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
                   return Center(
                     child: Text(
                       'Error'.toUpperCase(),
-                      style: TextStyles.genderTextStyle,
+                      style: TextStyles.bodyText2,
                     ),
                   );
                 } else {

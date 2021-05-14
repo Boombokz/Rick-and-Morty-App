@@ -35,7 +35,7 @@ class LocationSearchScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   'Search results'.toUpperCase(),
-                  style: TextStyles.genderTextStyle,
+                  style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
               BlocBuilder<LocationSearchBloc, LocationSearchState>(
@@ -53,7 +53,7 @@ class LocationSearchScreen extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'Enter location\'s name',
-                          style: TextStyles.searchScreenTextStyle,
+                          style: Theme.of(context).textTheme.headline2,
                         ),
                       ),
                     );
@@ -74,11 +74,11 @@ class LocationSearchScreen extends StatelessWidget {
                           SizedBox(height: 28),
                           Text(
                             'Location with this name',
-                            style: TextStyles.searchScreenTextStyle,
+                            style: TextStyles.headline2,
                           ),
                           Text(
                             'was not found',
-                            style: TextStyles.searchScreenTextStyle,
+                            style: TextStyles.headline2,
                           ),
                         ],
                       ),

@@ -19,14 +19,15 @@ class SearchCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 19),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: ColorPalette.greyBackgroundColor,
+        color: Theme.of(context).primaryColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(IconsRes.searchIcon),
+          SvgPicture.asset(IconsRes.searchIcon, color: Theme.of(context).iconTheme.color,),
           SizedBox(width: 14),
           GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: onTextTap,
             child: Container(
               height: 48,
@@ -34,7 +35,7 @@ class SearchCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 hintText,
-                style: TextStyles.searchTextStyle,
+                style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
           ),
@@ -42,7 +43,7 @@ class SearchCard extends StatelessWidget {
             height: 24,
             child: VerticalDivider(
               thickness: 1,
-              color: ColorPalette.whiteColor.withOpacity(0.1),
+              color: Theme.of(context).colorScheme.secondary,
             ),
           ),
           InkWell(

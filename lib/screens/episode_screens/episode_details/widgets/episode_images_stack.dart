@@ -3,7 +3,6 @@ import 'package:rick_and_morty_test/components/back_arrow_button.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 
-
 class EpisodeImagesStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class EpisodeImagesStack extends StatelessWidget {
                   topLeft: Radius.circular(26),
                   topRight: Radius.circular(26),
                 ),
-                color: ColorPalette.darkBlueColor),
+                color: Theme.of(context).scaffoldBackgroundColor),
           ),
         ),
         Positioned(
@@ -43,8 +42,17 @@ class EpisodeImagesStack extends StatelessWidget {
               height: 99,
               width: 99,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: ColorPalette.lightBlueColor),
+                borderRadius: BorderRadius.circular(100),
+                color: ColorPalette.lightBlueColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorPalette.blackColor.withOpacity(0.25),
+                    spreadRadius: 0,
+                    blurRadius: 30,
+                    offset: Offset(0, 4), // changes position of shadow
+                  ),
+                ],
+              ),
               child: Icon(
                 Icons.play_arrow_rounded,
                 color: ColorPalette.whiteColor,

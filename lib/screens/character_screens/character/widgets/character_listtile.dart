@@ -40,6 +40,10 @@ class CharacterListTile extends StatelessWidget {
               image: character.image,
               fit: BoxFit.cover,
               placeholder: kTransparentImage,
+              imageErrorBuilder: (BuildContext context, Object exception,
+                  StackTrace? stackTrace) {
+                return Text('Image');
+              },
             ),
           ),
           SizedBox(width: 13.5),
@@ -53,12 +57,11 @@ class CharacterListTile extends StatelessWidget {
                 ),
                 Text(
                   '${character.name}',
-                  style: TextStyles.nameTextStyle,
+                  style: Theme.of(context).textTheme.headline1,
                 ),
                 Text(
                   '${character.species}, ${character.gender}',
-                  style: TextStyles.greyTextStyle
-                      .copyWith(color: ColorPalette.greyColor),
+                  style: Theme.of(context).textTheme.subtitle1,
                 ),
               ],
             ),

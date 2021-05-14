@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
@@ -27,7 +28,7 @@ class CharacterDetailsScreen extends StatelessWidget {
             Center(
               child: Text(
                 '${selectedCharacter.name}',
-                style: TextStyles.bigTextStyle,
+                style: Theme.of(context).textTheme.subtitle2,
               ),
             ),
             Center(
@@ -81,13 +82,7 @@ class CharacterDetailsScreen extends StatelessWidget {
               title: 'Location',
               function: () {},
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 36),
-              child: Divider(
-                thickness: 2,
-                color: ColorPalette.greyBackgroundColor,
-              ),
-            ),
+            DividerWidget(verticalPadding: 36, horizontalPadding: 0),
             EpisodesList(),
             SizedBox(height: 24),
           ],
