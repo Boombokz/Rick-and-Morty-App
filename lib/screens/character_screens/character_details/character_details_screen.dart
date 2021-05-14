@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
-import 'package:rick_and_morty_test/theme/color_theme.dart';
-import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/character_properties.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/episodes_list.dart';

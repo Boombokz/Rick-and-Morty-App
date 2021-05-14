@@ -8,8 +8,6 @@ import 'package:rick_and_morty_test/global_bloc/theme_change_bloc/theme_change_b
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/theme/main_theme.dart';
-import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
-    as globals;
 import 'package:rick_and_morty_test/theme/text_theme.dart';
 
 enum ThemeChoice { disabled, enabled, system, powersafe }
@@ -74,144 +72,137 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 titlePadding:
                     EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 16),
                 buttonPadding: EdgeInsets.zero,
-                backgroundColor: ColorPalette.greyBlueColor,
+                backgroundColor: Theme.of(context).primaryColor,
                 title: Text(
                   'Dark theme',
                   style: TextStyles.headline3,
                 ),
                 content: Container(
                   width: MediaQuery.of(context).size.width - 32,
-                  child: Theme(
-                    data: Theme.of(context).copyWith(
-                      unselectedWidgetColor: ColorPalette.darkGreyColor,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        RadioListTile<ThemeChoice>(
-                          title: Text(
-                            'Disabled',
-                            style: TextStyles.bodyText1
-                                .copyWith(color: ColorPalette.whiteColor),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      RadioListTile<ThemeChoice>(
+                        title: Text(
+                          'Disabled',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        activeColor: ColorPalette.lightBlueColor,
+                        selectedTileColor: ColorPalette.lightBlueColor,
+                        value: ThemeChoice.disabled,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        groupValue: _choice,
+                        dense: true,
+                        onChanged: (ThemeChoice? value) {
+                          setState(() {
+                            _choice = value;
+                            themeStatus = 'Disabled';
+                          });
+                          BlocProvider.of<ThemeChangeBloc>(context)
+                            ..add(ThemeChangeStartEvent(
+                                theme: MainThemes.lightTheme));
+                          SystemChrome.setSystemUIOverlayStyle(
+                              SystemUiOverlayStyle(
+                            statusBarIconBrightness: Brightness.dark,
+                            statusBarBrightness: Brightness.dark,
+                          ));
+                        },
+                      ),
+                      RadioListTile<ThemeChoice>(
+                        title: Text(
+                          'Enabled',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        activeColor: ColorPalette.lightBlueColor,
+                        value: ThemeChoice.enabled,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        groupValue: _choice,
+                        dense: true,
+                        onChanged: (ThemeChoice? value) {
+                          setState(() {
+                            _choice = value;
+                            themeStatus = 'Enabled';
+                          });
+                          BlocProvider.of<ThemeChangeBloc>(context)
+                            ..add(ThemeChangeStartEvent(
+                                theme: MainThemes.darkTheme));
+                          SystemChrome.setSystemUIOverlayStyle(
+                              SystemUiOverlayStyle(
+                            statusBarIconBrightness: Brightness.light,
+                            statusBarBrightness: Brightness.light,
+                          ));
+                        },
+                      ),
+                      // RadioListTile<ThemeChoice>(
+                      //   title: Text(
+                      //     'Follow the system settings',
+                      //     style: TextStyles.bodyText1
+                      //         .copyWith(color: ColorPalette.whiteColor),
+                      //   ),
+                      //   activeColor: ColorPalette.lightBlueColor,
+                      //   value: ThemeChoice.system,
+                      //   dense: true,
+                      //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      //   groupValue: _choice,
+                      //   onChanged: (ThemeChoice? value) {
+                      //     setState(() {
+                      //       _choice = value;
+                      //       themeStatus = 'Enabled';
+                      //     });
+                      //     BlocProvider.of<ThemeChangeBloc>(context)
+                      //       ..add(ThemeChangeStartEvent(
+                      //           theme: MainThemes.darkTheme));
+                      //     SystemChrome.setSystemUIOverlayStyle(
+                      //         SystemUiOverlayStyle(
+                      //       statusBarIconBrightness: Brightness.light,
+                      //       statusBarBrightness: Brightness.light,
+                      //     ));
+                      //   },
+                      // ),
+                      // RadioListTile<ThemeChoice>(
+                      //   title: Text(
+                      //     'Power-saving mode',
+                      //     style: TextStyles.bodyText1
+                      //         .copyWith(color: ColorPalette.whiteColor),
+                      //   ),
+                      //   activeColor: ColorPalette.lightBlueColor,
+                      //   value: ThemeChoice.powersafe,
+                      //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                      //   groupValue: _choice,
+                      //   dense: true,
+                      //   onChanged: (ThemeChoice? value) {
+                      //     setState(() {
+                      //       _choice = value;
+                      //       themeStatus = 'Enabled';
+                      //     });
+                      //     BlocProvider.of<ThemeChangeBloc>(context)
+                      //       ..add(ThemeChangeStartEvent(
+                      //           theme: MainThemes.darkTheme));
+                      //     SystemChrome.setSystemUIOverlayStyle(
+                      //         SystemUiOverlayStyle(
+                      //       statusBarIconBrightness: Brightness.light,
+                      //       statusBarBrightness: Brightness.light,
+                      //     ));
+                      //   },
+                      // ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: TextButton(
+                          style: ButtonStyle(
+                            padding:
+                                MaterialStateProperty.all(EdgeInsets.all(20)),
                           ),
-                          activeColor: ColorPalette.lightBlueColor,
-                          selectedTileColor: ColorPalette.lightBlueColor,
-                          value: ThemeChoice.disabled,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                          groupValue: _choice,
-                          dense: true,
-                          onChanged: (ThemeChoice? value) {
-                            setState(() {
-                              _choice = value;
-                              themeStatus = 'Disabled';
-                            });
-                            BlocProvider.of<ThemeChangeBloc>(context)
-                              ..add(ThemeChangeStartEvent(
-                                  theme: MainThemes.lightTheme));
-                            SystemChrome.setSystemUIOverlayStyle(
-                                SystemUiOverlayStyle(
-                              statusBarIconBrightness: Brightness.dark,
-                              statusBarBrightness: Brightness.dark,
-                            ));
+                          onPressed: () {
+                            Navigator.pop(context);
                           },
-                        ),
-                        RadioListTile<ThemeChoice>(
-                          title: Text(
-                            'Enabled',
-                            style: TextStyles.bodyText1
-                                .copyWith(color: ColorPalette.whiteColor),
-                          ),
-                          activeColor: ColorPalette.lightBlueColor,
-                          value: ThemeChoice.enabled,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                          groupValue: _choice,
-                          dense: true,
-                          onChanged: (ThemeChoice? value) {
-                            setState(() {
-                              _choice = value;
-                              themeStatus = 'Enabled';
-                            });
-                            BlocProvider.of<ThemeChangeBloc>(context)
-                              ..add(ThemeChangeStartEvent(
-                                  theme: MainThemes.darkTheme));
-                            SystemChrome.setSystemUIOverlayStyle(
-                                SystemUiOverlayStyle(
-                              statusBarIconBrightness: Brightness.light,
-                              statusBarBrightness: Brightness.light,
-                            ));
-                          },
-                        ),
-                        // RadioListTile<ThemeChoice>(
-                        //   title: Text(
-                        //     'Follow the system settings',
-                        //     style: TextStyles.bodyText1
-                        //         .copyWith(color: ColorPalette.whiteColor),
-                        //   ),
-                        //   activeColor: ColorPalette.lightBlueColor,
-                        //   value: ThemeChoice.system,
-                        //   dense: true,
-                        //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        //   groupValue: _choice,
-                        //   onChanged: (ThemeChoice? value) {
-                        //     setState(() {
-                        //       _choice = value;
-                        //       themeStatus = 'Enabled';
-                        //     });
-                        //     BlocProvider.of<ThemeChangeBloc>(context)
-                        //       ..add(ThemeChangeStartEvent(
-                        //           theme: MainThemes.darkTheme));
-                        //     SystemChrome.setSystemUIOverlayStyle(
-                        //         SystemUiOverlayStyle(
-                        //       statusBarIconBrightness: Brightness.light,
-                        //       statusBarBrightness: Brightness.light,
-                        //     ));
-                        //   },
-                        // ),
-                        // RadioListTile<ThemeChoice>(
-                        //   title: Text(
-                        //     'Power-saving mode',
-                        //     style: TextStyles.bodyText1
-                        //         .copyWith(color: ColorPalette.whiteColor),
-                        //   ),
-                        //   activeColor: ColorPalette.lightBlueColor,
-                        //   value: ThemeChoice.powersafe,
-                        //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                        //   groupValue: _choice,
-                        //   dense: true,
-                        //   onChanged: (ThemeChoice? value) {
-                        //     setState(() {
-                        //       _choice = value;
-                        //       themeStatus = 'Enabled';
-                        //     });
-                        //     BlocProvider.of<ThemeChangeBloc>(context)
-                        //       ..add(ThemeChangeStartEvent(
-                        //           theme: MainThemes.darkTheme));
-                        //     SystemChrome.setSystemUIOverlayStyle(
-                        //         SystemUiOverlayStyle(
-                        //       statusBarIconBrightness: Brightness.light,
-                        //       statusBarBrightness: Brightness.light,
-                        //     ));
-                        //   },
-                        // ),
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: TextButton(
-                            style: ButtonStyle(
-                              padding:
-                                  MaterialStateProperty.all(EdgeInsets.all(20)),
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text(
-                              'Cancel'.toUpperCase(),
-                              style: TextStyles.textButtonTextStyle,
-                            ),
+                          child: Text(
+                            'Cancel'.toUpperCase(),
+                            style: TextStyles.overline,
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               );

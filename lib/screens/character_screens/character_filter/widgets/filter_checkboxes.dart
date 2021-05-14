@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/custom_checkbox.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 

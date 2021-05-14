@@ -8,7 +8,6 @@ import 'package:rick_and_morty_test/screens/character_screens/character/blocs/ch
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/icon_changing_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/widgets/listview_changing_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_search/blocs/character_search_bloc/character_search_bloc.dart';
-import 'package:rick_and_morty_test/theme/themes.dart';
 
 class CharacterScreen extends StatelessWidget {
   final List<Character> _characters = [];

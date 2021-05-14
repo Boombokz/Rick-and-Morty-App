@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_test/theme/text_theme.dart';
 
 class CharacterProperties extends StatelessWidget {
   final String title;
@@ -20,7 +19,7 @@ class CharacterProperties extends StatelessWidget {
           SizedBox(height: 2.3),
           Text(
             '$text',
-            style: Theme.of(context).textTheme.overline,
+            style: Theme.of(context).textTheme.headline5!.copyWith(color: Theme.of(context).colorScheme.onSecondary),
           ),
         ],
       ),

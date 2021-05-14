@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
-import 'package:rick_and_morty_test/theme/themes.dart';
 
 class SearchCard extends StatelessWidget {
   final String hintText;

@@ -3,6 +3,8 @@ import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/theme/text_theme.dart';
 
 class MainThemes {
+
+
   static final ThemeData darkTheme = ThemeData(
     fontFamily: 'Roboto',
     primaryColor: ColorPalette.greyBlueColor,
@@ -16,10 +18,11 @@ class MainThemes {
       background: ColorPalette.greyBlueColor,
       primaryVariant: ColorPalette.darkGreyColor,
       secondaryVariant: ColorPalette.whiteColor,
+      surface: ColorPalette.whiteColor,
 
       brightness: Brightness.dark,
       onBackground: ColorPalette.darkBlueColor,
-      surface: Colors.cyanAccent,
+
       error: ColorPalette.whiteColor,
       onPrimary: Colors.pinkAccent,
       onError: Colors.black,
@@ -40,7 +43,6 @@ class MainThemes {
       color: ColorPalette.greyBlueColor,
       thickness: 2,
     ),
-    dialogTheme: DialogTheme(),
     tabBarTheme: TabBarTheme(
       unselectedLabelColor: ColorPalette.darkGreyColor,
     ),
@@ -57,11 +59,10 @@ class MainThemes {
       background: ColorPalette.grey1Color,
       primaryVariant: ColorPalette.grey3Color,
       secondaryVariant: ColorPalette.grey3Color,
+      surface: ColorPalette.grey2Color,
 
       brightness: Brightness.light,
       onBackground: ColorPalette.darkBlueColor,
-
-      surface: Colors.cyanAccent,
       error: ColorPalette.whiteColor,
       onPrimary: Colors.pinkAccent,
       onSurface: Colors.yellow,
@@ -82,7 +83,6 @@ class MainThemes {
       color: ColorPalette.grey6Color,
       thickness: 2,
     ),
-    dialogTheme: DialogTheme(),
     tabBarTheme: TabBarTheme(
       unselectedLabelColor: ColorPalette.grey4Color,
     ),
@@ -105,7 +105,7 @@ class MainThemes {
     ),
     subtitle2: TextStyles.subtitle2.copyWith(color: ColorPalette.whiteColor),
     caption: TextStyles.headline2.copyWith(color: ColorPalette.whiteColor),
-    overline: TextStyles.headline5.copyWith(color: ColorPalette.whiteColor),
+    overline: TextStyles.overline.copyWith(color: ColorPalette.whiteColor),
     button: TextStyles.episodeName.copyWith(color: ColorPalette.whiteColor),
     // display1: TextStyles.display1.copyWith(color: ColorPalette.whiteColor),
   );
@@ -126,7 +126,7 @@ class MainThemes {
     ),
     subtitle2: TextStyles.subtitle2.copyWith(color: ColorPalette.black1Color),
     caption: TextStyles.headline2.copyWith(color: ColorPalette.black1Color),
-    overline: TextStyles.headline5.copyWith(color: ColorPalette.black1Color),
+    overline: TextStyles.overline.copyWith(color: ColorPalette.grey2Color),
     button: TextStyles.episodeName.copyWith(color: ColorPalette.black1Color),
     // display1: TextStyles.display1.copyWith(color: ColorPalette.black1Color),
   );

@@ -82,7 +82,7 @@ class TextStyles {
     height: 1.33,
   );
 
-  static const TextStyle textButtonTextStyle = TextStyle(
+  static const TextStyle overline = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     letterSpacing: 1.5,
