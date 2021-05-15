@@ -154,8 +154,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 themeMode: ThemeMode.system));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
-                            statusBarIconBrightness: MediaQuery.of(context).platformBrightness != Brightness.light ? Brightness.light : Brightness.dark,
-                            statusBarBrightness: MediaQuery.of(context).platformBrightness != Brightness.light ? Brightness.light : Brightness.dark,
+                            statusBarIconBrightness:
+                                MediaQuery.of(context).platformBrightness !=
+                                        Brightness.light
+                                    ? Brightness.light
+                                    : Brightness.dark,
+                            statusBarBrightness:
+                                MediaQuery.of(context).platformBrightness !=
+                                        Brightness.light
+                                    ? Brightness.light
+                                    : Brightness.dark,
                           ));
                         },
                       ),
