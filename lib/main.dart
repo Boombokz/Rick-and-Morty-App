@@ -13,6 +13,7 @@ import 'package:rick_and_morty_test/screens/episode_screens/episode_details/bloc
 import 'package:rick_and_morty_test/screens/episode_screens/episode_search/blocs/episode_search_bloc/episode_search_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_count_bloc/locations_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_list_bloc/locations_list_bloc.dart';
+import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/location_details_bloc/location_details_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/locations_character_bloc/locations_character_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 import 'package:rick_and_morty_test/theme/main_theme.dart';
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (context) => LocationsCountBloc()),
           BlocProvider(create: (context) => LocationsListBloc()),
           BlocProvider(create: (context) => LocationsCharacterBloc()),
+          BlocProvider(create: (context) => LocationDetailsBloc()),
           BlocProvider(create: (context) => EpisodesListBloc()),
           BlocProvider(create: (context) => EpisodesCharacterBloc()),
           BlocProvider(create: (context) => EpisodeSearchBloc()),

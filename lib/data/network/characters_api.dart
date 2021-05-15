@@ -62,6 +62,7 @@ class CharactersApi {
     }
   }
 
+
   Future<int> getCharacterSearchPagesCount(String name) async {
     try {
       Response response = await dio.get('character/?name=$name');

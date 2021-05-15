@@ -5,10 +5,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/global_bloc/theme_change_bloc/theme_change_bloc.dart';
-import 'package:rick_and_morty_test/theme/color_theme.dart';
+
 import 'package:rick_and_morty_test/resources/resources.dart';
-import 'package:rick_and_morty_test/theme/main_theme.dart';
-import 'package:rick_and_morty_test/theme/text_theme.dart';
+import 'package:rick_and_morty_test/theme/themes.dart';
+
+import 'package:url_launcher/url_launcher.dart';
 
 enum ThemeChoice { disabled, enabled, system, powersafe }
 
@@ -315,7 +316,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 SizedBox(height: 24),
                 Text(
-                  'Illustrating Flutter development only.',
+                  'Illustrating Flutter framework development only.',
                   style: Theme.of(context).textTheme.headline6,
                 ),
                 DividerWidget(
@@ -335,6 +336,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 Text(
                   'The Rick and Morty API is a RESTful development by Axel Fuhrmann',
                   style: Theme.of(context).textTheme.headline6,
+                ),
+                TextButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(EdgeInsets.zero),
+                  ),
+                  onPressed: () async {
+                    try {
+                      const url = 'https://rickandmortyapi.com/documentation';
+                      if (await canLaunch(url)) {
+                        await launch(url);
+                      } else {
+                        throw 'Could not launch $url';
+                      }
+                    } catch (e) {
+                      print(e.toString());
+                    }
+                  },
+                  child: Text(
+                    'Go to API Documentation',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(color: Colors.blueAccent),
+                  ),
                 ),
                 DividerWidget(
                   verticalPadding: 36,

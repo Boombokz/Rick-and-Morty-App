@@ -74,4 +74,18 @@ class LocationsAPI {
       throw e;
     }
   }
+
+  Future<Location> getLocationDetails(int id) async {
+    try {
+      Response response = await dio.get('location/$id');
+
+      if (response.statusCode == 200) {
+        return Location.fromJson(response.data);
+      } else {
+        throw Exception();
+      }
+    } on Exception catch (e) {
+      throw e;
+    }
+  }
 }

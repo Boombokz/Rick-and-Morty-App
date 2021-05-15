@@ -53,7 +53,7 @@ class _SearchCharacterWidgetState extends State<SearchCharacterWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 12),
+      padding: EdgeInsets.only(left: 8, right: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
@@ -77,19 +77,23 @@ class _SearchCharacterWidgetState extends State<SearchCharacterWidget> {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          IconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {
               textController.clear();
               widget.clearSearchedCharacters();
               BlocProvider.of<CharacterSearchBloc>(context)
                   .add(CharacterSearchInitialEvent());
             },
-            child: SvgPicture.asset(
+            splashRadius: 8,
+            icon: SvgPicture.asset(
               IconsRes.cancelIcon,
               color: Theme.of(context).colorScheme.onSecondary,
               width: 30,
             ),
+
           ),
+
         ],
       ),
     );

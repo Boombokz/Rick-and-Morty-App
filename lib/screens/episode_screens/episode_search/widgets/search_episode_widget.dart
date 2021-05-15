@@ -53,7 +53,7 @@ class _SearchEpisodeWidgetState extends State<SearchEpisodeWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 12),
+      padding: EdgeInsets.only(left: 8, right: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
@@ -77,16 +77,22 @@ class _SearchEpisodeWidgetState extends State<SearchEpisodeWidget> {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          IconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {
               textController.clear();
               widget.clearSearchedEpisodes();
               BlocProvider.of<EpisodeSearchBloc>(context)
                   .add(EpisodeSearchInitialEvent());
             },
-            child: SvgPicture.asset(IconsRes.cancelIcon,
-              color: Theme.of(context).colorScheme.onSecondary, width: 30,),
+            splashRadius: 8,
+            icon: SvgPicture.asset(
+              IconsRes.cancelIcon,
+              color: Theme.of(context).colorScheme.onSecondary,
+              width: 30,
+            ),
           ),
+
         ],
       ),
     );

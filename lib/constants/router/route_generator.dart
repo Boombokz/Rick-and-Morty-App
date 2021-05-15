@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_test/data/models/characters/character_model.dart';
 import 'package:rick_and_morty_test/data/models/episodes/episode_model.dart';
-import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/character_screen.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/character_details_screen.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_filter/character_filter_screen.dart';
@@ -41,9 +40,7 @@ class RouteGenerator {
       case mainScreenRoute:
         return MaterialPageRoute(
             settings: RouteSettings(name: 'MainScreen'),
-            builder: (_) => MainScreen(
-
-                ));
+            builder: (_) => MainScreen());
       case splashScreenRoute:
         return MaterialPageRoute(builder: (_) => SplashScreen());
       case characterScreenRoute:
@@ -63,8 +60,7 @@ class RouteGenerator {
       case locationDetailsScreenRoute:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => LocationDetailsScreen(
-              selectedLocation: settings.arguments as Location),
+          builder: (_) => LocationDetailsScreen(),
         );
       case locationSearchScreenRoute:
         return MaterialPageRoute(builder: (_) => LocationSearchScreen());

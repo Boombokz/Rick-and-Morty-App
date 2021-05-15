@@ -38,17 +38,17 @@ class SearchCard extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            height: 24,
-            child: VerticalDivider(
-              thickness: 1,
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-          ),
-          InkWell(
-            onTap: onFilterTap,
-            child: SvgPicture.asset(IconsRes.filterIcon, color: Theme.of(context).iconTheme.color,),
-          ),
+          // Container(
+          //   height: 24,
+          //   child: VerticalDivider(
+          //     thickness: 1,
+          //     color: Theme.of(context).colorScheme.secondary,
+          //   ),
+          // ),
+          // InkWell(
+          //   onTap: onFilterTap,
+          //   child: SvgPicture.asset(IconsRes.filterIcon, color: Theme.of(context).iconTheme.color,),
+          // ),
         ],
       ),
     );

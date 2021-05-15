@@ -4,8 +4,8 @@ import 'package:rick_and_morty_test/resources/resources.dart';
 
 import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
+import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/location_details_bloc/location_details_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/locations_character_bloc/locations_character_bloc.dart';
-
 
 class LocationListTile extends StatelessWidget {
   final Location location;
@@ -17,14 +17,16 @@ class LocationListTile extends StatelessWidget {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        BlocProvider.of<LocationsCharacterBloc>(context)..add(
+        BlocProvider.of<LocationDetailsBloc>(context)
+          ..add(
+            LocationDetailsStartEvent(locationID: location.id),
+          );
+        BlocProvider.of<LocationsCharacterBloc>(context)
+          ..add(
             LocationsCharacterLoadEvent(
-                linkedCharactersURLs: location.residents));
-        Navigator.pushNamed(
-          context,
-          RouteGenerator.locationDetailsScreenRoute,
-          arguments: location,
-        );
+                linkedCharactersURLs: location.residents),
+          );
+        Navigator.pushNamed(context, RouteGenerator.locationDetailsScreenRoute);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -61,8 +63,7 @@ class LocationListTile extends StatelessWidget {
                   SizedBox(height: 4),
                   Text(
                     '${location.type} - ${location.dimension}',
-                    style:
-                      Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
                 ],
               ),

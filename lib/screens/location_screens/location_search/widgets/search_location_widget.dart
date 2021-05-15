@@ -50,7 +50,7 @@ class _SearchLocationWidgetState extends State<SearchLocationWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 12),
+      padding: EdgeInsets.only(left: 8, right: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
@@ -74,14 +74,16 @@ class _SearchLocationWidgetState extends State<SearchLocationWidget> {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          IconButton(
+            padding: EdgeInsets.zero,
+            onPressed: () {
               textController.clear();
               widget.clearSearchedLocations();
               BlocProvider.of<LocationSearchBloc>(context)
                 ..add(LocationSearchInitialEvent());
             },
-            child: SvgPicture.asset(
+            splashRadius: 8,
+            icon: SvgPicture.asset(
               IconsRes.cancelIcon,
               color: Theme.of(context).colorScheme.onSecondary,
               width: 30,
