@@ -17,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void loadingDelay() {
-    Timer(Duration(seconds: 1), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(
         context,
         RouteGenerator.mainScreenRoute,
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+
     BlocProvider.of<CharactersListBloc>(context)
       ..isFetching = true
       ..add(CharactersListLoadEvent());

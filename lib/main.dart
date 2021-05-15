@@ -19,6 +19,8 @@ import 'package:rick_and_morty_test/screens/location_screens/location_search/blo
 import 'package:rick_and_morty_test/theme/main_theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(MyApp());
 }
 

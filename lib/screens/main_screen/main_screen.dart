@@ -20,10 +20,6 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    SystemChrome.setEnabledSystemUIOverlays([
-      SystemUiOverlay.top,
-      SystemUiOverlay.bottom,
-    ]);
     tabController =
         TabController(length: tabs.length, vsync: this, initialIndex: 0);
     globals.tabController = tabController;
