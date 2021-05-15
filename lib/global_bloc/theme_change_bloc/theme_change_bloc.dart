@@ -9,14 +9,14 @@ part 'theme_change_event.dart';
 part 'theme_change_state.dart';
 
 class ThemeChangeBloc extends Bloc<ThemeChangeEvent, ThemeChangeState> {
-  ThemeChangeBloc() : super(ThemeChangeState(theme: MainThemes.darkTheme));
+  ThemeChangeBloc() : super(ThemeChangeState(themeMode: ThemeMode.dark));
 
   @override
   Stream<ThemeChangeState> mapEventToState(
     ThemeChangeEvent event,
   ) async* {
     if (event is ThemeChangeStartEvent) {
-      yield ThemeChangeState(theme: event.theme);
+      yield ThemeChangeState(themeMode: event.themeMode);
     }
   }
 }

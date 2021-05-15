@@ -2,8 +2,8 @@ part of 'theme_change_bloc.dart';
 
 @immutable
 class ThemeChangeState {
-  final ThemeData theme;
+  final ThemeMode themeMode;
 
-  ThemeChangeState({required this.theme});
+  ThemeChangeState({required this.themeMode});
 
 }

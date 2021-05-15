@@ -4,7 +4,7 @@ part of 'theme_change_bloc.dart';
 abstract class ThemeChangeEvent {}
 
 class ThemeChangeStartEvent extends ThemeChangeEvent {
-  final ThemeData theme;
+  final ThemeMode themeMode;
 
-  ThemeChangeStartEvent({required this.theme});
+  ThemeChangeStartEvent({required this.themeMode});
 }

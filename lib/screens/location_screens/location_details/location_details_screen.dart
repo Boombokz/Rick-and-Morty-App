@@ -13,13 +13,11 @@ class LocationDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ImageStack(),
-
             Center(
               child: Text(
                 '${selectedLocation.name}',
@@ -43,7 +41,10 @@ class LocationDetailsScreen extends StatelessWidget {
                 text: selectedLocation.dimension,
               ),
             ),
-            DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
+            DividerWidget(
+              verticalPadding: 36,
+              horizontalPadding: 0,
+            ),
             LinkedLocationCharacters(),
           ],
         ),

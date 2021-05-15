@@ -15,6 +15,7 @@ import 'package:rick_and_morty_test/screens/location_screens/location/blocs/loca
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_list_bloc/locations_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/locations_character_bloc/locations_character_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
+import 'package:rick_and_morty_test/theme/main_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,7 +47,9 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<ThemeChangeBloc, ThemeChangeState>(
           builder: (context, state) {
             return MaterialApp(
-              theme: state.theme,
+              themeMode: state.themeMode,
+              theme: MainThemes.lightTheme,
+              darkTheme: MainThemes.darkTheme,
               title: 'Rick and Morty',
               debugShowCheckedModeBanner: false,
               initialRoute: RouteGenerator.splashScreenRoute,

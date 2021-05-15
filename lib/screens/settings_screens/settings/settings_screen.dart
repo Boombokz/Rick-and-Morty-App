@@ -101,7 +101,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                           BlocProvider.of<ThemeChangeBloc>(context)
                             ..add(ThemeChangeStartEvent(
-                                theme: MainThemes.lightTheme));
+                                themeMode: ThemeMode.light));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness: Brightness.dark,
@@ -126,7 +126,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                           BlocProvider.of<ThemeChangeBloc>(context)
                             ..add(ThemeChangeStartEvent(
-                                theme: MainThemes.darkTheme));
+                                themeMode: ThemeMode.dark));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness: Brightness.light,
@@ -134,58 +134,56 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ));
                         },
                       ),
-                      // RadioListTile<ThemeChoice>(
-                      //   title: Text(
-                      //     'Follow the system settings',
-                      //     style: TextStyles.bodyText1
-                      //         .copyWith(color: ColorPalette.whiteColor),
-                      //   ),
-                      //   activeColor: ColorPalette.lightBlueColor,
-                      //   value: ThemeChoice.system,
-                      //   dense: true,
-                      //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                      //   groupValue: _choice,
-                      //   onChanged: (ThemeChoice? value) {
-                      //     setState(() {
-                      //       _choice = value;
-                      //       themeStatus = 'Enabled';
-                      //     });
-                      //     BlocProvider.of<ThemeChangeBloc>(context)
-                      //       ..add(ThemeChangeStartEvent(
-                      //           theme: MainThemes.darkTheme));
-                      //     SystemChrome.setSystemUIOverlayStyle(
-                      //         SystemUiOverlayStyle(
-                      //       statusBarIconBrightness: Brightness.light,
-                      //       statusBarBrightness: Brightness.light,
-                      //     ));
-                      //   },
-                      // ),
-                      // RadioListTile<ThemeChoice>(
-                      //   title: Text(
-                      //     'Power-saving mode',
-                      //     style: TextStyles.bodyText1
-                      //         .copyWith(color: ColorPalette.whiteColor),
-                      //   ),
-                      //   activeColor: ColorPalette.lightBlueColor,
-                      //   value: ThemeChoice.powersafe,
-                      //   contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                      //   groupValue: _choice,
-                      //   dense: true,
-                      //   onChanged: (ThemeChoice? value) {
-                      //     setState(() {
-                      //       _choice = value;
-                      //       themeStatus = 'Enabled';
-                      //     });
-                      //     BlocProvider.of<ThemeChangeBloc>(context)
-                      //       ..add(ThemeChangeStartEvent(
-                      //           theme: MainThemes.darkTheme));
-                      //     SystemChrome.setSystemUIOverlayStyle(
-                      //         SystemUiOverlayStyle(
-                      //       statusBarIconBrightness: Brightness.light,
-                      //       statusBarBrightness: Brightness.light,
-                      //     ));
-                      //   },
-                      // ),
+                      RadioListTile<ThemeChoice>(
+                        title: Text(
+                          'Follow the system settings',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        activeColor: ColorPalette.lightBlueColor,
+                        value: ThemeChoice.system,
+                        dense: true,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        groupValue: _choice,
+                        onChanged: (ThemeChoice? value) {
+                          setState(() {
+                            _choice = value;
+                            themeStatus = 'Enabled';
+                          });
+                          BlocProvider.of<ThemeChangeBloc>(context)
+                            ..add(ThemeChangeStartEvent(
+                                themeMode: ThemeMode.system));
+                          SystemChrome.setSystemUIOverlayStyle(
+                              SystemUiOverlayStyle(
+                            statusBarIconBrightness: MediaQuery.of(context).platformBrightness != Brightness.light ? Brightness.light : Brightness.dark,
+                            statusBarBrightness: MediaQuery.of(context).platformBrightness != Brightness.light ? Brightness.light : Brightness.dark,
+                          ));
+                        },
+                      ),
+                      RadioListTile<ThemeChoice>(
+                        title: Text(
+                          'Power-saving mode',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        activeColor: ColorPalette.lightBlueColor,
+                        value: ThemeChoice.powersafe,
+                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        groupValue: _choice,
+                        dense: true,
+                        onChanged: (ThemeChoice? value) {
+                          setState(() {
+                            _choice = value;
+                            themeStatus = 'Enabled';
+                          });
+                          BlocProvider.of<ThemeChangeBloc>(context)
+                            ..add(ThemeChangeStartEvent(
+                                themeMode: ThemeMode.dark));
+                          SystemChrome.setSystemUIOverlayStyle(
+                              SystemUiOverlayStyle(
+                            statusBarIconBrightness: Brightness.light,
+                            statusBarBrightness: Brightness.light,
+                          ));
+                        },
+                      ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: TextButton(
