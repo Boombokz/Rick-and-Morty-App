@@ -9,6 +9,7 @@ import 'package:rick_and_morty_test/screens/character_screens/character/blocs/ch
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_count_bloc/locations_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_list_bloc/locations_list_bloc.dart';
+import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void loadingDelay() {
-    Timer(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(
         context,
         RouteGenerator.mainScreenRoute,
@@ -48,7 +49,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(

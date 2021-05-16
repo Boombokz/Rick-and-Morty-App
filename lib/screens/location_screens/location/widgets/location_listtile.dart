@@ -21,11 +21,7 @@ class LocationListTile extends StatelessWidget {
           ..add(
             LocationDetailsStartEvent(locationID: location.id),
           );
-        BlocProvider.of<LocationsCharacterBloc>(context)
-          ..add(
-            LocationsCharacterLoadEvent(
-                linkedCharactersURLs: location.residents),
-          );
+
         Navigator.pushNamed(context, RouteGenerator.locationDetailsScreenRoute);
       },
       child: Container(

@@ -102,11 +102,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                           BlocProvider.of<ThemeChangeBloc>(context)
                             ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.light));
+                                themeMode: ThemeMode.light, navBarColor: ColorPalette.whiteColor));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness: Brightness.dark,
                             statusBarBrightness: Brightness.dark,
+                                  systemNavigationBarIconBrightness: Brightness.dark
                           ));
                         },
                       ),
@@ -127,11 +128,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           });
                           BlocProvider.of<ThemeChangeBloc>(context)
                             ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.dark));
+                                themeMode: ThemeMode.dark, navBarColor: ColorPalette.greyBlueColor));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness: Brightness.light,
                             statusBarBrightness: Brightness.light,
+                                  systemNavigationBarIconBrightness: Brightness.light
                           ));
                         },
                       ),
@@ -148,11 +150,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         onChanged: (ThemeChoice? value) {
                           setState(() {
                             _choice = value;
-                            themeStatus = 'Enabled';
+                            themeStatus = 'Follow the system settings';
                           });
                           BlocProvider.of<ThemeChangeBloc>(context)
                             ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.system));
+                                themeMode: ThemeMode.system, navBarColor: MediaQuery.of(context).platformBrightness == Brightness.light ? ColorPalette.whiteColor : ColorPalette.greyBlueColor
+                                ));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness:
@@ -165,6 +168,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         Brightness.light
                                     ? Brightness.light
                                     : Brightness.dark,
+                                  systemNavigationBarIconBrightness:  MediaQuery.of(context).platformBrightness !=
+                                      Brightness.light
+                                      ? Brightness.light
+                                      : Brightness.dark,
                           ));
                         },
                       ),
@@ -181,15 +188,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         onChanged: (ThemeChoice? value) {
                           setState(() {
                             _choice = value;
-                            themeStatus = 'Enabled';
+                            themeStatus = 'Power-saving mode';
                           });
                           BlocProvider.of<ThemeChangeBloc>(context)
                             ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.dark));
+                                themeMode: ThemeMode.dark, navBarColor: ColorPalette.greyBlueColor));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness: Brightness.light,
                             statusBarBrightness: Brightness.light,
+                                systemNavigationBarIconBrightness: Brightness.light
                           ));
                         },
                       ),
