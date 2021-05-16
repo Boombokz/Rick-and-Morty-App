@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_details/widgets/character_properties.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/location_details_bloc/location_details_bloc.dart';
+import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/locations_character_bloc/locations_character_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/widgets/image_stack.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/widgets/linked_location_characters.dart';
 
@@ -45,8 +46,13 @@ class _LocationDetailsScreenState extends State<LocationDetailsScreen>
             BlocBuilder<LocationDetailsBloc, LocationDetailsState>(
               builder: (context, state) {
                 if (state is LocationDetailsLoadingState) {
-                  return Container(height: 200);
+                  return Container(height: 170);
                 } else if (state is LocationDetailsLoadState) {
+                  BlocProvider.of<LocationsCharacterBloc>(context)
+                    ..add(
+                      LocationsCharacterLoadEvent(
+                          linkedCharactersURLs: state.location.residents),
+                    );
                   controller.forward();
                   return FadeTransition(
                     opacity: animation,

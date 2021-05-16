@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:rick_and_morty_test/screens/episode_screens/episode/episode_screen.dart';
 import 'package:rick_and_morty_test/utils/global_state/global_controller.dart'
     as globals;

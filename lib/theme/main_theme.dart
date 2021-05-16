@@ -19,10 +19,10 @@ class MainThemes {
       primaryVariant: ColorPalette.darkGreyColor,
       secondaryVariant: ColorPalette.whiteColor,
       surface: ColorPalette.whiteColor,
+      onBackground: ColorPalette.greyBlueColor,
+
 
       brightness: Brightness.dark,
-      onBackground: ColorPalette.darkBlueColor,
-
       error: ColorPalette.whiteColor,
       onPrimary: Colors.pinkAccent,
       onError: Colors.black,
@@ -60,9 +60,9 @@ class MainThemes {
       primaryVariant: ColorPalette.grey3Color,
       secondaryVariant: ColorPalette.grey3Color,
       surface: ColorPalette.grey2Color,
+      onBackground: ColorPalette.whiteColor,
 
       brightness: Brightness.light,
-      onBackground: ColorPalette.darkBlueColor,
       error: ColorPalette.whiteColor,
       onPrimary: Colors.pinkAccent,
       onSurface: Colors.yellow,
@@ -78,6 +78,7 @@ class MainThemes {
     textTheme: lightTextTheme,
     iconTheme: IconThemeData(
       color: ColorPalette.darkGreyColor,
+
     ),
     dividerTheme: DividerThemeData(
       color: ColorPalette.grey6Color,

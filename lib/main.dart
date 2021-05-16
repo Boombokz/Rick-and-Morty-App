@@ -16,41 +16,46 @@ import 'package:rick_and_morty_test/screens/location_screens/location/blocs/loca
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/location_details_bloc/location_details_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_details/blocs/locations_character_bloc/locations_character_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
+import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/theme/main_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: ColorPalette.darkBlueColor,
+  ));
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion(
-      value: SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      ),
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => CharactersCountBloc()),
-          BlocProvider(create: (context) => CharactersListBloc()),
-          BlocProvider(create: (context) => CharacterEpisodesBloc()),
-          BlocProvider(create: (context) => CharacterSearchBloc()),
-          BlocProvider(create: (context) => LocationSearchBloc()),
-          BlocProvider(create: (context) => LocationsCountBloc()),
-          BlocProvider(create: (context) => LocationsListBloc()),
-          BlocProvider(create: (context) => LocationsCharacterBloc()),
-          BlocProvider(create: (context) => LocationDetailsBloc()),
-          BlocProvider(create: (context) => EpisodesListBloc()),
-          BlocProvider(create: (context) => EpisodesCharacterBloc()),
-          BlocProvider(create: (context) => EpisodeSearchBloc()),
-          BlocProvider(create: (context) => CharacterChangeViewBloc()),
-          BlocProvider(create: (context) => ThemeChangeBloc()),
-        ],
-        child: BlocBuilder<ThemeChangeBloc, ThemeChangeState>(
-          builder: (context, state) {
-            return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CharactersCountBloc()),
+        BlocProvider(create: (context) => CharactersListBloc()),
+        BlocProvider(create: (context) => CharacterEpisodesBloc()),
+        BlocProvider(create: (context) => CharacterSearchBloc()),
+        BlocProvider(create: (context) => LocationSearchBloc()),
+        BlocProvider(create: (context) => LocationsCountBloc()),
+        BlocProvider(create: (context) => LocationsListBloc()),
+        BlocProvider(create: (context) => LocationsCharacterBloc()),
+        BlocProvider(create: (context) => LocationDetailsBloc()),
+        BlocProvider(create: (context) => EpisodesListBloc()),
+        BlocProvider(create: (context) => EpisodesCharacterBloc()),
+        BlocProvider(create: (context) => EpisodeSearchBloc()),
+        BlocProvider(create: (context) => CharacterChangeViewBloc()),
+        BlocProvider(create: (context) => ThemeChangeBloc()),
+      ],
+      child: BlocBuilder<ThemeChangeBloc, ThemeChangeState>(
+        builder: (context, state) {
+          return AnnotatedRegion(
+            value: SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+              systemNavigationBarColor: state.navBarColor,
+            ),
+            child: MaterialApp(
               themeMode: state.themeMode,
               theme: MainThemes.lightTheme,
               darkTheme: MainThemes.darkTheme,
@@ -58,9 +63,9 @@ class MyApp extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               initialRoute: RouteGenerator.splashScreenRoute,
               onGenerateRoute: RouteGenerator.generateRoute,
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
     );
   }

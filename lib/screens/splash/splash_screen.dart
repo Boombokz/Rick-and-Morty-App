@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/screens/episode_screens/episode/blocs/episodes_list_bloc/episode_list_bloc.dart';
@@ -17,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   void loadingDelay() {
-    Timer(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(
         context,
         RouteGenerator.mainScreenRoute,
@@ -48,7 +47,6 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
