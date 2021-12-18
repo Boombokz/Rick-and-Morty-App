@@ -8,7 +8,7 @@ import 'package:rick_and_morty_test/utils/check_text_color/define_textstyle.dart
 class CharacterGridTile extends StatelessWidget {
   final Character character;
 
-  CharacterGridTile({required this.character});
+  const CharacterGridTile({Key? key, required this.character}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CharacterGridTile extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         BlocProvider.of<CharacterEpisodesBloc>(context)
-            .add(CharacterEpisodesLoadEvent(episodes: character.episode));
+            .add(CharacterEpisodesLoadEvent(episodes: character.episode ?? []));
         Navigator.pushNamed(
           context,
           RouteGenerator.characterDetailsScreenRoute,
@@ -31,18 +31,18 @@ class CharacterGridTile extends StatelessWidget {
             child: Image(
               height: 120,
               width: 120,
-              image: NetworkImage(character.image),
+              image: NetworkImage(character.image ?? ''),
               fit: BoxFit.fill,
             ),
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   '${character.status}'.toUpperCase(),
-                  style: DefineTextStyle.statusTextStyle(character.status),
+                  style: DefineTextStyle.statusTextStyle(character.status?? ''),
                 ),
                 Text(
                   '${character.name}',

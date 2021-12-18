@@ -6,6 +6,8 @@ import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/filter_checkboxes.dart';
 
 class CharacterFilterScreen extends StatefulWidget {
+  const CharacterFilterScreen({Key? key}) : super(key: key);
+
   @override
   _CharacterFilterScreenState createState() => _CharacterFilterScreenState();
 }
@@ -21,19 +23,19 @@ class _CharacterFilterScreenState extends State<CharacterFilterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               height: 60,
               padding:
-                  EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
+                  const EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
               color: Theme.of(context).colorScheme.background,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                     BackIconButton(),
-                      SizedBox(width: 12),
+                     const BackIconButton(),
+                      const SizedBox(width: 12),
                       Text(
                         'Filters',
                         style: Theme.of(context).textTheme.headline3,
@@ -44,21 +46,21 @@ class _CharacterFilterScreenState extends State<CharacterFilterScreen> {
                       ? InkWell(
                           onTap: () {},
                           child: SvgPicture.asset(IconsRes.filterCancelIcon))
-                      : Offstage(),
+                      : const Offstage(),
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Sort'.toUpperCase(),
                 style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
-            SizedBox(height: 29),
+            const SizedBox(height: 29),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -81,7 +83,7 @@ class _CharacterFilterScreenState extends State<CharacterFilterScreen> {
                           });
                         },
                       ),
-                      SizedBox(width: 32),
+                      const SizedBox(width: 32),
                       GestureDetector(
                         child: SvgPicture.asset(
                           IconsRes.downSortIcon,
@@ -100,13 +102,13 @@ class _CharacterFilterScreenState extends State<CharacterFilterScreen> {
                 ],
               ),
             ),
-            FilterCheckboxes(
+            const FilterCheckboxes(
               mainTitle: 'Status',
               firstTitle: 'Alive',
               secondTitle: 'Dead',
               thirdTitle: 'Unknown',
             ),
-            FilterCheckboxes(
+            const FilterCheckboxes(
               mainTitle: 'Gender',
               firstTitle: 'Male',
               secondTitle: 'Female',

@@ -10,6 +10,8 @@ import 'package:rick_and_morty_test/theme/themes.dart';
 class CharacterSearchScreen extends StatelessWidget {
   final List<Character> _searchedCharacters = [];
 
+  CharacterSearchScreen({Key? key}) : super(key: key);
+
   void clearSearchedCharacters() {
     _searchedCharacters.clear();
   }
@@ -21,16 +23,16 @@ class CharacterSearchScreen extends StatelessWidget {
 
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SearchCharacterWidget(
                 clearSearchedCharacters: clearSearchedCharacters,
               ),
-              SizedBox(height: 23),
+              const SizedBox(height: 23),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   'Search results'.toUpperCase(),
                   style: Theme.of(context).textTheme.bodyText2,
@@ -40,7 +42,7 @@ class CharacterSearchScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is CharacterSearchLoadingState &&
                       _searchedCharacters.isEmpty) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is CharacterSearchInitial) {
                     return Padding(
                       padding: EdgeInsets.only(
@@ -62,14 +64,14 @@ class CharacterSearchScreen extends StatelessWidget {
                     return Center(
                       child: Column(
                         children: [
-                          SizedBox(height: 59),
+                          const SizedBox(height: 59),
                           Image.asset(Images.characterSearchErrorImage),
-                          SizedBox(height: 28),
-                          Text(
+                          const SizedBox(height: 28),
+                          const Text(
                             'Character with this name',
                             style: TextStyles.headline2,
                           ),
-                          Text(
+                          const Text(
                             'was not found',
                             style: TextStyles.headline2,
                           ),

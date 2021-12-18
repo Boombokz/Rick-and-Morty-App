@@ -7,33 +7,36 @@ import 'package:rick_and_morty_test/screens/character_screens/character_details/
 import 'package:rick_and_morty_test/screens/episode_screens/episode_details/widgets/episode_images_stack.dart';
 import 'package:rick_and_morty_test/screens/episode_screens/episode_details/widgets/linked_episode_characters.dart';
 
-
 class EpisodesDetailsScreen extends StatelessWidget {
   final Episode selectedEpisode;
 
-  EpisodesDetailsScreen({required this.selectedEpisode});
+  const EpisodesDetailsScreen({
+    Key? key,
+    required this.selectedEpisode,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            EpisodeImagesStack(),
+            const EpisodeImagesStack(),
             Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 62),
+                const SizedBox(height: 62),
                 Center(
                   child: Text(
-                    '${selectedEpisode.name}',
+                    selectedEpisode.name ?? '',
                     style: Theme.of(context).textTheme.button,
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 3),
+                const SizedBox(height: 3),
                 Center(
                   child: Text(
                     'Episode ${selectedEpisode.id}'.toUpperCase(),
@@ -43,16 +46,19 @@ class EpisodesDetailsScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: CharacterProperties(
                     title: 'Release date',
-                    text: selectedEpisode.air_date,
+                    text: selectedEpisode.airDate ?? '',
                   ),
                 ),
-                DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
-                LinkedEpisodeCharacters(),
+                const DividerWidget(
+                  verticalPadding: 36,
+                  horizontalPadding: 0,
+                ),
+                const LinkedEpisodeCharacters(),
               ],
             ),
           ],

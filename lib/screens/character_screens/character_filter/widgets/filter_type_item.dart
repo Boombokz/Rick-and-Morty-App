@@ -7,13 +7,13 @@ class FilterTypeItem extends StatelessWidget {
   final String subtitle;
   final VoidCallback onTap;
 
-  FilterTypeItem(
-      {required this.title, required this.subtitle, required this.onTap});
+  const FilterTypeItem(
+      {Key? key, required this.title, required this.subtitle, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: onTap,

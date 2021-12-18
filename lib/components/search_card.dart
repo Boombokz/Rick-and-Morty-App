@@ -7,15 +7,15 @@ class SearchCard extends StatelessWidget {
   final VoidCallback onFilterTap;
   final VoidCallback onTextTap;
 
-  SearchCard(
-      {required this.hintText,
+  const SearchCard(
+      {Key? key, required this.hintText,
       required this.onTextTap,
-      required this.onFilterTap});
+      required this.onFilterTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 19),
+      padding: const EdgeInsets.symmetric(horizontal: 19),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
         color: Theme.of(context).primaryColor,
@@ -24,7 +24,7 @@ class SearchCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SvgPicture.asset(IconsRes.searchIcon, color: Theme.of(context).iconTheme.color,),
-          SizedBox(width: 14),
+          const SizedBox(width: 14),
           GestureDetector(
             behavior: HitTestBehavior.translucent,
             onTap: onTextTap,

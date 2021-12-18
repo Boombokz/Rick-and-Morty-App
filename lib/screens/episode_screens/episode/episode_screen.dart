@@ -3,13 +3,15 @@ import 'package:rick_and_morty_test/screens/episode_screens/episode/widgets/epis
 import 'package:rick_and_morty_test/screens/episode_screens/episode/widgets/seasons_tabbar.dart';
 
 class EpisodeScreen extends StatelessWidget {
+  const EpisodeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
       body: SafeArea(
         child: Column(
-          children: [
+          children: const [
             Padding(
               padding: EdgeInsets.only(
                 top: 20,

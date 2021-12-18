@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:package_info/package_info.dart';
+import 'package:rate_my_app/rate_my_app.dart';
 import 'package:rick_and_morty_test/components/divider_widget.dart';
 import 'package:rick_and_morty_test/global_bloc/theme_change_bloc/theme_change_bloc.dart';
 
@@ -14,6 +15,13 @@ import 'package:url_launcher/url_launcher.dart';
 enum ThemeChoice { disabled, enabled, system, powersafe }
 
 class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({
+    Key? key,
+    required this.rateMyApp,
+  }) : super(key: key);
+
+  final RateMyApp rateMyApp;
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -22,12 +30,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   ThemeChoice? _choice = ThemeChoice.enabled;
   String themeStatus = 'Enabled';
 
-  PackageInfo _packageInfo = PackageInfo(
-    appName: 'Unknown',
-    packageName: 'Unknown',
-    version: 'Unknown',
-    buildNumber: 'Unknown',
-  );
+  PackageInfo? _packageInfo;
 
   @override
   void initState() {
@@ -51,7 +54,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             style: Theme.of(context).textTheme.headline6,
           ),
           Text(
-            '$subtitle',
+            subtitle,
             style: Theme.of(context).textTheme.headline6,
           ),
         ],
@@ -66,19 +69,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
             builder: (BuildContext context,
                 void Function(void Function()) setState) {
               return AlertDialog(
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                insetPadding: EdgeInsets.all(0),
-                contentPadding: EdgeInsets.all(0),
-                titlePadding:
-                    EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 16),
+                insetPadding: const EdgeInsets.all(0),
+                contentPadding: const EdgeInsets.all(0),
+                titlePadding: const EdgeInsets.only(
+                    right: 20, left: 20, top: 20, bottom: 16),
                 buttonPadding: EdgeInsets.zero,
                 backgroundColor: Theme.of(context).primaryColor,
-                title: Text(
+                title: const Text(
                   'Dark theme',
                   style: TextStyles.headline3,
                 ),
-                content: Container(
+                content: SizedBox(
                   width: MediaQuery.of(context).size.width - 32,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +95,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         activeColor: ColorPalette.lightBlueColor,
                         selectedTileColor: ColorPalette.lightBlueColor,
                         value: ThemeChoice.disabled,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
                         groupValue: _choice,
                         dense: true,
                         onChanged: (ThemeChoice? value) {
@@ -100,15 +104,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             _choice = value;
                             themeStatus = 'Disabled';
                           });
-                          BlocProvider.of<ThemeChangeBloc>(context)
-                            ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.light, navBarColor: ColorPalette.whiteColor));
+                          BlocProvider.of<ThemeChangeBloc>(context).add(
+                              ThemeChangeStartEvent(
+                                  themeMode: ThemeMode.light,
+                                  navBarColor: ColorPalette.whiteColor));
                           SystemChrome.setSystemUIOverlayStyle(
-                              SystemUiOverlayStyle(
-                            statusBarIconBrightness: Brightness.dark,
-                            statusBarBrightness: Brightness.dark,
-                                  systemNavigationBarIconBrightness: Brightness.dark
-                          ));
+                              const SystemUiOverlayStyle(
+                                  statusBarIconBrightness: Brightness.dark,
+                                  statusBarBrightness: Brightness.dark,
+                                  systemNavigationBarIconBrightness:
+                                      Brightness.dark));
                         },
                       ),
                       RadioListTile<ThemeChoice>(
@@ -118,7 +123,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         activeColor: ColorPalette.lightBlueColor,
                         value: ThemeChoice.enabled,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
                         groupValue: _choice,
                         dense: true,
                         onChanged: (ThemeChoice? value) {
@@ -126,15 +132,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             _choice = value;
                             themeStatus = 'Enabled';
                           });
-                          BlocProvider.of<ThemeChangeBloc>(context)
-                            ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.dark, navBarColor: ColorPalette.greyBlueColor));
+                          BlocProvider.of<ThemeChangeBloc>(context).add(
+                              ThemeChangeStartEvent(
+                                  themeMode: ThemeMode.dark,
+                                  navBarColor: ColorPalette.greyBlueColor));
                           SystemChrome.setSystemUIOverlayStyle(
-                              SystemUiOverlayStyle(
-                            statusBarIconBrightness: Brightness.light,
-                            statusBarBrightness: Brightness.light,
-                                  systemNavigationBarIconBrightness: Brightness.light
-                          ));
+                              const SystemUiOverlayStyle(
+                                  statusBarIconBrightness: Brightness.light,
+                                  statusBarBrightness: Brightness.light,
+                                  systemNavigationBarIconBrightness:
+                                      Brightness.light));
                         },
                       ),
                       RadioListTile<ThemeChoice>(
@@ -145,17 +152,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         activeColor: ColorPalette.lightBlueColor,
                         value: ThemeChoice.system,
                         dense: true,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
                         groupValue: _choice,
                         onChanged: (ThemeChoice? value) {
                           setState(() {
                             _choice = value;
                             themeStatus = 'Follow the system settings';
                           });
-                          BlocProvider.of<ThemeChangeBloc>(context)
-                            ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.system, navBarColor: MediaQuery.of(context).platformBrightness == Brightness.light ? ColorPalette.whiteColor : ColorPalette.greyBlueColor
-                                ));
+                          BlocProvider.of<ThemeChangeBloc>(context).add(
+                              ThemeChangeStartEvent(
+                                  themeMode: ThemeMode.system,
+                                  navBarColor: MediaQuery.of(context)
+                                              .platformBrightness ==
+                                          Brightness.light
+                                      ? ColorPalette.whiteColor
+                                      : ColorPalette.greyBlueColor));
                           SystemChrome.setSystemUIOverlayStyle(
                               SystemUiOverlayStyle(
                             statusBarIconBrightness:
@@ -168,10 +180,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                         Brightness.light
                                     ? Brightness.light
                                     : Brightness.dark,
-                                  systemNavigationBarIconBrightness:  MediaQuery.of(context).platformBrightness !=
-                                      Brightness.light
-                                      ? Brightness.light
-                                      : Brightness.dark,
+                            systemNavigationBarIconBrightness:
+                                MediaQuery.of(context).platformBrightness !=
+                                        Brightness.light
+                                    ? Brightness.light
+                                    : Brightness.dark,
                           ));
                         },
                       ),
@@ -182,7 +195,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ),
                         activeColor: ColorPalette.lightBlueColor,
                         value: ThemeChoice.powersafe,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 10),
                         groupValue: _choice,
                         dense: true,
                         onChanged: (ThemeChoice? value) {
@@ -190,23 +204,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             _choice = value;
                             themeStatus = 'Power-saving mode';
                           });
-                          BlocProvider.of<ThemeChangeBloc>(context)
-                            ..add(ThemeChangeStartEvent(
-                                themeMode: ThemeMode.dark, navBarColor: ColorPalette.greyBlueColor));
+                          BlocProvider.of<ThemeChangeBloc>(context).add(
+                              ThemeChangeStartEvent(
+                                  themeMode: ThemeMode.dark,
+                                  navBarColor: ColorPalette.greyBlueColor));
                           SystemChrome.setSystemUIOverlayStyle(
-                              SystemUiOverlayStyle(
-                            statusBarIconBrightness: Brightness.light,
-                            statusBarBrightness: Brightness.light,
-                                systemNavigationBarIconBrightness: Brightness.light
-                          ));
+                              const SystemUiOverlayStyle(
+                                  statusBarIconBrightness: Brightness.light,
+                                  statusBarBrightness: Brightness.light,
+                                  systemNavigationBarIconBrightness:
+                                      Brightness.light));
                         },
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
                         child: TextButton(
                           style: ButtonStyle(
-                            padding:
-                                MaterialStateProperty.all(EdgeInsets.all(20)),
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(20)),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
@@ -232,46 +247,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    // Container(
-                    //   width: 48,
-                    //   height: 48,
-                    //   decoration: BoxDecoration(
-                    //       shape: BoxShape.circle,
-                    //       color: ColorPalette.greyBlueColor),
-                    //   child: GestureDetector(
-                    //     onTap: () {
-                    //       setState(() {
-                    //         globals.tabController.animateTo(0);
-                    //       });
-                    //     },
-                    //     child: Padding(
-                    //       padding: EdgeInsets.symmetric(
-                    //           vertical: 18, horizontal: 16),
-                    //       child: SvgPicture.asset(IconsRes.arrowBackIcon),
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(width: 30),
-                    Spacer(),
-                    Text(
-                      'Settings',
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    Spacer(),
-                  ],
+                Text(
+                  'Settings',
+                  style: Theme.of(context).textTheme.headline3,
+                  textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 36),
+                const SizedBox(height: 36),
                 Text(
                   'Appearance'.toUpperCase(),
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
@@ -285,7 +275,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         IconsRes.themeRowIcon,
                         color: Theme.of(context).colorScheme.onSecondary,
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,7 +286,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               style: Theme.of(context).textTheme.headline4,
                             ),
                             Text(
-                              '$themeStatus',
+                              themeStatus,
                               style: Theme.of(context).textTheme.headline5,
                             ),
                           ],
@@ -309,7 +299,50 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ],
                   ),
                 ),
-                DividerWidget(
+                const DividerWidget(
+                  verticalPadding: 36,
+                  horizontalPadding: 0,
+                ),
+                SizedBox(
+                  width: double.maxFinite,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      widget.rateMyApp.showStarRateDialog(
+                        context,
+                        title: 'Rate This App',
+                        message: 'Do you like this app? Please leave a rating',
+                        starRatingOptions: const StarRatingOptions(initialRating: 4),
+                        actionsBuilder: actionsBuilder,
+                      );
+                    },
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.all(
+                        ColorPalette.lightBlueColor,
+                      ),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      elevation: MaterialStateProperty.all(0),
+                      padding:
+                          MaterialStateProperty.all(const EdgeInsets.all(8)),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          side: const BorderSide(
+                            color: ColorPalette.lightBlueColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      'Rate Us 5 Star',
+                      style: TextStyles.headline1.copyWith(
+                        color: ColorPalette.lightBlueColor,
+                        height: 1,
+                      ),
+                    ),
+                  ),
+                ),
+                const DividerWidget(
                   verticalPadding: 36,
                   horizontalPadding: 0,
                 ),
@@ -317,17 +350,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   'About the app'.toUpperCase(),
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Text(
                   'An app based on the television show Rick and Morty, where you can access information on their characters and in which episodes they have participated.',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Text(
                   'Illustrating Flutter framework development only.',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                DividerWidget(
+                const DividerWidget(
                   verticalPadding: 36,
                   horizontalPadding: 0,
                 ),
@@ -335,12 +368,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   'Copyright'.toUpperCase(),
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Text(
                   'Rick and Morty is created by Justin Roiland and Dan Harmon for Adult Swim. The data and images are used without claim of ownership and belong to their respective owners.',
                   style: Theme.of(context).textTheme.headline6,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Text(
                   'The Rick and Morty API is a RESTful development by Axel Fuhrmann',
                   style: Theme.of(context).textTheme.headline6,
@@ -358,6 +391,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         throw 'Could not launch $url';
                       }
                     } catch (e) {
+                      // ignore: avoid_print
                       print(e.toString());
                     }
                   },
@@ -369,7 +403,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         .copyWith(color: Colors.blueAccent),
                   ),
                 ),
-                DividerWidget(
+                const DividerWidget(
                   verticalPadding: 36,
                   horizontalPadding: 0,
                 ),
@@ -377,10 +411,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   'App version'.toUpperCase(),
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Row(
                   children: [
-                    _infoTile('v', _packageInfo.version),
+                    _infoTile('v', _packageInfo?.version ?? ''),
                   ],
                 ),
               ],
@@ -390,4 +424,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+
+  List<Widget> actionsBuilder(
+    BuildContext context,
+    double? stars,
+  ) {
+    return stars == null
+        ? [buildCancelButton()]
+        : [
+            buildOkButton(stars),
+            buildCancelButton(),
+          ];
+  }
+
+  Widget buildOkButton(double stars) => TextButton(
+        onPressed: () async {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              backgroundColor: ColorPalette.lightBlueColor,
+              content: Text('Thanks for your feedback!'),
+            ),
+          );
+
+          final launchAppSotre = stars >= 4;
+
+          const event = RateMyAppEventType.rateButtonPressed;
+
+          await widget.rateMyApp.callEvent(event);
+
+          if (launchAppSotre) {
+            widget.rateMyApp.launchStore();
+          }
+
+          Navigator.of(context).pop();
+        },
+        child: const Text('Ok'),
+      );
+
+  Widget buildCancelButton() =>
+      RateMyAppNoButton(widget.rateMyApp, text: 'Cancel');
 }

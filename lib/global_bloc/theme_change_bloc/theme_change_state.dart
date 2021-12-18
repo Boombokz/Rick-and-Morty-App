@@ -5,6 +5,6 @@ class ThemeChangeState {
   final ThemeMode themeMode;
   final Color navBarColor;
 
-  ThemeChangeState({required this.themeMode, required this.navBarColor});
+  const ThemeChangeState({required this.themeMode, required this.navBarColor});
 
 }

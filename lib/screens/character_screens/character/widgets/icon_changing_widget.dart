@@ -6,6 +6,8 @@ import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_change_view_bloc/character_change_view_bloc.dart';
 
 class IconChangingWidget extends StatefulWidget {
+  const IconChangingWidget({Key? key}) : super(key: key);
+
   @override
   _IconChangingState createState() => _IconChangingState();
 }
@@ -26,7 +28,7 @@ class _IconChangingState extends State<IconChangingWidget> {
         setState(() {
           changed = !changed;
           BlocProvider.of<CharacterChangeViewBloc>(context)
-            ..add(CharacterChangeViewStartEvent(isChanged: changed));
+            .add(CharacterChangeViewStartEvent(isChanged: changed));
         });
       },
       child: !changed

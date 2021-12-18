@@ -9,16 +9,16 @@ import 'package:rick_and_morty_test/theme/themes.dart';
 class EpisodeListTile extends StatelessWidget {
   final Episode episode;
 
-  EpisodeListTile({required this.episode});
+  const EpisodeListTile({Key? key, required this.episode}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onTap: () {
-        BlocProvider.of<EpisodesCharacterBloc>(context)..add(
+        BlocProvider.of<EpisodesCharacterBloc>(context).add(
             EpisodesCharacterLoadEvent(
-                linkedCharactersURLs: episode.characters));
+                linkedCharactersURLs: episode.characters ?? []));
         Navigator.pushNamed(
           context,
           RouteGenerator.episodesDetailsScreenRoute,
@@ -44,7 +44,7 @@ class EpisodeListTile extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class EpisodeListTile extends StatelessWidget {
 
                 ),
                 Text(
-                  '${episode.air_date}',
+                  '${episode.airDate}',
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ],

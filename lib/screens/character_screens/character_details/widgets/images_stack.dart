@@ -7,7 +7,7 @@ import 'package:rick_and_morty_test/theme/color_theme.dart';
 class ImagesStack extends StatelessWidget {
   final String imageURL;
 
-  ImagesStack({required this.imageURL});
+  const ImagesStack({Key? key, required this.imageURL}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class ImagesStack extends StatelessWidget {
             alignment: Alignment.center,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(100)),
+                borderRadius: const BorderRadius.all(Radius.circular(100)),
                 border: Border.all(
                   width: 8,
                   color: Theme.of(context).scaffoldBackgroundColor,
@@ -70,7 +70,7 @@ class ImagesStack extends StatelessWidget {
             ),
           ),
         ),
-        BackArrowButton(),
+        const BackArrowButton(),
       ],
     );
   }

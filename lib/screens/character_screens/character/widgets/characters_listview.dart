@@ -10,7 +10,7 @@ import 'package:rick_and_morty_test/screens/character_screens/character/widgets/
 class CharactersListView extends StatelessWidget {
   final List<Character> characters;
 
-  CharactersListView({required this.characters});
+  CharactersListView({Key? key, required this.characters}) : super(key: key);
 
   final ScrollController _scrollController = ScrollController();
 
@@ -23,11 +23,11 @@ class CharactersListView extends StatelessWidget {
                     _scrollController.position.maxScrollExtent &&
                 !context.read<CharactersListBloc>().isFetching) {
               context.read<CharactersListBloc>()
-                ..add(CharactersListLoadEvent());
-              context.read<CharactersListBloc>()..isFetching = true;
+                .add(CharactersListLoadEvent());
+              context.read<CharactersListBloc>().isFetching = true;
             }
           }),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
@@ -37,18 +37,18 @@ class CharactersListView extends StatelessWidget {
         itemBuilder: (context, index) {
           if (index < characters.length) {
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: CharacterListTile(
                 character: characters[index],
               ),
             );
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               _scrollController
                   .jumpTo(_scrollController.position.maxScrollExtent);
             });
 
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

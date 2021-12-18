@@ -4,8 +4,8 @@ class DividerWidget extends StatelessWidget {
   final double verticalPadding;
   final double horizontalPadding;
 
-  DividerWidget(
-      {required this.verticalPadding, required this.horizontalPadding});
+  const DividerWidget(
+      {Key? key,  required this.verticalPadding, required this.horizontalPadding}): super(key: key);
 
   @override
   Widget build(BuildContext context) {

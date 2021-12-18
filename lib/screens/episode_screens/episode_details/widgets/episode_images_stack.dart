@@ -4,13 +4,15 @@ import 'package:rick_and_morty_test/resources/resources.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class EpisodeImagesStack extends StatelessWidget {
+  const EpisodeImagesStack({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
       fit: StackFit.loose,
       children: [
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height * 0.35,
           width: MediaQuery.of(context).size.width,
           child: Image.asset(
@@ -18,14 +20,14 @@ class EpisodeImagesStack extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        BackArrowButton(),
+        const BackArrowButton(),
         Positioned(
           bottom: -20,
           child: Container(
             height: 50,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(26),
                   topRight: Radius.circular(26),
                 ),
@@ -49,11 +51,11 @@ class EpisodeImagesStack extends StatelessWidget {
                     color: ColorPalette.blackColor.withOpacity(0.25),
                     spreadRadius: 0,
                     blurRadius: 30,
-                    offset: Offset(0, 4), // changes position of shadow
+                    offset: const Offset(0, 4), // changes position of shadow
                   ),
                 ],
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.play_arrow_rounded,
                 color: ColorPalette.whiteColor,
                 size: 64,

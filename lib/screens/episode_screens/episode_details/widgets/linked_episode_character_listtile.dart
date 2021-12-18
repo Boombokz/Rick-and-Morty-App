@@ -9,12 +9,12 @@ class LinkedEpisodeCharacterListTile extends StatelessWidget {
 
   final Character character;
 
-  LinkedEpisodeCharacterListTile({required this.character});
+  const LinkedEpisodeCharacterListTile({Key? key, required this.character}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: () {
@@ -31,18 +31,18 @@ class LinkedEpisodeCharacterListTile extends StatelessWidget {
               child: Image(
                 height: 74,
                 width: 74,
-                image: NetworkImage(character.image),
+                image: NetworkImage(character.image?? ''),
                 fit: BoxFit.fill,
               ),
             ),
-            SizedBox(width: 13.5),
+            const SizedBox(width: 13.5),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '${character.status}'.toUpperCase(),
-                    style: DefineTextStyle.statusTextStyle(character.status),
+                    style: DefineTextStyle.statusTextStyle(character.status?? ''),
                   ),
                   Text(
                     '${character.name}',

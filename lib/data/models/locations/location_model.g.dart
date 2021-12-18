@@ -8,12 +8,12 @@ part of 'location_model.dart';
 
 Location _$LocationFromJson(Map<String, dynamic> json) {
   return Location(
-    id: json['id'] as int,
-    name: json['name'] as String,
-    type: json['type'] as String,
-    dimension: json['dimension'] as String,
+    id: json['id'] as int?,
+    name: json['name'] as String?,
+    type: json['type'] as String?,
+    dimension: json['dimension'] as String?,
     residents:
-        (json['residents'] as List<dynamic>).map((e) => e as String).toList(),
+        (json['residents'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 

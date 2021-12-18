@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:rick_and_morty_test/data/models/episodes/episode_model.dart';
 import 'package:rick_and_morty_test/data/network/episodes_api.dart';
-
 part 'episode_search_event.dart';
 
 part 'episode_search_state.dart';
@@ -30,17 +29,14 @@ class EpisodeSearchBloc extends Bloc<EpisodeSearchEvent, EpisodeSearchState> {
 
       try {
         List<Episode> searchedEpisodes = [];
-        int pages = await episodesAPI
-            .getEpisodesSearchPagesCount(event.text);
+        int pages = await episodesAPI.getEpisodesSearchPagesCount(event.text);
 
         if (page <= pages) {
-          searchedEpisodes =
-              await episodesAPI.searchEpisodes(event.text, page);
+          searchedEpisodes = await episodesAPI.searchEpisodes(event.text, page);
         }
         yield EpisodeSearchedState(searchedEpisodes: searchedEpisodes);
         page++;
-      } catch (e, s) {
-        debugPrintStack(label: e.toString(), stackTrace: s);
+      } catch (e) {
         yield EpisodeSearchErrorState();
       }
     }

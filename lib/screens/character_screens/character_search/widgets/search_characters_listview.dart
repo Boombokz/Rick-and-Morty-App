@@ -10,7 +10,7 @@ class SearchCharactersListView extends StatelessWidget {
   final List<Character> characters;
   final ScrollController _scrollController = ScrollController();
 
-  SearchCharactersListView({required this.characters});
+  SearchCharactersListView({Key? key, required this.characters}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +25,10 @@ class SearchCharactersListView extends StatelessWidget {
                 ..isFirstTime = false
                 ..add(CharacterSearchStartEvent(
                     text: store.get('characterSearchText')));
-              BlocProvider.of<CharacterSearchBloc>(context)..isFetching = true;
+              BlocProvider.of<CharacterSearchBloc>(context).isFetching = true;
             }
           }),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
@@ -38,17 +38,17 @@ class SearchCharactersListView extends StatelessWidget {
         itemBuilder: (context, index) {
           if (index < characters.length) {
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: CharacterListTile(
                 character: characters[index],
               ),
             );
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               _scrollController
                   .jumpTo(_scrollController.position.maxScrollExtent);
             });
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

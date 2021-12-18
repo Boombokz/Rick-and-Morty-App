@@ -7,3 +7,8 @@ class LocationsCharacterLoadEvent extends LocationsCharacterEvent {
   final List<String> linkedCharactersURLs;
   LocationsCharacterLoadEvent({required this.linkedCharactersURLs});
 }
+
+class LocationsCharacterResetEvent extends LocationsCharacterEvent {
+ 
+  LocationsCharacterResetEvent();
+}

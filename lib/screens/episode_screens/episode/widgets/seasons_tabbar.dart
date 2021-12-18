@@ -7,6 +7,8 @@ import 'package:rick_and_morty_test/screens/episode_screens/episode/widgets/seas
 import 'package:rick_and_morty_test/theme/themes.dart';
 
 class SeasonsTabBar extends StatefulWidget {
+  const SeasonsTabBar({Key? key}) : super(key: key);
+
   @override
   _SeasonsTabBarState createState() => _SeasonsTabBarState();
 }
@@ -15,41 +17,47 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   //Split episodes list to tabs
-  Map<K, List<V>> groupBy<K, V>(List<V> values, K mappedBy(V item)) {
+  Map<K, List<V>> groupBy<K, V>(List<V> values, K Function(V item) mappedBy) {
     final result = <K, List<V>>{};
-    values.forEach((v) {
+    for (var v in values) {
       final key = mappedBy(v);
       if (!result.containsKey(key)) {
         result[key] = <V>[];
       }
       result[key]!.add(v);
-    });
+    }
     return result;
   }
 
-  List<Widget> _tabs = [
+  final List<Widget> _tabs = [
     Padding(
-      padding: EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Text(
         "Season 1".toUpperCase(),
       ),
     ),
     Padding(
-      padding: EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Text(
         "Season 2".toUpperCase(),
       ),
     ),
     Padding(
-      padding: EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Text(
         "Season 3".toUpperCase(),
       ),
     ),
     Padding(
-      padding: EdgeInsets.symmetric(horizontal: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 3),
       child: Text(
         "Season 4".toUpperCase(),
+      ),
+    ),
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 3),
+      child: Text(
+        "Season 5".toUpperCase(),
       ),
     ),
   ];
@@ -57,7 +65,7 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(vsync: this, length: 4);
+    _tabController = TabController(vsync: this, length: 5);
   }
 
   @override
@@ -66,12 +74,12 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
       child: Column(
         children: <Widget>[
           Container(
-            constraints: BoxConstraints(maxHeight: 38),
+            constraints: const BoxConstraints(maxHeight: 38),
             child: Material(
               color: Theme.of(context).scaffoldBackgroundColor,
               child: TabBar(
                 indicatorColor: Theme.of(context).colorScheme.onSecondary,
-                labelPadding: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+                labelPadding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
                 indicatorSize: TabBarIndicatorSize.label,
                 controller: _tabController,
                 isScrollable: true,
@@ -83,15 +91,14 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
             child: BlocBuilder<EpisodesListBloc, EpisodesListState>(
               builder: (context, state) {
                 if (state is EpisodesListLoadingState) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is EpisodesListLoadedState) {
                   Map<String, List<Episode>> seasonsEpisodes =
                       groupBy<String, Episode>(state.loadedEpisodes,
-                          (e) => (e.episode).substring(0, 3));
-
-                  return TabBarView(
+                          (e) => (e.episode)?.substring(0, 3) ?? '');
+                  return  TabBarView(
                     controller: _tabController,
                     children: [
                       SeasonTab(
@@ -106,8 +113,12 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
                       SeasonTab(
                         loadedEpisodes: seasonsEpisodes['S04']!,
                       ),
+                      SeasonTab(
+                        loadedEpisodes: seasonsEpisodes['S05']!,
+                      ),
                     ],
                   );
+                  
                 } else if (state is EpisodesListLoadErrorState) {
                   return Center(
                     child: Text(
@@ -116,7 +127,7 @@ class _SeasonsTabBarState extends State<SeasonsTabBar>
                     ),
                   );
                 } else {
-                  return Offstage();
+                  return const Offstage();
                 }
               },
             ),

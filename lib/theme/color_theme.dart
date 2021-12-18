@@ -9,6 +9,7 @@ class ColorPalette {
   static const Color whiteColor = Color(0xFFFFFFFF);
   static const Color greyColor = Color(0xFF6E798C);
   static const Color redColor = Color(0xFFEB5757);
+ 
 
   //Common colors
   static const Color lightBlueColor = Color(0xFF22A2BD);

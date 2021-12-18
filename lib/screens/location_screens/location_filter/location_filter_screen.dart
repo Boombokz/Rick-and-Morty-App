@@ -9,6 +9,8 @@ import 'package:rick_and_morty_test/theme/text_theme.dart';
 import 'package:rick_and_morty_test/screens/character_screens/character_filter/widgets/filter_type_item.dart';
 
 class LocationFilterScreen extends StatefulWidget {
+  const LocationFilterScreen({Key? key}) : super(key: key);
+
   @override
   _LocationFilterScreenState createState() => _LocationFilterScreenState();
 }
@@ -24,19 +26,19 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               height: 60,
               padding:
-                  EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
+                  const EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
               color: Theme.of(context).colorScheme.background,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      BackIconButton(),
-                      SizedBox(width: 12),
+                      const BackIconButton(),
+                      const SizedBox(width: 12),
                       Text(
                         'Filters',
                         style: Theme.of(context).textTheme.headline3,
@@ -47,21 +49,21 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                       ? InkWell(
                           onTap: () {},
                           child: SvgPicture.asset(IconsRes.filterCancelIcon))
-                      : Offstage(),
+                      : const Offstage(),
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Sort'.toUpperCase(),
                 style: TextStyles.bodyText2,
               ),
             ),
-            SizedBox(height: 29),
+            const SizedBox(height: 29),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -84,7 +86,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                           });
                         },
                       ),
-                      SizedBox(width: 32),
+                      const SizedBox(width: 32),
                       GestureDetector(
                         child: SvgPicture.asset(
                           IconsRes.downSortIcon,
@@ -103,15 +105,15 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                 ],
               ),
             ),
-            DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
+            const DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 'Filter by:'.toUpperCase(),
                 style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
-            SizedBox(height: 36),
+            const SizedBox(height: 36),
             FilterTypeItem(
               title: 'Type',
               subtitle: 'Select location type',
@@ -120,7 +122,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                     context, RouteGenerator.locationTypeFilterItemsScreenRoute);
               },
             ),
-            SizedBox(height: 36),
+            const SizedBox(height: 36),
             FilterTypeItem(
               title: 'Dimension',
               subtitle: 'Select location dimension',

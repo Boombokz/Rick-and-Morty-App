@@ -9,7 +9,7 @@ import 'package:transparent_image/transparent_image.dart';
 class CharacterListTile extends StatelessWidget {
   final Character character;
 
-  CharacterListTile({required this.character});
+  const CharacterListTile({Key? key, required this.character}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CharacterListTile extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         BlocProvider.of<CharacterEpisodesBloc>(context)
-            .add(CharacterEpisodesLoadEvent(episodes: character.episode));
+            .add(CharacterEpisodesLoadEvent(episodes: character.episode ?? []));
         Navigator.pushNamed(
           context,
           RouteGenerator.characterDetailsScreenRoute,
@@ -31,27 +31,27 @@ class CharacterListTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: FadeInImage.memoryNetwork(
-              fadeInDuration: Duration(milliseconds: 150),
-              fadeOutDuration: Duration(milliseconds: 150),
+              fadeInDuration: const Duration(milliseconds: 150),
+              fadeOutDuration: const Duration(milliseconds: 150),
               width: 74,
               height: 74,
-              image: character.image,
+              image: character.image?? '',
               fit: BoxFit.cover,
               placeholder: kTransparentImage,
               imageErrorBuilder: (BuildContext context, Object exception,
                   StackTrace? stackTrace) {
-                return Text('Image');
+                return const Text('Image');
               },
             ),
           ),
-          SizedBox(width: 13.5),
+          const SizedBox(width: 13.5),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '${character.status}'.toUpperCase(),
-                  style: DefineTextStyle.statusTextStyle(character.status),
+                  style: DefineTextStyle.statusTextStyle(character.status?? ''),
                 ),
                 Text(
                   '${character.name}',

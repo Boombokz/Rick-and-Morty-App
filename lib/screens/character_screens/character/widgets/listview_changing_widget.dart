@@ -8,7 +8,7 @@ import 'package:rick_and_morty_test/screens/character_screens/character/widgets/
 class ListViewChangingWidget extends StatefulWidget {
   final List<Character> characters;
 
-  ListViewChangingWidget({required this.characters});
+  const ListViewChangingWidget({Key? key, required this.characters}) : super(key: key);
 
   @override
   _ListViewChangingWidgetState createState() => _ListViewChangingWidgetState();

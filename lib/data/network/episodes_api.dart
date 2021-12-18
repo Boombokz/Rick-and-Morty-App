@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:rick_and_morty_test/constants/network/network_url.dart';
 import 'package:rick_and_morty_test/data/models/episodes/episode_model.dart';
+import 'package:rick_and_morty_test/utils/injection_container.dart';
 
 class EpisodesAPI {
-  Dio dio = Dio(BaseOptions(baseUrl: NetworkURL.baseURL));
+   Dio dio = getIt.get<Dio>(instanceName: 'Base');
 
   Future<List<Episode>> getEpisodes(int pages) async {
     try {
@@ -19,8 +19,8 @@ class EpisodesAPI {
         }
       }
       return loadedEpisodes;
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -32,8 +32,8 @@ class EpisodesAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -48,8 +48,8 @@ class EpisodesAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -61,8 +61,8 @@ class EpisodesAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 }

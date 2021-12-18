@@ -9,7 +9,7 @@ import 'package:rick_and_morty_test/screens/location_screens/location_details/bl
 class LocationListTile extends StatelessWidget {
   final Location location;
 
-  LocationListTile({required this.location});
+  const LocationListTile({Key? key, required this.location}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +17,8 @@ class LocationListTile extends StatelessWidget {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         BlocProvider.of<LocationDetailsBloc>(context)
-          ..add(
-            LocationDetailsStartEvent(locationID: location.id),
+          .add(
+            LocationDetailsStartEvent(locationID: location.id ?? 0),
           );
 
         Navigator.pushNamed(context, RouteGenerator.locationDetailsScreenRoute);
@@ -46,16 +46,16 @@ class LocationListTile extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 13.5),
+            const SizedBox(width: 13.5),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '${location.name}',
+                    location.name ?? '',
                     style: Theme.of(context).textTheme.headline1,
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     '${location.type} - ${location.dimension}',
                     style: Theme.of(context).textTheme.subtitle1,

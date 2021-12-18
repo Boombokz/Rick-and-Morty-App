@@ -18,17 +18,21 @@ import 'package:rick_and_morty_test/screens/location_screens/location_details/bl
 import 'package:rick_and_morty_test/screens/location_screens/location_search/blocs/location_search_bloc/location_search_bloc.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 import 'package:rick_and_morty_test/theme/main_theme.dart';
+import 'package:rick_and_morty_test/utils/injection_container.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: ColorPalette.darkBlueColor,
   ));
-  runApp(MyApp());
+  initInjections();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

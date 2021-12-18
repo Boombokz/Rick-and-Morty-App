@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:rick_and_morty_test/constants/network/network_url.dart';
 import 'package:rick_and_morty_test/data/models/locations/location_model.dart';
+import 'package:rick_and_morty_test/utils/injection_container.dart';
 
 class LocationsAPI {
-  Dio dio = Dio(BaseOptions(baseUrl: NetworkURL.baseURL));
+   Dio dio = getIt.get<Dio>(instanceName: 'Base');
 
   Future<List<Location>> getLocations(int i) async {
     try {
@@ -15,8 +15,8 @@ class LocationsAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -28,8 +28,8 @@ class LocationsAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -41,8 +41,8 @@ class LocationsAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -57,8 +57,8 @@ class LocationsAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -70,8 +70,8 @@ class LocationsAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 
@@ -84,8 +84,8 @@ class LocationsAPI {
       } else {
         throw Exception();
       }
-    } on Exception catch (e) {
-      throw e;
+    } on Exception {
+      rethrow;
     }
   }
 }

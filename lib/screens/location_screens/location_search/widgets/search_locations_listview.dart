@@ -11,7 +11,7 @@ class SearchLocationsListView extends StatelessWidget {
   final List<Location> locations;
   final ScrollController _scrollController = ScrollController();
 
-  SearchLocationsListView({required this.locations});
+  SearchLocationsListView({Key? key, required this.locations}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class SearchLocationsListView extends StatelessWidget {
                 ..isFirstTime = false
                 ..add(LocationSearchStartEvent(
                     text: store.get('locationSearchText')));
-              BlocProvider.of<LocationSearchBloc>(context)..isFetching = true;
+              BlocProvider.of<LocationSearchBloc>(context).isFetching = true;
             }
           }),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
@@ -39,17 +39,17 @@ class SearchLocationsListView extends StatelessWidget {
         itemBuilder: (context, index) {
           if (index < locations.length) {
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: LocationListTile(
                 location: locations[index],
               ),
             );
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               _scrollController
                   .jumpTo(_scrollController.position.maxScrollExtent);
             });
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

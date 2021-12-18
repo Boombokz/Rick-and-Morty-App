@@ -5,6 +5,8 @@ import 'package:rick_and_morty_test/data/repository/types_repository.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class LocationTypeFilterItemsScreen extends StatefulWidget {
+  const LocationTypeFilterItemsScreen({Key? key}) : super(key: key);
+
   @override
   _LocationTypeFilterItemsScreenState createState() =>
       _LocationTypeFilterItemsScreenState();
@@ -23,19 +25,19 @@ class _LocationTypeFilterItemsScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               height: 60,
               padding:
-                  EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
+                  const EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
               color: Theme.of(context).colorScheme.background,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                     BackIconButton(),
-                      SizedBox(width: 12),
+                     const BackIconButton(),
+                      const SizedBox(width: 12),
                       Text(
                         'Select type',
                         style: Theme.of(context).textTheme.headline3,
@@ -45,7 +47,7 @@ class _LocationTypeFilterItemsScreenState
                 ],
               ),
             ),
-            SizedBox(height: 36),
+            const SizedBox(height: 36),
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -53,7 +55,7 @@ class _LocationTypeFilterItemsScreenState
                 });
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
                     Text(
@@ -69,13 +71,13 @@ class _LocationTypeFilterItemsScreenState
                 ),
               ),
             ),
-            DividerWidget(
+            const DividerWidget(
               verticalPadding: 24,
               horizontalPadding: 16,
             ),
             Expanded(
               child: ListView.builder(
-                  padding: EdgeInsets.only(bottom: 12, right: 16, left: 16),
+                  padding: const EdgeInsets.only(bottom: 12, right: 16, left: 16),
                   shrinkWrap: true,
                   itemCount: typesRepository.getTypes().length,
                   itemBuilder: (context, index) {
@@ -86,9 +88,9 @@ class _LocationTypeFilterItemsScreenState
                         });
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: 24),
+                        padding: const EdgeInsets.only(bottom: 24),
                         child: Text(
-                          '${typesRepository.getTypes()[index]}',
+                          typesRepository.getTypes()[index],
                           style: currentIndex == index
                               ? Theme.of(context)
                               .textTheme

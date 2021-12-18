@@ -11,7 +11,7 @@ class SearchEpisodesListView extends StatelessWidget {
   final List<Episode> episodes;
   final ScrollController _scrollController = ScrollController();
 
-  SearchEpisodesListView({required this.episodes});
+  SearchEpisodesListView({Key? key, required this.episodes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +26,10 @@ class SearchEpisodesListView extends StatelessWidget {
                 ..isFirstTime = false
                 ..add(EpisodeSearchStartEvent(
                     text: store.get('episodeSearchText')));
-              BlocProvider.of<EpisodeSearchBloc>(context)..isFetching = true;
+              BlocProvider.of<EpisodeSearchBloc>(context).isFetching = true;
             }
           }),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
@@ -39,17 +39,17 @@ class SearchEpisodesListView extends StatelessWidget {
         itemBuilder: (context, index) {
           if (index < episodes.length) {
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: EpisodeListTile(
                 episode: episodes[index],
               ),
             );
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               _scrollController
                   .jumpTo(_scrollController.position.maxScrollExtent);
             });
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

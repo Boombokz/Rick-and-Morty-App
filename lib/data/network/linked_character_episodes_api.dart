@@ -1,23 +1,29 @@
 import 'package:dio/dio.dart';
 import 'package:rick_and_morty_test/data/models/episodes/episode_model.dart';
+import 'package:rick_and_morty_test/utils/injection_container.dart';
 
 class LinkedCharacterEpisodesAPI {
-  Dio dio = Dio();
+  Dio dio = getIt.get<Dio>(instanceName: 'Empty');
 
   Future<List<Episode>> getCharacterEpisodes(List<String> episodesURLs) async {
     try {
-      List<Episode> characterEpisodes = [];
+      List<Future> futures = [];
+
       for (int i = 0; i < episodesURLs.length; i++) {
-        Response response = await dio.get(episodesURLs[i]);
-        if (response.statusCode == 200) {
-          characterEpisodes.add(Episode.fromJson(response.data));
-        } else {
-          throw Exception();
-        }
+        futures.add(dio.get(episodesURLs[i]));
       }
+
+       final results = await Future.wait(futures);
+
+      List<Episode> characterEpisodes = [];
+
+      for (int i = 0; i < results.length; i++) {
+        characterEpisodes.add(Episode.fromJson(results[i].data));
+      }
+
       return characterEpisodes;
-    } on Exception catch (e) {
-      throw e;
+    } catch (e) {
+      rethrow;
     }
   }
 }

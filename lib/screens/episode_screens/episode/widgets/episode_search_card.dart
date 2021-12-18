@@ -7,10 +7,12 @@ import 'package:rick_and_morty_test/constants/router/route_generator.dart';
 
 
 class EpisodeSearchCard extends StatelessWidget {
+  const EpisodeSearchCard({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 19),
+      padding: const EdgeInsets.symmetric(horizontal: 19),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
         color: Theme.of(context).primaryColor,
@@ -18,12 +20,12 @@ class EpisodeSearchCard extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(IconsRes.searchIcon, color: Theme.of(context).iconTheme.color,),
-          SizedBox(width: 26),
+          const SizedBox(width: 26),
           GestureDetector(
             behavior: HitTestBehavior.translucent,
             onTap: () {
               BlocProvider.of<EpisodeSearchBloc>(context)
-                ..add(EpisodeSearchInitialEvent());
+                .add(EpisodeSearchInitialEvent());
               Navigator.pushNamed(
                   context, RouteGenerator.episodeSearchScreenRoute);
             },

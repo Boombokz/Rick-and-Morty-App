@@ -8,44 +8,44 @@ class FilterCheckboxes extends StatelessWidget {
   final String secondTitle;
   final String thirdTitle;
 
-  FilterCheckboxes(
-      {required this.mainTitle,
+  const FilterCheckboxes(
+      {Key? key, required this.mainTitle,
       required this.firstTitle,
       required this.secondTitle,
-      required this.thirdTitle});
+      required this.thirdTitle}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
+        const DividerWidget(verticalPadding: 36, horizontalPadding: 0,),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            '$mainTitle'.toUpperCase(),
+            mainTitle.toUpperCase(),
             style: Theme.of(context).textTheme.bodyText2,
           ),
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: CustomCheckbox(
-            title: '$firstTitle',
+            title: firstTitle,
           ),
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: CustomCheckbox(
-            title: '$secondTitle',
+            title: secondTitle,
           ),
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: CustomCheckbox(
-            title: '$thirdTitle',
+            title: thirdTitle,
           ),
         ),
       ],

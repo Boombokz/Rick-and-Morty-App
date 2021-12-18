@@ -9,7 +9,7 @@ import 'package:rick_and_morty_test/utils/global_state/global_state.dart';
 class SearchLocationWidget extends StatefulWidget {
   final Function clearSearchedLocations;
 
-  SearchLocationWidget({required this.clearSearchedLocations});
+  const SearchLocationWidget({Key? key, required this.clearSearchedLocations}) : super(key: key);
 
   @override
   _SearchLocationWidgetState createState() => _SearchLocationWidgetState();
@@ -31,7 +31,7 @@ class _SearchLocationWidgetState extends State<SearchLocationWidget> {
       if (textController.text.isEmpty) {
         widget.clearSearchedLocations();
         BlocProvider.of<LocationSearchBloc>(context)
-          ..add(LocationSearchInitialEvent());
+          .add(LocationSearchInitialEvent());
       } else if (isChanged) {
         BlocProvider.of<LocationSearchBloc>(context).page = 1;
 
@@ -50,7 +50,7 @@ class _SearchLocationWidgetState extends State<SearchLocationWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 2),
+      padding: const EdgeInsets.only(left: 8, right: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
@@ -60,8 +60,8 @@ class _SearchLocationWidgetState extends State<SearchLocationWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BackIconButton(),
-          Container(
+          const BackIconButton(),
+          SizedBox(
             width: MediaQuery.of(context).size.width - 175,
             child: TextField(
               style: Theme.of(context).textTheme.headline4,
@@ -80,7 +80,7 @@ class _SearchLocationWidgetState extends State<SearchLocationWidget> {
               textController.clear();
               widget.clearSearchedLocations();
               BlocProvider.of<LocationSearchBloc>(context)
-                ..add(LocationSearchInitialEvent());
+                .add(LocationSearchInitialEvent());
             },
             splashRadius: 8,
             icon: SvgPicture.asset(

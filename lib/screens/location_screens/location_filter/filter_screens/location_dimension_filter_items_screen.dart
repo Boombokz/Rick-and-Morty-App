@@ -5,6 +5,8 @@ import 'package:rick_and_morty_test/data/repository/dimensions_repository.dart';
 import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class LocationDimensionFilterItemsScreen extends StatefulWidget {
+  const LocationDimensionFilterItemsScreen({Key? key}) : super(key: key);
+
   @override
   _LocationDimensionFilterItemsScreenState createState() =>
       _LocationDimensionFilterItemsScreenState();
@@ -23,23 +25,23 @@ class _LocationDimensionFilterItemsScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Container(
               height: 60,
               padding:
-                  EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
+                  const EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 15),
               color: Theme.of(context).colorScheme.background,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      BackIconButton(),
-                      SizedBox(width: 12),
+                      const BackIconButton(),
+                      const SizedBox(width: 12),
                       Text(
                         'Select dimension',
                         style: Theme.of(context).textTheme.headline3,
-                        textHeightBehavior: TextHeightBehavior(
+                        textHeightBehavior: const TextHeightBehavior(
                           applyHeightToFirstAscent: false,
                           applyHeightToLastDescent: false,
                         ),
@@ -49,7 +51,7 @@ class _LocationDimensionFilterItemsScreenState
                 ],
               ),
             ),
-            SizedBox(height: 36),
+            const SizedBox(height: 36),
             GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
@@ -58,7 +60,7 @@ class _LocationDimensionFilterItemsScreenState
                 });
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
                     Text(
@@ -74,13 +76,13 @@ class _LocationDimensionFilterItemsScreenState
                 ),
               ),
             ),
-            DividerWidget(
+            const DividerWidget(
               verticalPadding: 24,
               horizontalPadding: 16,
             ),
             Expanded(
               child: ListView.builder(
-                  padding: EdgeInsets.only(bottom: 12, right: 16, left: 16),
+                  padding: const EdgeInsets.only(bottom: 12, right: 16, left: 16),
                   shrinkWrap: true,
                   itemCount: dimensionsRepository.getTypes().length,
                   itemBuilder: (context, index) {
@@ -91,8 +93,8 @@ class _LocationDimensionFilterItemsScreenState
                         });
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: 24),
-                        child: Text('${dimensionsRepository.getTypes()[index]}',
+                        padding: const EdgeInsets.only(bottom: 24),
+                        child: Text(dimensionsRepository.getTypes()[index],
                             style: currentIndex == index
                                 ? Theme.of(context).textTheme.caption!.copyWith(
                                     color: ColorPalette.lightBlueColor)

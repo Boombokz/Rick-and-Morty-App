@@ -8,16 +8,17 @@ import 'package:rick_and_morty_test/screens/character_screens/character/blocs/ch
 import 'package:rick_and_morty_test/screens/character_screens/character/blocs/characters_list_bloc/characters_list_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_count_bloc/locations_count_bloc.dart';
 import 'package:rick_and_morty_test/screens/location_screens/location/blocs/locations_list_bloc/locations_list_bloc.dart';
-import 'package:rick_and_morty_test/theme/color_theme.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
   void loadingDelay() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(
         context,
         RouteGenerator.mainScreenRoute,
@@ -33,13 +34,13 @@ class _SplashScreenState extends State<SplashScreen> {
       ..isFetching = true
       ..add(CharactersListLoadEvent());
     BlocProvider.of<CharactersCountBloc>(context)
-      ..add(CharactersCountLoadEvent());
+      .add(CharactersCountLoadEvent());
     BlocProvider.of<LocationsListBloc>(context)
       ..isFetching = true
       ..add(LocationsListLoadEvent());
     BlocProvider.of<LocationsCountBloc>(context)
-      ..add(LocationsCountLoadEvent());
-    BlocProvider.of<EpisodesListBloc>(context)..add(EpisodesListLoadEvent());
+      .add(LocationsCountLoadEvent());
+    BlocProvider.of<EpisodesListBloc>(context).add(EpisodesListLoadEvent());
     loadingDelay();
     super.initState();
   }
@@ -66,13 +67,13 @@ class _SplashScreenState extends State<SplashScreen> {
               children: [
                 Column(
                   children: [
-                    Container(
+                    SizedBox(
                       child: Image.asset(
                         Images.rickImage,
                       ),
                       height: MediaQuery.of(context).size.height * 0.24,
                     ),
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height * 0.24,
                       child: Stack(
                         children: [
@@ -95,7 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 )
               ],
             ),
-            Container(
+            SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -105,12 +106,12 @@ class _SplashScreenState extends State<SplashScreen> {
                     clipBehavior: Clip.none,
                     fit: StackFit.loose,
                     children: [
-                      Container(
+                      SizedBox(
                           height: MediaQuery.of(context).size.height * 0.24,
                           child: Image.asset(Images.downImage)),
                       Positioned(
                         bottom: 150,
-                        child: Container(
+                        child: SizedBox(
                             height: MediaQuery.of(context).size.height * 0.24,
                             child: Image.asset(Images.upImage)),
                       ),

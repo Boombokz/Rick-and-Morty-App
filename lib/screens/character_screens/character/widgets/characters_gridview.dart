@@ -10,7 +10,7 @@ class CharactersGridView extends StatelessWidget {
   final List<Character> characters;
   final ScrollController _scrollController = ScrollController();
 
-  CharactersGridView({required this.characters});
+  CharactersGridView({Key? key, required this.characters}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,12 @@ class CharactersGridView extends StatelessWidget {
                     _scrollController.position.maxScrollExtent &&
                 !context.read<CharactersListBloc>().isFetching) {
               context.read<CharactersListBloc>()
-                ..add(CharactersListLoadEvent());
-              context.read<CharactersListBloc>()..isFetching = true;
+                .add(CharactersListLoadEvent());
+              context.read<CharactersListBloc>().isFetching = true;
             }
           }),
-        padding: EdgeInsets.symmetric(vertical: 28),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        padding: const EdgeInsets.symmetric(vertical: 28),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 0.9,
           crossAxisSpacing: 8,
@@ -41,14 +41,14 @@ class CharactersGridView extends StatelessWidget {
               character: characters[index],
             );
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               _scrollController
                   .jumpTo(_scrollController.position.maxScrollExtent);
             });
             return Stack(
               clipBehavior: Clip.none,
               fit: StackFit.loose,
-              children: [
+              children: const [
                 Positioned(
                   right: -30,
                   bottom: 0,

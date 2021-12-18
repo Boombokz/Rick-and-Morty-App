@@ -3,6 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rick_and_morty_test/resources/resources.dart';
 
 class BackIconButton extends StatelessWidget {
+  const BackIconButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return IconButton(

@@ -39,10 +39,10 @@ class RouteGenerator {
     switch (settings.name) {
       case mainScreenRoute:
         return MaterialPageRoute(
-            settings: RouteSettings(name: 'MainScreen'),
-            builder: (_) => MainScreen());
+            settings: const RouteSettings(name: 'MainScreen'),
+            builder: (_) => const MainScreen());
       case splashScreenRoute:
-        return MaterialPageRoute(builder: (_) => SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
       case characterScreenRoute:
         return MaterialPageRoute(builder: (_) => CharacterScreen());
       case characterDetailsScreenRoute:
@@ -54,24 +54,24 @@ class RouteGenerator {
       case characterSearchScreenRoute:
         return MaterialPageRoute(builder: (_) => CharacterSearchScreen());
       case characterFilterScreenRoute:
-        return MaterialPageRoute(builder: (_) => CharacterFilterScreen());
+        return MaterialPageRoute(builder: (_) => const CharacterFilterScreen());
       case episodesScreenRoute:
-        return MaterialPageRoute(builder: (_) => EpisodeScreen());
+        return MaterialPageRoute(builder: (_) => const EpisodeScreen());
       case locationDetailsScreenRoute:
         return MaterialPageRoute(
           settings: settings,
-          builder: (_) => LocationDetailsScreen(),
+          builder: (_) => const LocationDetailsScreen(),
         );
       case locationSearchScreenRoute:
         return MaterialPageRoute(builder: (_) => LocationSearchScreen());
       case locationFilterScreenRoute:
-        return MaterialPageRoute(builder: (_) => LocationFilterScreen());
+        return MaterialPageRoute(builder: (_) => const LocationFilterScreen());
       case locationTypeFilterItemsScreenRoute:
         return MaterialPageRoute(
-            builder: (_) => LocationTypeFilterItemsScreen());
+            builder: (_) => const LocationTypeFilterItemsScreen());
       case dimensionTypeFilterItemsScreenRoute:
         return MaterialPageRoute(
-            builder: (_) => LocationDimensionFilterItemsScreen());
+            builder: (_) => const LocationDimensionFilterItemsScreen());
       case episodesDetailsScreenRoute:
         return MaterialPageRoute(
           settings: settings,
@@ -83,7 +83,7 @@ class RouteGenerator {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
+          builder: (_) => const Scaffold(
             body: Center(
               child: Text('Страница не существует'),
             ),

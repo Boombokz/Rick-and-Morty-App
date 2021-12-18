@@ -9,9 +9,9 @@ import 'package:rick_and_morty_test/utils/global_state/global_state.dart';
 class SearchCharacterWidget extends StatefulWidget {
   final Function clearSearchedCharacters;
 
-  SearchCharacterWidget({
+  const SearchCharacterWidget({Key? key, 
     required this.clearSearchedCharacters,
-  });
+  }) : super(key: key);
 
   @override
   _SearchCharacterWidgetState createState() => _SearchCharacterWidgetState();
@@ -33,7 +33,7 @@ class _SearchCharacterWidgetState extends State<SearchCharacterWidget> {
       if (textController.text.isEmpty) {
         widget.clearSearchedCharacters();
         BlocProvider.of<CharacterSearchBloc>(context)
-          ..add(CharacterSearchInitialEvent());
+          .add(CharacterSearchInitialEvent());
         previousValue = '';
       } else if (isChanged) {
         BlocProvider.of<CharacterSearchBloc>(context).page = 1;
@@ -53,7 +53,7 @@ class _SearchCharacterWidgetState extends State<SearchCharacterWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 8, right: 2),
+      padding: const EdgeInsets.only(left: 8, right: 2),
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         border: Border(
@@ -63,8 +63,8 @@ class _SearchCharacterWidgetState extends State<SearchCharacterWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          BackIconButton(),
-          Container(
+          const BackIconButton(),
+          SizedBox(
             width: MediaQuery.of(context).size.width - 175,
             child: TextField(
               style: Theme.of(context).textTheme.headline4,

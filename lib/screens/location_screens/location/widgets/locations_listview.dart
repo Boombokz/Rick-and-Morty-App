@@ -9,7 +9,7 @@ import 'package:rick_and_morty_test/screens/location_screens/location/widgets/lo
 class LocationsListView extends StatelessWidget {
   final List<Location> locations;
 
-  LocationsListView({required this.locations});
+  LocationsListView({Key? key, required this.locations}) : super(key: key);
 
   final ScrollController _scrollController = ScrollController();
 
@@ -21,11 +21,11 @@ class LocationsListView extends StatelessWidget {
             if (_scrollController.offset ==
                     _scrollController.position.maxScrollExtent &&
                 !context.read<LocationsListBloc>().isFetching) {
-              context.read<LocationsListBloc>()..add(LocationsListLoadEvent());
-              context.read<LocationsListBloc>()..isFetching = true;
+              context.read<LocationsListBloc>().add(LocationsListLoadEvent());
+              context.read<LocationsListBloc>().isFetching = true;
             }
           }),
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 12,
         ),
@@ -35,18 +35,18 @@ class LocationsListView extends StatelessWidget {
         itemBuilder: (context, index) {
           if (index < locations.length) {
             return Padding(
-              padding: EdgeInsets.symmetric(vertical: 12),
+              padding: const EdgeInsets.symmetric(vertical: 12),
               child: LocationListTile(
                 location: locations[index],
               ),
             );
           } else {
-            Timer(Duration(milliseconds: 30), () {
+            Timer(const Duration(milliseconds: 30), () {
               _scrollController
                   .jumpTo(_scrollController.position.maxScrollExtent);
             });
 
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }

@@ -5,7 +5,7 @@ import 'package:rick_and_morty_test/resources/resources.dart';
 class CustomCheckbox extends StatefulWidget {
   final String title;
 
-  CustomCheckbox({required this.title});
+  const CustomCheckbox({Key? key, required this.title}) : super(key: key);
 
   @override
   _CustomCheckboxState createState() => _CustomCheckboxState();
@@ -28,12 +28,12 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
               ? SvgPicture.asset(IconsRes.checkedIcon)
               : SvgPicture.asset(IconsRes.uncheckedIcon,color: Theme.of(context).colorScheme.primaryVariant,),
         ),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         Text(
-          '${widget.title}',
+          widget.title,
           style: Theme.of(context).textTheme.caption,
           textAlign: TextAlign.center,
-          textHeightBehavior: TextHeightBehavior(
+          textHeightBehavior: const TextHeightBehavior(
             applyHeightToFirstAscent: false,
             applyHeightToLastDescent: false,
           ),

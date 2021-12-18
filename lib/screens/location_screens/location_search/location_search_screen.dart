@@ -11,6 +11,8 @@ import 'package:rick_and_morty_test/screens/location_screens/location_search/wid
 class LocationSearchScreen extends StatelessWidget {
   final List<Location> _searchedLocations = [];
 
+  LocationSearchScreen({Key? key}) : super(key: key);
+
   void clearSearchedLocations() {
     _searchedLocations.clear();
   }
@@ -22,16 +24,16 @@ class LocationSearchScreen extends StatelessWidget {
 
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SearchLocationWidget(
                 clearSearchedLocations: clearSearchedLocations,
               ),
-              SizedBox(height: 23),
+              const SizedBox(height: 23),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Text(
                   'Search results'.toUpperCase(),
                   style: Theme.of(context).textTheme.bodyText2,
@@ -41,7 +43,7 @@ class LocationSearchScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state is LocationSearchLoadingState &&
                       _searchedLocations.isEmpty) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is LocationSearchInitial) {
                     return Padding(
                       padding: EdgeInsets.only(
@@ -68,17 +70,14 @@ class LocationSearchScreen extends StatelessWidget {
                     return Center(
                       child: Column(
                         children: [
-                          SizedBox(height: 59),
+                          const SizedBox(height: 59),
                           Image.asset(Images.locationSearchErrorImage),
-                          SizedBox(height: 28),
-                          Text(
-                            'Location with this name',
+                          const SizedBox(height: 28),
+                          const Text(
+                            'Location with this name\nwas not found',
                             style: TextStyles.headline2,
                           ),
-                          Text(
-                            'was not found',
-                            style: TextStyles.headline2,
-                          ),
+                  
                         ],
                       ),
                     );

@@ -12,6 +12,8 @@ import 'package:rick_and_morty_test/screens/location_screens/location_search/blo
 class LocationScreen extends StatelessWidget {
   final List<Location> _locations = [];
 
+  LocationScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +22,7 @@ class LocationScreen extends StatelessWidget {
           child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 20,
               right: 16,
               left: 16,
@@ -39,9 +41,9 @@ class LocationScreen extends StatelessWidget {
               },
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             height: 24,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,14 +56,14 @@ class LocationScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodyText2,
                       );
                     } else if (state is LocationsCountLoadingState) {
-                      return Offstage();
+                      return const Offstage();
                     } else if (state is LocationsCountErrorState) {
                       return Text(
                         'Error'.toUpperCase(),
                         style: TextStyles.bodyText2,
                       );
                     } else {
-                      return Offstage();
+                      return const Offstage();
                     }
                   },
                 ),
@@ -71,14 +73,14 @@ class LocationScreen extends StatelessWidget {
           BlocBuilder<LocationsListBloc, LocationsListState>(
             builder: (context, state) {
               if (state is LocationsListLoadingState && _locations.isEmpty) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (state is LocationsListLoadedState) {
                 _locations.addAll((state.loadedLocations)
                     .where((e) => !_locations.contains(e)));
-                context.read<LocationsListBloc>()..isFetching = false;
+                context.read<LocationsListBloc>().isFetching = false;
               } else if (state is LocationsListLoadErrorState &&
                   _locations.isEmpty) {
-                return Center(
+                return const Center(
                   child: Text('Error'),
                 );
               }

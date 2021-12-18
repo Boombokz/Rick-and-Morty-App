@@ -5,16 +5,16 @@ import 'package:rick_and_morty_test/screens/episode_screens/episode_search/widge
 class SeasonTab extends StatelessWidget {
   final List<Episode> loadedEpisodes;
 
-  SeasonTab({required this.loadedEpisodes});
+  const SeasonTab({Key? key, required this.loadedEpisodes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: loadedEpisodes.length,
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         itemBuilder: (context, index) {
           return Padding(
-            padding: EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             child: EpisodeListTile(
               episode: loadedEpisodes[index],
             ),

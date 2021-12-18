@@ -10,17 +10,17 @@ import 'package:rick_and_morty_test/utils/check_text_color/define_textstyle.dart
 class LinkedLocationCharacterListTile extends StatelessWidget {
   final Character character;
 
-  LinkedLocationCharacterListTile({required this.character});
+  const LinkedLocationCharacterListTile({Key? key, required this.character}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: () {
           BlocProvider.of<CharacterEpisodesBloc>(context)
-            ..add(CharacterEpisodesLoadEvent(episodes: character.episode));
+            .add(CharacterEpisodesLoadEvent(episodes: character.episode ?? []));
           Navigator.pushNamed(
               context, RouteGenerator.characterDetailsScreenRoute,
               arguments: character);
@@ -34,18 +34,18 @@ class LinkedLocationCharacterListTile extends StatelessWidget {
               child: Image(
                 height: 74,
                 width: 74,
-                image: NetworkImage(character.image),
+                image: NetworkImage(character.image?? ''),
                 fit: BoxFit.fill,
               ),
             ),
-            SizedBox(width: 13.5),
+            const SizedBox(width: 13.5),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     '${character.status}'.toUpperCase(),
-                    style: DefineTextStyle.statusTextStyle(character.status),
+                    style: DefineTextStyle.statusTextStyle(character.status?? ''),
                   ),
                   Text(
                     '${character.name}',

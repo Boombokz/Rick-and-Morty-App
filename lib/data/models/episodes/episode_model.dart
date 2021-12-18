@@ -5,18 +5,18 @@ part 'episode_model.g.dart';
 
 @JsonSerializable()
 class Episode {
-  int id;
-  String name;
-  String air_date;
-  String episode;
-  List<String> characters;
+  int? id;
+  String? name;
+  @JsonKey(name: 'air_date')String? airDate;
+  String? episode;
+  List<String>? characters;
 
   Episode({
-    required this.id,
-    required this.name,
-    required this.air_date,
-    required this.episode,
-    required this.characters,
+    this.id,
+    this.name,
+    this.airDate,
+    this.episode,
+    this.characters,
   });
 
   factory Episode.fromJson(Map<String, dynamic> data) =>

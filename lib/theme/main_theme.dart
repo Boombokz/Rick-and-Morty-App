@@ -31,19 +31,19 @@ class MainThemes {
     brightness: Brightness.dark,
     textTheme: darkTextTheme,
     scaffoldBackgroundColor: ColorPalette.darkBlueColor,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: ColorPalette.greyBlueColor,
       selectedItemColor: ColorPalette.lightGreenColor,
       unselectedItemColor: ColorPalette.darkGreyColor,
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: ColorPalette.darkGreyColor,
     ),
-    dividerTheme: DividerThemeData(
+    dividerTheme: const DividerThemeData(
       color: ColorPalette.greyBlueColor,
       thickness: 2,
     ),
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: const TabBarTheme(
       unselectedLabelColor: ColorPalette.darkGreyColor,
     ),
   );
@@ -51,7 +51,7 @@ class MainThemes {
   static final ThemeData lightTheme = ThemeData(
     fontFamily: 'Roboto',
     primaryColor: ColorPalette.grey6Color,
-    colorScheme: ColorScheme(
+    colorScheme: const ColorScheme(
       secondary: ColorPalette.grey4Color,
       //circular progress indicator color
       primary: ColorPalette.greyColor,
@@ -69,22 +69,22 @@ class MainThemes {
       onError: Colors.black,
     ),
     scaffoldBackgroundColor: ColorPalette.grey1Color,
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: ColorPalette.whiteColor,
       selectedItemColor: ColorPalette.lightBlueColor,
       unselectedItemColor: ColorPalette.grey4Color,
     ),
     brightness: Brightness.light,
     textTheme: lightTextTheme,
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: ColorPalette.darkGreyColor,
 
     ),
-    dividerTheme: DividerThemeData(
+    dividerTheme: const DividerThemeData(
       color: ColorPalette.grey6Color,
       thickness: 2,
     ),
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: const TabBarTheme(
       unselectedLabelColor: ColorPalette.grey4Color,
     ),
   );

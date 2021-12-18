@@ -12,6 +12,8 @@ import 'package:rick_and_morty_test/screens/character_screens/character_search/b
 class CharacterScreen extends StatelessWidget {
   final List<Character> _characters = [];
 
+  CharacterScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class CharacterScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 20,
                 right: 16,
                 left: 16,
@@ -30,7 +32,7 @@ class CharacterScreen extends StatelessWidget {
                 hintText: 'Find character',
                 onTextTap: () {
                   BlocProvider.of<CharacterSearchBloc>(context)
-                    ..add(CharacterSearchInitialEvent());
+                    .add(CharacterSearchInitialEvent());
                   Navigator.pushNamed(
                       context, RouteGenerator.characterSearchScreenRoute);
                 },
@@ -43,9 +45,9 @@ class CharacterScreen extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     height: 24,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,18 +61,18 @@ class CharacterScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.bodyText2,
                               );
                             } else if (state is CharactersCountLoadingState) {
-                              return Offstage();
+                              return const Offstage();
                             } else if (state is CharacterCountErrorState) {
                               return Text(
                                 'Error'.toUpperCase(),
                                 style: Theme.of(context).textTheme.bodyText2,
                               );
                             } else {
-                              return Offstage();
+                              return const Offstage();
                             }
                           },
                         ),
-                        IconChangingWidget(),
+                        const IconChangingWidget(),
                       ],
                     ),
                   ),
@@ -78,16 +80,16 @@ class CharacterScreen extends StatelessWidget {
                     builder: (context, state) {
                       if (state is CharactersListLoadingState &&
                           _characters.isEmpty) {
-                        return Center(child: CircularProgressIndicator());
+                        return const Center(child: CircularProgressIndicator());
                       } else if (state is CharactersListLoadedState) {
                         //check to prevent add duplicate elements when redrawing the screen
                         _characters.addAll((state.loadedCharacters)
                             .where((e) => !_characters.contains(e)));
 
-                        context.read<CharactersListBloc>()..isFetching = false;
+                        context.read<CharactersListBloc>().isFetching = false;
                       } else if (state is CharactersListLoadErrorState &&
                           _characters.isEmpty) {
-                        return Center(
+                        return const Center(
                           child: Text('Error'),
                         );
                       }

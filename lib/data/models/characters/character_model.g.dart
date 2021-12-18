@@ -8,17 +8,20 @@ part of 'character_model.dart';
 
 Character _$CharacterFromJson(Map<String, dynamic> json) {
   return Character(
-    id: json['id'] as int,
-    name: json['name'] as String,
-    status: json['status'] as String,
-    species: json['species'] as String,
-    gender: json['gender'] as String,
-    origin: Origin.fromJson(json['origin'] as Map<String, dynamic>),
-    location:
-        CharacterLocation.fromJson(json['location'] as Map<String, dynamic>),
-    image: json['image'] as String,
+    id: json['id'] as int?,
+    name: json['name'] as String?,
+    status: json['status'] as String?,
+    species: json['species'] as String?,
+    gender: json['gender'] as String?,
+    origin: json['origin'] == null
+        ? null
+        : Origin.fromJson(json['origin'] as Map<String, dynamic>),
+    location: json['location'] == null
+        ? null
+        : CharacterLocation.fromJson(json['location'] as Map<String, dynamic>),
+    image: json['image'] as String?,
     episode:
-        (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
+        (json['episode'] as List<dynamic>?)?.map((e) => e as String).toList(),
   );
 }
 
@@ -28,16 +31,16 @@ Map<String, dynamic> _$CharacterToJson(Character instance) => <String, dynamic>{
       'status': instance.status,
       'species': instance.species,
       'gender': instance.gender,
-      'origin': instance.origin.toJson(),
-      'location': instance.location.toJson(),
+      'origin': instance.origin?.toJson(),
+      'location': instance.location?.toJson(),
       'image': instance.image,
       'episode': instance.episode,
     };
 
 Origin _$OriginFromJson(Map<String, dynamic> json) {
   return Origin(
-    name: json['name'] as String,
-    url: json['url'] as String,
+    name: json['name'] as String?,
+    url: json['url'] as String?,
   );
 }
 
@@ -48,8 +51,8 @@ Map<String, dynamic> _$OriginToJson(Origin instance) => <String, dynamic>{
 
 CharacterLocation _$CharacterLocationFromJson(Map<String, dynamic> json) {
   return CharacterLocation(
-    name: json['name'] as String,
-    url: json['url'] as String,
+    name: json['name'] as String?,
+    url: json['url'] as String?,
   );
 }
 
